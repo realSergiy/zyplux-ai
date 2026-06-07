@@ -102,7 +102,7 @@ export const PROCESS = {
 export const FOUNDER = {
   heading: 'Who’s behind Zyplux',
   paragraphs: [
-    'I’m Sergiy Yeskov, an engineer in Sydney. I’ve spent nearly twenty years building the software businesses run on — thirteen of them on CargoWise One, a global logistics platform companies around the world use for their freight, invoicing, and pricing, where I built the pricing engine and led a team of ten-plus engineers. The last few years I’ve worked purely on AI: systems that read a company’s documents, answer from its own data, and — the hard part — act safely inside it.',
+    'I’m Sergiy Yeskov, an engineer in Sydney. I’ve spent nearly twenty years building the software businesses run on — thirteen of them on a global logistics platform companies around the world use for their freight, invoicing, and pricing, where I built the pricing engine and led a team of ten-plus engineers. The last few years I’ve worked purely on AI: systems that read a company’s documents, answer from its own data, and — the hard part — act safely inside it.',
     'I built Zyplux because nothing on the shelf could do that hard part. Plenty of tools can chat about your business; none could be trusted to work inside it. So I built a platform where approvals, hard limits, and a full log of every action aren’t features bolted on — they’re the foundation it started from.',
     'When you work with Zyplux, you work with me: the engineer who built the platform designs your workflows, connects your systems, and answers your email. No account managers, no hand-offs, no juniors learning on your business.',
   ],
