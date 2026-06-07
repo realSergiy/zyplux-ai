@@ -26,11 +26,11 @@ export const NAV = {
 
 export const HERO = {
   badge: 'Bespoke AI agents for smart businesses',
-  microcopy: 'No call required. Yours to keep — hire us or not.',
+  microcopy: 'No call required. Yours to keep.',
   primaryCta: 'Get your free workflow audit',
   secondaryCta: 'See how it works ↓',
   subhead:
-    'We connect a private AI agent to the systems your business already runs on — email, spreadsheets, databases — and give it real jobs: the repetitive, multi-step work that eats your team’s week. It works around the clock. Nothing goes out without your approval.',
+    'We integrate a private AI agent to the systems your business already runs on — email, spreadsheets, databases — and give it real jobs: the repetitive, multi-step work that eats your team’s week. It works around the clock. Nothing goes out without your approval.',
 };
 
 export const TIMELINE = {
