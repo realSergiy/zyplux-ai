@@ -25,7 +25,7 @@ export const NAV = {
 };
 
 export const HERO = {
-  badge: 'Private AI agents for mid-sized businesses',
+  badge: 'Bespoke AI agents for smart businesses',
   microcopy: 'No call required. Yours to keep — hire us or not.',
   primaryCta: 'Get your free workflow audit',
   secondaryCta: 'See how it works ↓',
