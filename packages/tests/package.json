@@ -1,0 +1,19 @@
+{
+  "name": "@zyplux/tests",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@zyplux/ui": "workspace:*",
+    "@zyplux/web": "workspace:*",
+    "react": "catalog:",
+    "react-dom": "catalog:"
+  },
+  "devDependencies": {
+    "@happy-dom/global-registrator": "catalog:",
+    "@testing-library/react": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "@zyplux/tsconfig": "workspace:*"
+  }
+}

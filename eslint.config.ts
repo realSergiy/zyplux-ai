@@ -1,31 +1,17 @@
-import baseConfig from '@totvibe/eslint-config/eslint-base-config';
-import reactConfig from '@totvibe/eslint-config/eslint-react-config';
+import { totvibe } from '@totvibe/eslint-config';
 import { defineConfig } from 'eslint/config';
 
-export default defineConfig([
-  ...baseConfig.map(config => ({
-    ...config,
-    files: config.files ?? ['**/*.ts', '**/*.tsx'],
-  })),
-
-  ...reactConfig.map(config => ({
-    ...config,
-    files: config.files ?? ['apps/web/**/*.{ts,tsx}', 'packages/ui/**/*.{ts,tsx}'],
-  })),
-
+export default defineConfig(
+  ...totvibe({
+    ignores: ['**/.tsbuild/**'],
+    react: true,
+    tsconfigRootDir: import.meta.dirname,
+  }),
+  { settings: { react: { version: '19.0' } } },
   {
-    files: ['packages/typescript-config/**/*.ts'],
+    files: ['**/*.{ts,tsx,js,mjs,cjs}'],
     rules: {
-      'custom/no-comments-except-pattern': 'off',
+      'unicorn/filename-case': ['error', { cases: { camelCase: true, kebabCase: true, pascalCase: true } }],
     },
   },
-
-  ...baseConfig.map(config => ({
-    ...config,
-    files: ['prettier.config.js', 'apps/web/postcss.config.js'],
-  })),
-
-  {
-    ignores: ['**/node_modules/', '**/dist/', '**/.turbo/', '**/.wrangler/', '**/build/', '**/.next/', '**/*.js'],
-  },
-]);
+);

@@ -1,12 +1,13 @@
-import { Moon, Sun } from 'lucide-react';
-import { useTheme } from '@/hooks/use-theme';
-import { useEffect } from 'react';
 import { useAtom } from 'jotai';
+import { Moon, Sun } from 'lucide-react';
+import { AnimatePresence, motion } from 'motion/react';
+import { useEffect } from 'react';
+
+import { useTheme } from '@/hooks/use-theme';
 import { mountedAtom, showHintAtom } from '@/store/atoms';
-import { motion, AnimatePresence } from 'motion/react';
 
 export const ThemeToggle = () => {
-  const { theme, setTheme } = useTheme();
+  const { setTheme, theme } = useTheme();
   const [mounted, setMounted] = useAtom(mountedAtom);
   const [showHint, setShowHint] = useAtom(showHintAtom);
 
@@ -36,9 +37,9 @@ export const ThemeToggle = () => {
   return (
     <div className='relative'>
       <button
-        onClick={toggleTheme}
-        className='relative h-10 w-10 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors duration-200 flex items-center justify-center'
         aria-label='Toggle theme'
+        className='relative h-10 w-10 rounded-full bg-primary/10 hover:bg-primary/20 transition-colors duration-200 flex items-center justify-center'
+        onClick={toggleTheme}
       >
         {theme === 'dark' ? <Moon className='h-5 w-5 text-primary' /> : <Sun className='h-5 w-5 text-primary' />}
       </button>
@@ -46,10 +47,10 @@ export const ThemeToggle = () => {
       <AnimatePresence>
         {showHint && (
           <motion.div
-            initial={{ opacity: 0, y: 10, scale: 0.8 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -10, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
             className='absolute top-full right-0 mt-2 px-3 py-2 bg-primary/90 backdrop-blur-lg rounded-lg shadow-lg text-primary-foreground text-sm whitespace-nowrap pointer-events-none'
+            exit={{ opacity: 0, scale: 0.8, y: -10 }}
+            initial={{ opacity: 0, scale: 0.8, y: 10 }}
           >
             <div className='flex items-center gap-2'>
               <span>Try dark mode!</span>

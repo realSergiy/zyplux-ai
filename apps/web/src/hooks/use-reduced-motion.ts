@@ -1,5 +1,6 @@
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
+
 import { prefersReducedMotionAtom } from '@/store/atoms';
 
 export const useReducedMotion = () => {

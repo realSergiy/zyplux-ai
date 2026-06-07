@@ -1,27 +1,16 @@
-# @totvibe/ui
+# @zyplux/ui
 
-Shared UI components and utilities for the TotVibe monorepo.
+Shared utilities for the zyplux-ai monorepo.
 
 ## Exports
 
-- `@totvibe/ui/lib/utils` - Utility functions (`cn()` for className merging)
-- `@totvibe/ui/components/*` - UI components (Button, etc.)
+- `@zyplux/ui/lib/utils` - `cn()` for className merging (`clsx` + `tailwind-merge`)
 
 ## Usage
 
-Import components directly from their source:
-
 ```typescript
-import { Button } from '@totvibe/ui/components/button';
-import { cn } from '@totvibe/ui/lib/utils';
+import { cn } from '@zyplux/ui/lib/utils';
 ```
-
-## Stack
-
-- **React 19** - Latest React
-- **Tailwind CSS** - Utility-first styling
-- **CVA** - Class Variance Authority for component variants
-- **clsx + tailwind-merge** - Smart className composition
 
 ## Development
 

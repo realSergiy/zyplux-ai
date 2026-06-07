@@ -1,45 +1,46 @@
-# Dependencies
+# dependencies (bun install)
 node_modules
-.pnp
-.pnp.js
 
-# Production
+# output
 dist
 build
-.next
-out
+*.tgz
 
-# Turbo
-.turbo
+# code coverage
+coverage
+*.lcov
 
-# Misc
-.DS_Store
-*.pem
+# logs
+logs
+*.log
 
-# Debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-
-# Local env files
+# dotenv environment variable files
 .env
-.env.local
 .env.development.local
 .env.test.local
 .env.production.local
+.env.local
 
-# Editor directories and files
+# caches
+.eslintcache
+.cache
+*.tsbuildinfo
+
+# project-references typecheck output (tsc -b emits .d.ts here; never consumed at runtime)
+.tsbuild
+
+# IntelliJ based IDEs
+.idea
+
+# Finder (MacOS) folder config
+.DS_Store
+
+# editor noise
 .vscode/*
 !.vscode/extensions.json
-.idea
 *.suo
-*.ntvs*
-*.njsproj
-*.sln
 *.sw?
 
-# TypeScript
-*.tsbuildinfo
+# misc
+*.pem
 .playwright-mcp

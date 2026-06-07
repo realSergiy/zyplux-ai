@@ -1,45 +1,45 @@
-import { useRef, useMemo, useState, useEffect } from 'react';
+import { Float, MeshTransmissionMaterial } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
-import { MeshTransmissionMaterial, Float } from '@react-three/drei';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
+
 import { useIsMobile } from '@/hooks/use-is-mobile';
 import { useReducedMotion } from '@/hooks/use-reduced-motion';
 import { useTheme } from '@/hooks/use-theme';
 
-const generateShapes = (count: number) => {
-  return Array.from({ length: count }, () => ({
-    scale: 0.2 + Math.random() * 0.6,
-    orbitRadius: 3 + Math.random() * 10,
-    phiOffset: Math.random() * Math.PI * 2,
-    thetaOffset: Math.random() * Math.PI * 2,
-    phiSpeed: (Math.random() - 0.5) * 0.3,
-    thetaSpeed: (Math.random() - 0.5) * 0.3,
+const generateShapes = (count: number) =>
+  Array.from({ length: count }, () => ({
     initialRotationX: Math.random() * Math.PI * 2,
     initialRotationY: Math.random() * Math.PI * 2,
+    orbitRadius: 3 + Math.random() * 10,
+    phiOffset: Math.random() * Math.PI * 2,
+    phiSpeed: (Math.random() - 0.5) * 0.3,
+    scale: 0.2 + Math.random() * 0.6,
+    thetaOffset: Math.random() * Math.PI * 2,
+    thetaSpeed: (Math.random() - 0.5) * 0.3,
   }));
-};
 
 const FloatingShape = ({
-  scale,
-  shouldAnimate,
-  orbitRadius,
-  phiOffset,
-  thetaOffset,
-  phiSpeed,
-  thetaSpeed,
   initialRotationX,
   initialRotationY,
+  orbitRadius,
+  phiOffset,
+  phiSpeed,
+  scale,
+  shouldAnimate,
+  thetaOffset,
+  thetaSpeed,
 }: {
+  initialRotationX: number;
+  initialRotationY: number;
+  orbitRadius: number;
+  phiOffset: number;
+  phiSpeed: number;
   scale: number;
   shouldAnimate: boolean;
   theme: string | undefined;
-  orbitRadius: number;
-  phiOffset: number;
   thetaOffset: number;
-  phiSpeed: number;
   thetaSpeed: number;
-  initialRotationX: number;
-  initialRotationY: number;
 }) => {
   const meshRef = useRef<THREE.Mesh>(null);
   const groupRef = useRef<THREE.Group>(null);
@@ -72,22 +72,22 @@ const FloatingShape = ({
 
   return (
     <group ref={groupRef}>
-      <Float speed={1} rotationIntensity={0.5} floatIntensity={1}>
+      <Float floatIntensity={1} rotationIntensity={0.5} speed={1}>
         <mesh ref={meshRef} scale={scale}>
           <icosahedronGeometry {...{ args: [1, 1] }} />
           {
             <MeshTransmissionMaterial
-              backside
-              samples={4}
-              thickness={0.5}
-              chromaticAberration={0.5}
               anisotropy={0.3}
+              backside
+              chromaticAberration={0.5}
               distortion={0.3}
               distortionScale={0.2}
-              temporalDistortion={0.1}
               iridescence={1}
               iridescenceIOR={1}
               iridescenceThicknessRange={[0, 1400]}
+              samples={4}
+              temporalDistortion={0.1}
+              thickness={0.5}
             />
           }
         </mesh>
@@ -106,25 +106,23 @@ export const FloatingShapes = () => {
 
   const [shapes] = useState(() => generateShapes(shapeCount));
 
-  const stableShapes = useMemo(() => {
-    return shapes.slice(0, shapeCount);
-  }, [shapes, shapeCount]);
+  const stableShapes = useMemo(() => shapes.slice(0, shapeCount), [shapes, shapeCount]);
 
   return (
     <>
       {stableShapes.map((shape, i) => (
         <FloatingShape
-          key={i}
-          scale={shape.scale}
-          orbitRadius={shape.orbitRadius}
-          phiOffset={shape.phiOffset}
-          thetaOffset={shape.thetaOffset}
-          phiSpeed={shape.phiSpeed}
-          thetaSpeed={shape.thetaSpeed}
           initialRotationX={shape.initialRotationX}
           initialRotationY={shape.initialRotationY}
+          key={i}
+          orbitRadius={shape.orbitRadius}
+          phiOffset={shape.phiOffset}
+          phiSpeed={shape.phiSpeed}
+          scale={shape.scale}
           shouldAnimate={shouldAnimate}
           theme={theme}
+          thetaOffset={shape.thetaOffset}
+          thetaSpeed={shape.thetaSpeed}
         />
       ))}
     </>

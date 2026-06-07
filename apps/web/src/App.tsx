@@ -1,10 +1,11 @@
-import { lazy, Suspense, useEffect } from 'react';
 import { useAtom } from 'jotai';
-import { shouldLoadSceneAtom, themeAtom } from './store/atoms';
+import { lazy, Suspense, useEffect } from 'react';
+
 import { Navigation } from './components/layout/navigation';
-import { Hero } from './components/sections/hero';
 import { Footer } from './components/sections/footer';
+import { Hero } from './components/sections/hero';
 import { SceneLoader } from './components/three/scene-loader';
+import { shouldLoadSceneAtom, themeAtom } from './store/atoms';
 
 const Scene = lazy(() => import('./components/three/scene').then(module => ({ default: module.Scene })));
 const Features = lazy(() => import('./components/sections/features').then(module => ({ default: module.Features })));
@@ -32,7 +33,7 @@ const App = () => {
 
   return (
     <div className='min-h-screen overflow-x-hidden'>
-      <a href='#main-content' className='skip-link'>
+      <a className='skip-link' href='#main-content'>
         Skip to main content
       </a>
       {shouldLoadScene && (

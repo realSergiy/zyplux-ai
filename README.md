@@ -2,50 +2,36 @@
 
 ## Prerequisites
 
-- Node.js 24.6.2+
-- pnpm 10.18.0+
+- [bun](https://bun.sh) 1.3+
+- [just](https://just.systems)
 
-## Installation
+## Install
 
-1. Clone the repository:
-
-   ```bash
-   git clone <repository-url>
-   cd <repository-name>
-   ```
-
-2. Install dependencies:
-
-   ```bash
-   pnpm install
-   ```
+```bash
+just install
+```
 
 ## Development
 
-To start the development server, run:
-
 ```bash
-pnpm dev
+just dev
 ```
 
-This will start the Vite development server on port 5173.
+Starts the Vite dev server on port 5173.
 
-## Building
-
-To build the project for production, run:
+## Quality Gate
 
 ```bash
-pnpm build
+just check
 ```
 
-This will create an optimized build in the `dist` directory.
+Runs install, knip, typecheck, lint, and test with autofix throughout.
 
-## Deployment
-
-To deploy the project to Cloudflare Pages, run:
+## Build and Deploy
 
 ```bash
-pnpm deploy
+just build
+just deploy
 ```
 
-This will build the project and deploy it to Cloudflare Pages.
+Builds `apps/web/dist` and deploys it to Cloudflare via wrangler.

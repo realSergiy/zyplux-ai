@@ -1,14 +1,16 @@
-import { Canvas, useThree, useFrame } from '@react-three/fiber';
 import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
-import { EffectComposer, Bloom, DepthOfField, Vignette } from '@react-three/postprocessing';
-import { ParticleField } from './particle-field';
-import { FloatingShapes } from './floating-shapes';
-import { Suspense, useEffect } from 'react';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { Bloom, DepthOfField, EffectComposer, Vignette } from '@react-three/postprocessing';
 import { useAtom } from 'jotai';
-import { mousePositionAtom } from '@/store/atoms';
+import { Suspense, useEffect } from 'react';
+import * as THREE from 'three';
+
 import { useIsMobile } from '@/hooks/use-is-mobile';
 import { useReducedMotion } from '@/hooks/use-reduced-motion';
-import * as THREE from 'three';
+import { mousePositionAtom } from '@/store/atoms';
+
+import { FloatingShapes } from './floating-shapes';
+import { ParticleField } from './particle-field';
 
 const CameraController = () => {
   const { camera } = useThree();
@@ -50,28 +52,24 @@ export const Scene = () => {
 
   return (
     <div className='fixed inset-0 -z-10 bg-background'>
-      <Canvas
-        dpr={isMobile ? 1 : Math.min(window.devicePixelRatio, 2)}
-        performance={{ min: 0.5 }}
-        frameloop='always'
-      >
+      <Canvas dpr={isMobile ? 1 : Math.min(window.devicePixelRatio, 2)} frameloop='always' performance={{ min: 0.5 }}>
         <Suspense fallback={undefined}>
           <PerspectiveCamera makeDefault position={[0, 0, 5]} />
           <CameraController />
-          <OrbitControls enableZoom={false} enablePan={false} enableRotate={false} />
+          <OrbitControls enablePan={false} enableRotate={false} enableZoom={false} />
 
           <ambientLight {...{ intensity: 0.5 }} />
-          <directionalLight {...{ position: [10, 10, 5], intensity: 1 }} />
-          <directionalLight {...{ position: [-10, -10, -5], intensity: 0.5 }} />
+          <directionalLight {...{ intensity: 1, position: [10, 10, 5] }} />
+          <directionalLight {...{ intensity: 0.5, position: [-10, -10, -5] }} />
 
           <ParticleField />
           <FloatingShapes />
 
           {!shouldDisableEffects && (
             <EffectComposer>
-              <Bloom intensity={0.8} luminanceThreshold={0.2} luminanceSmoothing={0.9} />
-              <DepthOfField focusDistance={0} focalLength={0.02} bokehScale={2} height={480} />
-              <Vignette eskil={false} offset={0.1} darkness={0.5} />
+              <Bloom intensity={0.8} luminanceSmoothing={0.9} luminanceThreshold={0.2} />
+              <DepthOfField bokehScale={2} focalLength={0.02} focusDistance={0} height={480} />
+              <Vignette darkness={0.5} eskil={false} offset={0.1} />
             </EffectComposer>
           )}
         </Suspense>

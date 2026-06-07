@@ -1,12 +1,4 @@
 {
-  "extends": "@totvibe/typescript-config/tsconfig.react.json",
-  "compilerOptions": {
-    "composite": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
-    }
-  },
-  "include": ["src", "*.ts"],
-  "exclude": ["node_modules"]
+  "extends": "@zyplux/tsconfig/bun.json",
+  "include": ["src"]
 }

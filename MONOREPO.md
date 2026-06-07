@@ -1,178 +1,60 @@
 # Monorepo Setup
 
-**Stack:** pnpm + Turbo + TypeScript + ESLint 9 (Flat Config)
+**Stack:** Bun workspaces + TypeScript project references + ESLint (Flat Config, published `@totvibe/eslint-config`)
 
 ## Package Structure
 
+_How do the workspace packages depend on each other?_
+
 ```mermaid
-graph TD
-    A["@totvibe/typescript-config"] --> B["@totvibe/eslint-config"]
-    A --> C["@totvibe/ui"]
-    B --> C
-    A --> D["@totvibe/web"]
-    B --> D
-    C --> D
+flowchart TD
+    tsconfig["@zyplux/tsconfig"] --> ui["@zyplux/ui"]
+    tsconfig --> web["@zyplux/web"]
+    tsconfig --> tests["@zyplux/tests"]
+    ui --> tests
+    web --> tests
+    eslint["@totvibe/eslint-config (npm)"] -.-> root["root eslint.config.ts"]
 ```
 
-**Scope:** All packages use `@totvibe/*` (not `@repo/*`)
+- `apps/web` — Vite + React app deployed to Cloudflare
+- `packages/ui` — shared utilities (`cn`)
+- `packages/tsconfig` — shared TypeScript presets (`base.json`, `bun.json`, `web.json`)
+- `packages/tests` — smoke tests against public package interfaces only (`fixtures/` + `stories/` + happy-dom web harness)
 
 ## TypeScript Configuration
 
-### Shared Configs (`@totvibe/typescript-config`)
-
-- `tsconfig.base.json` - Base with `module: NodeNext`, strict mode, composite
-- `tsconfig.react.json` - React with `module: ESNext`, `moduleResolution: Bundler`
-- `tsconfig.node.json` - Node.js with `allowImportingTsExtensions`, `noEmit`
-
-### Strategy
-
-- **Root** - Extends base, defines path aliases, project references
-- **Web app** - Extends react for UI, base for config files (vite.config.ts, etc)
-- **UI package** - Extends react
-- **Config packages** - Extends node, disables composite/declaration for flexibility
+- Root `tsconfig.json` is a solution file (`files: []` + `references`); `bun run typecheck` runs `tsc -b`.
+- `tsconfig.tooling.json` covers root config files (`eslint.config.ts`, `prettier.config.ts`).
+- Every project extends a `@zyplux/tsconfig` preset: composite, `emitDeclarationOnly` into `.tsbuild/`.
+- `apps/web/tsconfig.node.json` typechecks `vite.config.ts` separately from app sources.
 
 ## ESLint Configuration
 
-### Architecture (Flat Config)
-
-**Root `eslint.config.ts`** orchestrates all rules:
+Single root `eslint.config.ts` consumes the published [`@totvibe/eslint-config`](https://github.com/realSergiy/totvibe-eslint):
 
 ```typescript
-[
-  { ignores: [...] },
-
-  // Base rules for all TS files
-  ...baseConfig.map(config => ({
-    ...config,
-    files: ['**/*.ts', '**/*.tsx']
-  })),
-
-  // React rules only for React packages
-  ...reactConfig.map(config => ({
-    ...config,
-    files: ['apps/web/**/*.{ts,tsx}', 'packages/ui/**/*.{ts,tsx}']
-  })),
-
-  // Exception: Allow comments in config packages
-  {
-    files: ['packages/eslint-config/**', 'packages/typescript-config/**'],
-    rules: { 'custom/no-comments-except-pattern': 'off' }
-  }
-]
+export default defineConfig(...totvibe({ react: true, tsconfigRootDir: import.meta.dirname, ignores: ['**/.tsbuild/**'] }));
 ```
 
-### Key Points
+It bundles ESLint recommended, typescript-eslint strict + stylistic (type-aware via `projectService`), React + hooks, perfectionist, unicorn, custom `@totvibe/*` rules, and prettier compatibility.
 
-- **No package-level configs** - Single root config with file pattern filtering
-- **Base config** (`@totvibe/eslint-config/eslint-base-config`) - TypeScript + Unicorn + Custom rules
-- **React config** (`@totvibe/eslint-config/eslint-react-config`) - Extends base, adds React/hooks rules
-- **Custom rules** - `no-comments-except-pattern`, `no-inferrable-return-type`
+## Dependency Management
 
-## Turbo Pipeline
+Version ranges are centralized in the `workspaces.catalog` of the root `package.json`; packages reference them as `"catalog:"`. Workspace packages use `workspace:*`.
 
-```mermaid
-graph LR
-    A[typecheck] --> B[lint]
-    C[^build] --> D[build]
+Upgrades run through `npm-check-updates` (catalog-aware):
+
+```bash
+just upgrade              # report/apply upgrades
+just upgrade-interactive  # pick upgrades, then reinstall
 ```
-
-### Task Configuration
-
-```json
-{
-  "build": {
-    "dependsOn": ["^build"],
-    "outputs": ["dist/**", "build/**"],
-    "inputs": ["src/**", "package.json", "tsconfig*.json", ...]
-  },
-  "typecheck": {
-    "outputs": []  // No inputs = hash all files (safest)
-  },
-  "lint": {
-    "dependsOn": ["typecheck"]  // No "^lint" - packages lint independently
-  }
-}
-```
-
-### Cache Strategy
-
-- **`typecheck` & `lint`** - No `inputs` config = safest (hash everything)
-- **`build`** - Explicit `inputs` for efficiency
-- **`dev`** - `cache: false` (persistent task)
 
 ## Common Tasks
 
 ```bash
-# Quality checks (show all errors with --continue)
-pnpm typecheck         # Type check all packages
-pnpm lint              # Lint all packages
-pnpm typecheck --force # Bypass cache
-
-# Development
-pnpm dev               # Start all dev servers
-pnpm build             # Build all packages
-
-# Maintenance
-pnpm clean             # Clean turbo cache + node_modules
-pnpm bump              # Interactive dependency updates
+just            # list all recipes
+just check      # full gate: install, knip, typecheck, lint, test
+just dev        # Vite dev server
+just build      # vite build → apps/web/dist
+just deploy     # build + wrangler deploy
 ```
-
-## Design Decisions
-
-### TypeScript
-
-- **Module resolution:** `Bundler` for frontend (Vite), `NodeNext` for base
-- **Strictness:** Maximum everywhere (`strict`, `noUncheckedIndexedAccess`, etc)
-- **Project references:** Full composite setup for incremental builds
-- **Config packages:** Disable composite to allow `as never` type assertions
-
-### ESLint
-
-- **Flat config only** - No legacy `.eslintrc`, no `includeIgnoreFile`
-- **Root orchestration** - Single source of truth with pattern-based filtering
-- **Independent linting** - No `^lint` dependency = all packages show errors
-
-### Turbo
-
-- **Build inputs** - Explicit for optimization
-- **Check inputs** - Omitted for safety (no misconfiguration risk)
-- **Continue on error** - Quality checks use `--continue` to show all errors
-- **Dependency order** - Build uses `^build`, lint uses `typecheck` (not `^lint`)
-
-## File Inventory
-
-### Only 2 JavaScript Files (Rest is TypeScript)
-
-- `prettier.config.js`
-- `apps/web/postcss.config.js`
-
-### Config Chain
-
-```
-Root tsconfig.json
-  ↓ extends
-@totvibe/typescript-config/tsconfig.base.json
-  ↓ extended by
-[tsconfig.react.json, tsconfig.node.json]
-  ↓ extended by
-package tsconfigs
-```
-
-## Troubleshooting
-
-**Stale cache?**
-
-```bash
-pnpm typecheck --force  # Bypass cache
-turbo daemon clean      # Clear daemon cache
-```
-
-**Lint not showing all errors?**
-
-- Ensure `package.json` has `"lint": "turbo lint --continue"`
-- Check no `^lint` in `turbo.json` (packages should lint independently)
-
-**TypeScript resolution issues?**
-
-- Check `@totvibe/typescript-config` exports in package.json
-- Verify `allowImportingTsExtensions` for `.ts` imports

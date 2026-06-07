@@ -1,21 +1,10 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@totvibe/*": ["packages/*/src"]
-    },
-    "noEmit": true,
-    "strict": true,
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "skipLibCheck": true
-  },
-  "include": [],
+  "files": [],
   "references": [
-    { "path": "packages/typescript-config" },
-    { "path": "packages/eslint-config" },
-    { "path": "packages/ui" }
+    { "path": "./tsconfig.tooling.json" },
+    { "path": "./packages/ui" },
+    { "path": "./apps/web" },
+    { "path": "./apps/web/tsconfig.node.json" },
+    { "path": "./packages/tests" }
   ]
 }

@@ -1,13 +1,9 @@
 {
-  "extends": "@totvibe/typescript-config/tsconfig.react.json",
+  "extends": "@zyplux/tsconfig/web.json",
   "compilerOptions": {
-    "composite": false,
-    "noEmit": true,
-    "isolatedDeclarations": false,
     "paths": {
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src", "*.ts"],
-  "references": [{ "path": "../../packages/ui" }]
+  "include": ["src"]
 }

@@ -1,0 +1,14 @@
+{
+  "extends": "@zyplux/tsconfig/bun.json",
+  "compilerOptions": {
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "erasableSyntaxOnly": false,
+    "exactOptionalPropertyTypes": false,
+    "noImplicitReturns": false,
+    "noPropertyAccessFromIndexSignature": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false
+  },
+  "include": ["eslint.config.ts", "prettier.config.ts"]
+}
