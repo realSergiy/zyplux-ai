@@ -51,6 +51,10 @@ check: install knip typecheck lint test
 deploy:
     bun --filter @zyplux/web deploy
 
+# Regenerate the social share image (apps/web/public/og.png) from apps/web/og-image.html.
+og-image:
+    chromium --headless --disable-gpu --hide-scrollbars --force-color-profile=srgb --window-size=1200,630 --virtual-time-budget=10000 --screenshot=apps/web/public/og.png "file://$(pwd)/apps/web/og-image.html"
+
 # Upgrade JS dependencies across the workspace via ncu (catalog-aware). Forwards extra args (e.g. `just u -i`).
 upgrade *args='':
     bun run upgrade -- {{ args }}

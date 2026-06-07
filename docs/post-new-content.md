@@ -33,19 +33,12 @@ user-visible string lives there; page titles/meta are duplicated in `apps/web/*.
 
 - [x] LinkedIn in footer: <https://www.linkedin.com/in/sergiy-yeskov-4a8534152/> (2026-06-07)
 - [x] Privacy page built at `/privacy`, linked from the footer
-
-## og:image (deferred)
-
-The preview image platforms (LinkedIn, X, Slack, WhatsApp, iMessage, Teams) show when
-zyplux.ai is shared. Without one, shares render as bare text.
-
-- Spec: 1200×630 px (1.91:1), PNG or JPG, under ~1 MB, key content centered (edges get
-  cropped on some platforms).
-- Make one in Figma/Canva ("Open Graph image" templates): dark `#0d1117` background,
-  Zyplux wordmark in the site's gradient, "Work that finishes itself." beneath.
-- Ship: drop the file at `apps/web/public/og.png`, then in `apps/web/index.html` add
-  `<meta property="og:image" content="https://zyplux.ai/og.png" />` and change
-  `twitter:card` from `summary` to `summary_large_image`.
+- [x] og:image (2026-06-07) — `apps/web/public/og.png` (1200×630), generated from
+      `apps/web/og-image.html` via `just og-image` (headless Chromium; Inter loads from
+      Google Fonts at generation time). Meta tags wired in `index.html`
+      (`og:image` + dimensions + alt, `twitter:card summary_large_image`). After
+      deploying, preview share cards with <https://www.opengraph.xyz> or LinkedIn's Post
+      Inspector — platforms cache aggressively, so re-check there after any image change.
 
 ## Later (not blocking launch) — carried over from the kit
 
