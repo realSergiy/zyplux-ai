@@ -1,0 +1,30 @@
+{
+  "name": "totvibe-frontpage",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "turbo lint --continue",
+    "lint:fix": "turbo lint:fix --continue",
+    "lint:dump": "eslint --print-config eslint.config.ts > dump.eslint.json",
+    "knip": "knip",
+    "knip:production": "knip --production",
+    "typecheck": "turbo typecheck --continue",
+    "clean": "turbo clean && rm -rf node_modules",
+    "bump": "pnpm update -i -r --latest"
+  },
+  "devDependencies": {
+    "@totvibe/eslint-config": "workspace:*",
+    "eslint": "catalog:",
+    "jiti": "catalog:",
+    "knip": "catalog:",
+    "prettier": "catalog:",
+    "turbo": "catalog:"
+  },
+  "packageManager": "pnpm@10.18.1+sha512.77a884a165cbba2d8d1c19e3b4880eee6d2fcabd0d879121e282196b80042351d5eb3ca0935fa599da1dc51265cc68816ad2bddd2a2de5ea9fdf92adbec7cd34",
+  "engines": {
+    "node": ">=24.6.2"
+  }
+}

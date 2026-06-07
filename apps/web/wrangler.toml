@@ -1,0 +1,6 @@
+name = "totvibe-frontpage"
+compatibility_date = "2025-10-04"
+
+[assets]
+# Enable SPA routing - all requests will be served index.html for client-side routing
+not_found_handling = "single-page-application"

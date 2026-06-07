@@ -1,0 +1,8 @@
+{
+  "extends": "@totvibe/typescript-config/tsconfig.base.json",
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "types": ["node"]
+  },
+  "include": ["vite.config.ts"]
+}
