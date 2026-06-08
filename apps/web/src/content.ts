@@ -1,6 +1,37 @@
 export const BRAND_NAME = 'Zyplux';
+export const TAGLINE = 'Neural Intelligence Systems';
+export const SITE_DOMAIN = 'zyplux.ai';
+export const SITE_URL = 'https://zyplux.ai';
+export const THEME_COLOR = '#0d1117';
+export const OG_IMAGE_WIDTH = 1200;
+export const OG_IMAGE_HEIGHT = 630;
 export const CONTACT_EMAIL = 'hello@zyplux.ai';
 export const SKIP_LINK_LABEL = 'Skip to main content';
+
+export const PAGES = {
+  agent: {
+    description:
+      'This page will show Zyplux at work — a real session, not a video. Leave your email and you’ll be the first to see it.',
+    path: '/agent',
+    title: `${BRAND_NAME} — See the agent`,
+  },
+  index: {
+    description:
+      'We connect a private AI agent to the systems your business already runs on and give it real jobs — the repetitive, multi-step work that eats your team’s week.',
+    path: '/',
+    title: `${BRAND_NAME} — ${TAGLINE}`,
+  },
+  insights: {
+    description: 'Short, honest reads on what AI agents can and can’t do for a business. No jargon, no hype.',
+    path: '/insights',
+    title: `${BRAND_NAME} — Insights`,
+  },
+  privacy: {
+    description: 'How zyplux.ai handles what you type into our forms — what we collect, why, and where it goes.',
+    path: '/privacy',
+    title: `${BRAND_NAME} — Privacy`,
+  },
+};
 
 export const FORM_ENDPOINT = 'https://example.com/REPLACE-WITH-FORM-ENDPOINT';
 

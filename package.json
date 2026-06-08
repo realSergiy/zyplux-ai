@@ -14,7 +14,9 @@
     ],
     "catalog": {
       "@cloudflare/vite-plugin": "^1.40.0",
+      "@fontsource/inter": "^5.2.8",
       "@happy-dom/global-registrator": "^20",
+      "@resvg/resvg-js": "^2.6.2",
       "@tailwindcss/postcss": "^4.3.0",
       "@testing-library/react": "^16",
       "@totvibe/eslint-config": "^0.1.0",
@@ -33,6 +35,7 @@
       "prettier": "^3.8.3",
       "react": "^19.2.7",
       "react-dom": "^19.2.7",
+      "satori": "^0.26.0",
       "tailwind-merge": "^3.6.0",
       "tailwindcss": "^4.3.0",
       "typescript": "^6.0.3",

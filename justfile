@@ -52,9 +52,10 @@ check: install knip typecheck lint test
 deploy:
     bun --filter @zyplux/web deploy
 
-# Regenerate the social share image (apps/web/public/og.png) from apps/web/og-image.html.
-og-image:
-    chromium --headless --disable-gpu --hide-scrollbars --force-color-profile=srgb --window-size=1200,630 --virtual-time-budget=10000 --screenshot=apps/web/public/og.png "file://$(pwd)/apps/web/og-image.html"
+# Render the social share card to apps/web/og-preview.png for a quick visual check.
+# The deployed image (dist/og.png) is generated automatically by the Vite build from src/content.ts.
+og:
+    bun --filter @zyplux/web og
 
 # Upgrade JS dependencies across the workspace via ncu (catalog-aware). Forwards extra args (e.g. `just u -i`).
 upgrade *args='':

@@ -4,6 +4,9 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
 
+import { ogImagePlugin } from './og/og-image-plugin';
+import { seoPlugin } from './seo/seo-plugin';
+
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
 export default defineConfig({
@@ -18,7 +21,7 @@ export default defineConfig({
     },
     target: ['chrome107', 'edge107', 'firefox104', 'safari16'],
   },
-  plugins: [react(), cloudflare()],
+  plugins: [react(), cloudflare(), ogImagePlugin(), seoPlugin()],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

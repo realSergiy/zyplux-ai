@@ -6,6 +6,9 @@ dist
 build
 *.tgz
 
+# generated OG share-card preview (the deployed dist/og.png is built by Vite)
+og-preview.png
+
 # code coverage
 coverage
 *.lcov
@@ -23,6 +26,7 @@ logs
 
 # caches
 .eslintcache
+.rumdl_cache
 .cache
 *.tsbuildinfo
 

@@ -5,14 +5,16 @@
   "type": "module",
   "exports": {
     ".": "./src/App.tsx",
-    "./content": "./src/content.ts"
+    "./content": "./src/content.ts",
+    "./seo": "./src/seo.ts"
   },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
     "deploy": "vite build && wrangler deploy",
-    "cf:dev": "wrangler dev"
+    "cf:dev": "wrangler dev",
+    "og": "bun scripts/render-og.ts"
   },
   "dependencies": {
     "lucide-react": "catalog:",
@@ -22,6 +24,8 @@
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "catalog:",
+    "@fontsource/inter": "catalog:",
+    "@resvg/resvg-js": "catalog:",
     "@tailwindcss/postcss": "catalog:",
     "@types/bun": "catalog:",
     "@types/react": "catalog:",
@@ -29,6 +33,7 @@
     "@vitejs/plugin-react": "catalog:",
     "@zyplux/tsconfig": "workspace:*",
     "autoprefixer": "catalog:",
+    "satori": "catalog:",
     "tailwindcss": "catalog:",
     "vite": "catalog:",
     "wrangler": "catalog:"
