@@ -12,7 +12,7 @@ import { BRAND_NAME, HERO, OG_IMAGE_HEIGHT, OG_IMAGE_WIDTH, SITE_DOMAIN, TAGLINE
 
 const OG_WIDTH = OG_IMAGE_WIDTH;
 const OG_HEIGHT = OG_IMAGE_HEIGHT;
-export const OG_FILE_NAME = 'og.png';
+const OG_FILE_NAME = 'og.png';
 
 const require = createRequire(import.meta.url);
 const interFilesDir = path.join(path.dirname(require.resolve('@fontsource/inter/package.json')), 'files');
