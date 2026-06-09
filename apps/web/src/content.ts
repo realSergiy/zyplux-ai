@@ -116,11 +116,11 @@ export const PROCESS = {
   heading: 'How this becomes real',
   steps: [
     {
-      body: 'Tell us how your business runs — or let us take a look. You get back a plain-English read of your workflows, the top three automation opportunities ranked by the hours they’d return, and the exact fixed price to build the first one. No call required. Yours to keep — hire us or not.',
+      body: 'Tell us how your business runs — or let us take a look. You get back a plain-English read of your workflows, the top three automation opportunities ranked by the hours they’d return.',
       title: 'Free workflow audit.',
     },
     {
-      body: 'Pick one job from the audit. We connect Zyplux to the systems involved, build the workflow, and run it live — at the fixed price you already saw. You measure the result before any talk of more.',
+      body: 'Pick one job from the audit. We connect Zyplux to the systems involved, build the workflow, and run it live. You measure the result before any talk of more.',
       title: 'One workflow, live in weeks.',
     },
     {
@@ -183,12 +183,7 @@ export const FAQ = {
       answer:
         'The audit lands within days. A pilot workflow goes live in weeks, not quarters — and you’ll be counting saved hours from its first week of operation.',
       question: 'How long until we see results?',
-    },
-    {
-      answer:
-        'Every project is a fixed price, scoped in the audit before you commit to anything. No day rates, no open-ended consulting bills, no surprises.',
-      question: 'What does it cost?',
-    },
+    },  
     {
       answer:
         'It replaces the worst hour of their day, not their jobs. The point is to stop your best people retyping data so they can do the work you actually hired them for.',
@@ -214,7 +209,7 @@ export const FAQ = {
 
 export const FINAL_CTA = {
   heading: 'Find out what’s hiding in your week.',
-  sub: 'The audit is free, takes one short form, and is yours to keep — whether you hire us or not.',
+  sub: 'The audit is free, takes one short form, and is yours to keep',
 };
 
 export const AUDIT_FORM = {
@@ -222,7 +217,7 @@ export const AUDIT_FORM = {
   companyLabel: 'Company',
   emailLabel: 'Work email',
   nameLabel: 'Name',
-  taskLabel: 'What’s one task your team dreads? (optional)',
+  taskLabel: 'What’s one task your team dreads?',
 };
 
 export const FOOTER = {
