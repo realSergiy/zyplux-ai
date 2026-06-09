@@ -17,7 +17,7 @@ export const PAGES = {
   },
   index: {
     description:
-      'We connect a private AI agent to the systems your business already runs on and give it real jobs — the repetitive, multi-step work that eats your team’s week.',
+      'We connect a private AI agent to the systems your business already runs on and give it real jobs — the repetitive, multi-step work that fills your team’s week.',
     path: '/',
     title: `${BRAND_NAME} — ${TAGLINE}`,
   },
@@ -56,12 +56,12 @@ export const NAV = {
 };
 
 export const HERO = {
-  badge: 'Bespoke AI agents for smart businesses',
+  badge: 'Bespoke AI agents for growing businesses',
   microcopy: 'No call required. Real findings in days.',
   primaryCta: 'Get your free workflow audit',
   secondaryCta: 'See how it works ↓',
   subhead:
-    'We connect a private AI agent to the systems your business already runs on — email, spreadsheets, databases — and give it real jobs: the repetitive, multi-step work that eats your team’s week. It works around the clock. Nothing goes out without your approval.',
+    'We connect a private AI agent to the systems your business already runs on — email, spreadsheets, databases — and give it real jobs: the repetitive, multi-step work that fills your team’s week. It works around the clock, and nothing goes out without your approval.',
 };
 
 export const TIMELINE = {
@@ -71,13 +71,13 @@ export const TIMELINE = {
   intro: 'What a week with Zyplux looks like.',
   scenes: [
     {
-      body: 'Zyplux reads it, finds the matching purchase order in your system, spots that the total is $312 over, and queues it for your bookkeeper with the discrepancy highlighted. She’ll see it at 9:00 — already checked.',
+      body: 'Zyplux reads it, finds the matching purchase order in your system, spots that the total is $312 over, and queues it for your bookkeeper with the discrepancy highlighted. They’ll see it at 9:00 — already checked.',
       status: 'Filed, matched, flagged — before anyone was awake.',
       timestamp: 'Monday, 2:14 AM',
       title: 'a supplier emails an invoice.',
     },
     {
-      body: 'Sales, deliveries, complaints, cash — pulled from your own systems, summarized in plain language, in your inbox before your first coffee. The same report that used to cost someone their Monday morning.',
+      body: 'Sales, deliveries, complaints, cash — pulled from your own systems, summarized in plain language, in your inbox before your first coffee. The same report that used to take someone their whole Monday morning.',
       status: 'Done. Every Monday. Without fail.',
       timestamp: 'Monday, 7:30 AM',
       title: 'the weekly report wrote itself.',
@@ -100,7 +100,7 @@ export const TIMELINE = {
 export const NOT_CHATBOT = {
   heading: 'This is not a chatbot',
   paragraphs: [
-    'You’ve met chatbots. They wait for questions and sometimes get the answers wrong.',
+    'You’ve probably met chatbots. They wait for questions, and they don’t always get the answer right.',
     'An agent is different: it acts. It reads what arrives, checks it against your systems, does the multi-step work, and files the result. You describe the job once — it runs the job every time.',
     'And it knows its limits. Anything that leaves the building — an email to a customer, a payment, a change to your records — waits for a human click. That’s built into the platform, not bolted on.',
   ],
@@ -134,15 +134,15 @@ export const FOUNDER = {
   heading: 'Who’s behind Zyplux',
   paragraphs: [
     'I’m Sergiy Yeskov, an engineer in Sydney. I’ve spent nearly twenty years building the software businesses run on — thirteen of them on a global logistics platform that companies around the world use for their freight, invoicing, and pricing, where I built the pricing engine and led a team of ten-plus engineers. The last few years I’ve worked purely on AI: systems that read a company’s documents, answer from its own data, and — the hard part — act safely inside it.',
-    'I built Zyplux because nothing on the shelf could do that hard part. Plenty of tools can chat about your business; none could be trusted to work inside it. So I built a platform where approvals, hard limits, and a full log of every action aren’t features bolted on — they’re the foundation it started from.',
-    'When you work with Zyplux, you work with me: the engineer who built the platform designs your workflows, connects your systems, and answers your email. No account managers, no hand-offs, no juniors learning on your business.',
+    'I built Zyplux because nothing on the shelf could do that hard part. Plenty of tools can chat about your business; I couldn’t find one I’d trust to work inside it. So I built a platform where approvals, hard limits, and a full log of every action aren’t features bolted on — they’re the foundation it started from.',
+    'When you work with Zyplux, you work with me: the engineer who built the platform designs your workflows, connects your systems, and answers your email. No account managers, no hand-offs, no getting passed around.',
   ],
   photoAlt: 'Sergiy Yeskov',
 };
 
 export const SECURITY = {
   heading: 'Your data, your rules',
-  intro: 'You’d be trusting us with your email, your records, your customers. Here’s the deal, plainly:',
+  intro: 'You’d be trusting us with your email, your records, your customers. Here’s how we protect it, plainly:',
   points: [
     {
       detail: 'Access is scoped system by system, permission by permission.',
@@ -160,7 +160,7 @@ export const SECURITY = {
       title: 'Your data never trains public AI models.',
     },
     {
-      detail: 'Not shared infrastructure juggling a thousand customers.',
+      detail: 'Not shared infrastructure spread across thousands of accounts.',
       title: 'Your agent runs privately, for your business alone.',
     },
   ],
@@ -186,7 +186,7 @@ export const FAQ = {
     },
     {
       answer:
-        'It replaces the worst hour of their day, not their jobs. The point is to stop your best people retyping data so they can do the work you actually hired them for.',
+        'It takes over the most tedious part of their day, not their jobs. The point is to free your best people from retyping data so they can focus on the work you hired them for.',
       question: 'Will this replace my employees?',
     },
     {
@@ -196,7 +196,7 @@ export const FAQ = {
     },
     {
       answer:
-        'Occasionally it will — anyone who tells you otherwise is selling something. The system is built so a mistake costs a click, not a customer: outward-facing work is drafted for your approval, every action is logged, and the agent operates inside hard limits we set together.',
+        'Occasionally it will — any system can. What matters is what a mistake costs, and here it’s a click, not a customer: outward-facing work is drafted for your approval, every action is logged, and the agent operates inside hard limits we set together.',
       question: 'What if the AI makes a mistake?',
     },
     {
@@ -217,7 +217,7 @@ export const AUDIT_FORM = {
   companyLabel: 'Company',
   emailLabel: 'Work email',
   nameLabel: 'Name',
-  taskLabel: 'What’s one task your team dreads? (optional)',
+  taskLabel: 'What’s one task your team would love to hand off? (optional)',
 };
 
 export const FOOTER = {
