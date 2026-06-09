@@ -1,4 +1,12 @@
-import { BRAND_NAME, OG_IMAGE_HEIGHT, OG_IMAGE_WIDTH, PAGES, SITE_URL, TAGLINE, THEME_COLOR } from '@/content';
+import {
+  BRAND_NAME,
+  OG_IMAGE_HEIGHT,
+  OG_IMAGE_WIDTH,
+  PAGES,
+  SITE_URL,
+  TAGLINE,
+  THEME_COLOR,
+} from '@zyplux/web/content';
 
 export type MetaTag = { content: string; name?: string; property?: string };
 export type Page = (typeof PAGES)[PageKey];
