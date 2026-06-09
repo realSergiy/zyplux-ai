@@ -36,7 +36,6 @@
     "satori": "catalog:",
     "tailwindcss": "catalog:",
     "vite": "catalog:",
-    "vite-tsconfig-paths": "catalog:",
     "wrangler": "catalog:"
   }
 }

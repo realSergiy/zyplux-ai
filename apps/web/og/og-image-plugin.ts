@@ -1,14 +1,13 @@
 import type { Plugin } from 'vite';
 
 import { Resvg } from '@resvg/resvg-js';
+import { BRAND_NAME, HERO, OG_IMAGE_HEIGHT, OG_IMAGE_WIDTH, SITE_DOMAIN, TAGLINE } from '@zyplux/web/content';
 import { readFileSync } from 'node:fs';
 import { writeFile } from 'node:fs/promises';
 import { createRequire } from 'node:module';
 import path from 'node:path';
 import { createElement, type ReactNode } from 'react';
 import satori, { type SatoriOptions } from 'satori';
-
-import { BRAND_NAME, HERO, OG_IMAGE_HEIGHT, OG_IMAGE_WIDTH, SITE_DOMAIN, TAGLINE } from '@/content';
 
 const OG_WIDTH = OG_IMAGE_WIDTH;
 const OG_HEIGHT = OG_IMAGE_HEIGHT;

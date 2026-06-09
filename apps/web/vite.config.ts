@@ -3,7 +3,6 @@ import react from '@vitejs/plugin-react';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
-import tsconfigPaths from 'vite-tsconfig-paths';
 
 import { ogImagePlugin } from './og/og-image-plugin';
 import { seoPlugin } from './seo/seo-plugin';
@@ -22,5 +21,6 @@ export default defineConfig({
     },
     target: ['chrome107', 'edge107', 'firefox104', 'safari16'],
   },
-  plugins: [react(), cloudflare(), tsconfigPaths(), ogImagePlugin(), seoPlugin()],
+  plugins: [react(), cloudflare(), ogImagePlugin(), seoPlugin()],
+  resolve: { tsconfigPaths: true },
 });
