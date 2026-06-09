@@ -6,8 +6,8 @@ practice that deploys agents, dashboards, and customer-facing software — witho
 the sharp positioning the site has today.
 
 Honors the copy rules in `docs/old/post-new-content.md`: brand is **Zyplux** (never
-"Zyplux.ai"); banned words *agentic, LLM, orchestration, model, prompt, leverage,
-transformative* (sole exception: "never trains public AI models"); outcome over
+"Zyplux.ai"); banned words _agentic, LLM, orchestration, model, prompt, leverage,
+transformative_ (sole exception: "never trains public AI models"); outcome over
 technology; no invented numbers; every claim true of the product.
 
 ## Where the site stands today
@@ -45,11 +45,11 @@ services as the toolkit of a systems practice.
 
 `docs/old/roadmap.md` lists three phrases to explain. They line up with a clean taxonomy:
 
-| Phrase | What it is | Bucket |
-|---|---|---|
-| **close the loop** | automate a feedback loop to autonomy, with approval gates | Close the loop |
-| **hallucinate ui** | ask a question, get a dashboard built from your data | Light up the system |
-| **continuous zyplux** | the ongoing run-tune-expand relationship | the *how it works* spine |
+| Phrase                | What it is                                                | Bucket                   |
+| --------------------- | --------------------------------------------------------- | ------------------------ |
+| **close the loop**    | automate a feedback loop to autonomy, with approval gates | Close the loop           |
+| **hallucinate ui**    | ask a question, get a dashboard built from your data      | Light up the system      |
+| **continuous zyplux** | the ongoing run-tune-expand relationship                  | the _how it works_ spine |
 
 Retire "hallucinate ui" as a public term (negative AI baggage; "prompt"/"hallucinate" are
 off-limits) but keep the capability — reframed as "ask a question in plain language, get a
@@ -60,11 +60,11 @@ view."
 The seven candidate services collapse into three buckets, each led by an outcome, with a
 clean inside-vs-edge split.
 
-| Bucket | What it is | Services folded in | Outcome line |
-|---|---|---|---|
-| **Close the loop** *(inside)* | the repetitive multi-step work, run end-to-end, human approves what goes out | feedback-loop automation w/ approval gates · API integrations to existing systems | "Hours back. Loops that, over time, run themselves." |
-| **Light up the system** *(inside)* | ask in plain language, get a dashboard assembled from your own data | dashboards on the fly | "Answers in seconds, not a ticket to the data team." |
-| **Build at the edge** *(customer-facing)* | the software your customers actually touch, shipped fast | mobile apps · registration pages · website assistants · web apps | "Reach your customers better — and ship in weeks, not quarters." |
+| Bucket                                    | What it is                                                                   | Services folded in                                                                | Outcome line                                                     |
+| ----------------------------------------- | ---------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| **Close the loop** _(inside)_             | the repetitive multi-step work, run end-to-end, human approves what goes out | feedback-loop automation w/ approval gates · API integrations to existing systems | "Hours back. Loops that, over time, run themselves."             |
+| **Light up the system** _(inside)_        | ask in plain language, get a dashboard assembled from your own data          | dashboards on the fly                                                             | "Answers in seconds, not a ticket to the data team."             |
+| **Build at the edge** _(customer-facing)_ | the software your customers actually touch, shipped fast                     | mobile apps · registration pages · website assistants · web apps                  | "Reach your customers better — and ship in weeks, not quarters." |
 
 The inside-vs-edge frame is the real expansion of the narrative: today the site only sells
 inside (saving the client hours). Adding edge says Zyplux also helps the client grow by
@@ -72,7 +72,7 @@ serving their own customers better — same method either way. Bigger story, sti
 
 ## Revised page structure
 
-*The proposed home-page section flow — NEW and CHANGED marked.*
+_The proposed home-page section flow — NEW and CHANGED marked._
 
 ```mermaid
 flowchart TD
@@ -134,8 +134,8 @@ Three beats (cards):
   handled end to end, with a human approving anything that leaves the building. We connect
   the email, spreadsheets, and tools you already pay for, and tune the loop until it runs
   on its own — with you watching, not driving."
-- **Light up the system.** "Ask a question in plain language — *how did the north region do
-  last quarter?* — and get a dashboard built from your own data, on the spot. Answers in
+- **Light up the system.** "Ask a question in plain language — _how did the north region do
+  last quarter?_ — and get a dashboard built from your own data, on the spot. Answers in
   seconds, not a ticket to the data team."
 - **Build at the edge.** "The software your customers actually touch — a registration page,
   a booking flow, a mobile app, a website assistant that answers like your best rep. Built
@@ -151,8 +151,8 @@ Three beats (cards):
   same method builds the things your customers touch — a registration page, a booking flow,
   a mobile app, a website assistant. Inside your operations or at the edge with your
   customers, the approach is identical: find the loop, build for it."
-- **"What's a 'dashboard from a question'?"** — "Ask in plain language — *show me last
-  quarter's refunds by region* — and a view is assembled from your own data while you wait.
+- **"What's a 'dashboard from a question'?"** — "Ask in plain language — _show me last
+  quarter's refunds by region_ — and a view is assembled from your own data while you wait.
   No ticket, no waiting on the data team. You decide what's worth keeping."
 
 ### Audit reframe
@@ -169,33 +169,33 @@ SVG `motion.path` with `pathLength`, `useMotionValue` + `animate` for counters) 
 3D needed, each with a static reduced-motion fallback. Each reuses the existing primitives
 (`Reveal`, `Pictogram`, `SpotlightCard`, the parallax `GridBackground`).
 
-1. **The System Map** *(centerpiece — Method section).* A node graph of a business (Sales,
+1. **The System Map** _(centerpiece — Method section)._ A node graph of a business (Sales,
    Inventory, Support, Finance, Customer) with edges that form loops. On scroll-in the
    edges draw themselves (`motion.path` `pathLength` 0 to 1). One loop pulses amber — "hours
    leak here." Then a Zyplux node slots into that loop; it turns green and a dash-flow
    animates along the path — the loop now runs. This animation is "thinking in systems"
    made visible.
-2. **The Approval Gate** *(Not-a-chatbot or Security section).* An envelope travels a path
+2. **The Approval Gate** _(Not-a-chatbot or Security section)._ An envelope travels a path
    toward "Customer," hits a closed gate, a cursor clicks Approve, the gate opens, the
    envelope continues; loops. Makes "nothing goes out without your approval" visceral
    instead of a bullet point.
-3. **Ask then Dashboard** *(Light up the system).* A question types itself out ("How did
+3. **Ask then Dashboard** _(Light up the system)._ A question types itself out ("How did
    the north region do last quarter?"), then charts assemble from nothing below it — bars
    grow, a sparkline draws via `pathLength`, a KPI counts up with `useMotionValue`.
    Scripted and deterministic (clearly a scenario, never implying live generation — keeps
    the claims-true rule intact).
-4. **The Week, animated** *(upgrade to existing `vignette-timeline.tsx`).* Today it's a
+4. **The Week, animated** _(upgrade to existing `vignette-timeline.tsx`)._ Today it's a
    static reveal list. Make the left border a scroll-driven progress line (`useScroll` on
    the section, `scaleY` via `useTransform`) that travels down the week; each scene's dot
    lights and its green check chip stamps in as the line passes. Small change, big polish.
-5. **Inside / Edge** *(What-we-build header).* A concentric/split visual: an inner ring
+5. **Inside / Edge** _(What-we-build header)._ A concentric/split visual: an inner ring
    "your operations" with loops closing, an outer ring "your customers" with app tiles
    appearing — Zyplux pulsing in both. Sells the two-surface story at a glance.
 6. **Hero ambient (restrained).** Keep the shimmer wordmark; add a faint pulse traveling
    along the grid lines and 2-3 slow-drifting accent particles. Subtle — the hero shouldn't
    compete with the System Map.
 
-*What the System Map animation depicts.*
+_What the System Map animation depicts._
 
 ```mermaid
 flowchart LR
