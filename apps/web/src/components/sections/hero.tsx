@@ -52,7 +52,7 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             transition={{ delay: 0.3, duration: 0.8 }}
           >
-            <span className='text-gradient animate-shimmer bg-[length:200%_auto]'>{BRAND_NAME}</span>
+            <span className='text-gradient animate-shimmer bg-size-[200%_auto]'>{BRAND_NAME}</span>
           </motion.h1>
 
           <motion.p
