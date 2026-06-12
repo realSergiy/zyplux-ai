@@ -1,13 +1,11 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "zyplux-web",
+  "main": "@tanstack/react-start/server-entry",
   "compatibility_date": "2026-06-01",
+  "compatibility_flags": ["nodejs_compat"],
   "routes": [
     { "pattern": "zyplux.ai", "custom_domain": true },
     { "pattern": "www.zyplux.ai", "custom_domain": true },
   ],
-  "assets": {
-    // Enable SPA routing - all requests will be served index.html for client-side routing
-    "not_found_handling": "single-page-application",
-  },
 }

@@ -14,34 +14,45 @@
       "tests"
     ],
     "catalog": {
-      "@cloudflare/vite-plugin": "^1.40.0",
+      "@cloudflare/vite-plugin": "^1.40.2",
       "@fontsource/inter": "^5.2.8",
       "@happy-dom/global-registrator": "^20",
+      "@mdx-js/mdx": "^3.1.1",
+      "@mdx-js/rollup": "^3.1.1",
       "@resvg/resvg-js": "^2.6.2",
-      "@tailwindcss/postcss": "^4.3.0",
+      "@tailwindcss/vite": "^4.3.0",
+      "@tanstack/react-router": "1.170.15",
+      "@tanstack/react-start": "1.168.25",
       "@testing-library/react": "^16",
-      "@totvibe/eslint-config": "^0.1.0",
+      "@totvibe/eslint-config": "^0.2.0",
       "@types/bun": "latest",
+      "@types/mdast": "^4.0.4",
+      "@types/mdx": "^2.0.14",
       "@types/react": "^19.2.17",
       "@types/react-dom": "^19.2.3",
       "@vitejs/plugin-react": "^6.0.2",
-      "autoprefixer": "^10.5.0",
-      "clsx": "^2.1.1",
+      "cva": "^1.0.0-beta.4",
       "eslint": "^10.4.1",
       "jiti": "^2.7.0",
       "knip": "^6.16.1",
       "lucide-react": "^1.17.0",
+      "mdast-util-mdx-jsx": "^3.2.0",
       "motion": "^12.40.0",
       "npm-check-updates": "^22.2.3",
-      "prettier": "^3.8.3",
+      "prettier": "^3.8.4",
       "react": "^19.2.7",
       "react-dom": "^19.2.7",
+      "remark-frontmatter": "^5.0.0",
+      "remark-gfm": "^4.0.1",
+      "remark-mdx-frontmatter": "^5.2.0",
       "satori": "^0.26.0",
       "tailwind-merge": "^3.6.0",
       "tailwindcss": "^4.3.0",
       "typescript": "^6.0.3",
+      "unified": "^11.0.5",
       "vite": "^8.0.16",
-      "wrangler": "^4.98.0"
+      "wrangler": "^4.100.0",
+      "yaml": "^2.9.0"
     }
   },
   "scripts": {
@@ -52,7 +63,7 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "knip": "knip-bun",
-    "test": "bun test tests",
+    "test": "cd tests && bun test",
     "upgrade": "npm-check-updates --root --workspaces --format group"
   },
   "trustedDependencies": [
@@ -71,5 +82,8 @@
     "npm-check-updates": "catalog:",
     "prettier": "catalog:",
     "typescript": "catalog:"
+  },
+  "patchedDependencies": {
+    "miniflare@4.20260611.0": "patches/miniflare@4.20260611.0.patch"
   }
 }

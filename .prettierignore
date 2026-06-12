@@ -7,3 +7,4 @@ coverage
 .wrangler
 reference_clones
 .rumdl_cache
+**/routeTree.gen.ts

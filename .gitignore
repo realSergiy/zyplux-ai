@@ -51,3 +51,6 @@ logs
 # misc
 *.pem
 .playwright-mcp
+
+# local reference repositories (just clone)
+reference_clones/

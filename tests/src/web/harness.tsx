@@ -1,15 +1,17 @@
+import type { ReactNode } from 'react';
+
 import { cleanup, render } from '@testing-library/react';
-import App from '@zyplux/web';
+import { HomePage } from '@zyplux/web/pages/home-page';
 import { act } from 'react';
 
 import type { Harness } from '@/stories/harness';
 
 const visibleText = () => document.body.textContent;
 
-export const webHarness: Harness = {
+export const pageHarness = (page: ReactNode): Harness => ({
   open: async () => {
     await act(async () => {
-      render(<App />);
+      render(page);
       await Promise.resolve();
     });
     return {
@@ -25,4 +27,6 @@ export const webHarness: Harness = {
       },
     };
   },
-};
+});
+
+export const webHarness = pageHarness(<HomePage />);

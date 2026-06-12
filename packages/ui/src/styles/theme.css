@@ -1,0 +1,38 @@
+@source '../../src';
+
+@theme {
+  --color-accent: #58a6ff;
+  --color-background: #0d1117;
+  --color-border: #30363d;
+  --color-foreground: #c9d1d9;
+  --color-grid: #6e7681;
+  --color-heading: #f0f6fc;
+  --color-muted: #8b949e;
+  --color-success: #3fb950;
+  --color-surface: #161b22;
+  --color-violet: #bc8cff;
+  --color-warning: #d29922;
+
+  --color-accent-glow: rgb(88 166 255 / 0.14);
+  --color-accent-spotlight: rgb(88 166 255 / 0.08);
+  --color-grid-line: rgb(110 118 129 / 0.14);
+  --color-grid-line-coarse: rgb(110 118 129 / 0.2);
+  --color-surface-sheen: rgb(110 118 129 / 0.07);
+  --color-violet-glow: rgb(188 140 255 / 0.1);
+
+  --shadow-glow: 0 12px 32px rgb(0 0 0 / 0.45), 0 0 24px rgb(88 166 255 / 0.14);
+
+  --animate-shimmer: shimmer 8s ease-in-out infinite;
+
+  @keyframes shimmer {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+}

@@ -2,7 +2,7 @@
   "$schema": "https://unpkg.com/knip@latest/schema.json",
   "workspaces": {
     "apps/web": {
-      "entry": ["src/agent.tsx", "src/insights.tsx", "src/privacy.tsx"]
+      "entry": ["src/routes/**", "src/router.tsx"]
     }
   }
 }

@@ -3,8 +3,11 @@
   "compilerOptions": {
     "paths": {
       "@/*": ["./src/*"],
-      "@/og/*": ["./og/*"]
-    }
+      "@/og/*": ["./og/*"],
+      "@content/*": ["./content/*"]
+    },
+    "types": ["bun", "react", "react-dom", "mdx"]
   },
-  "include": ["src"]
+  "include": ["src", "content"],
+  "references": [{ "path": "../../packages/ui" }]
 }

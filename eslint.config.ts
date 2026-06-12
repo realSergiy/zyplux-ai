@@ -3,15 +3,17 @@ import { defineConfig } from 'eslint/config';
 
 export default defineConfig(
   ...totvibe({
-    ignores: ['**/.tsbuild/**', 'reference_clones/**'],
+    ignores: ['**/.content-collections/**', '**/.tsbuild/**', '**/routeTree.gen.ts', 'reference_clones/**'],
     react: true,
+    reactVersion: '19.0',
     tsconfigRootDir: import.meta.dirname,
   }),
-  { settings: { react: { version: '19.0' } } },
   {
-    files: ['**/*.{ts,tsx,js,mjs,cjs}'],
     rules: {
-      'unicorn/filename-case': ['error', { cases: { camelCase: true, kebabCase: true, pascalCase: true } }],
+      '@typescript-eslint/only-throw-error': [
+        'error',
+        { allow: [{ from: 'package', name: 'NotFoundError', package: '@tanstack/router-core' }] },
+      ],
     },
   },
 );
