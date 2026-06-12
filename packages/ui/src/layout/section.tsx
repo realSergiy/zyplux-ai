@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react';
 
 import { cx } from '@zyplux/ui/lib/style';
-import { Reveal } from '@zyplux/ui/motion/reveal';
-import { Paragraphs } from '@zyplux/ui/primitives/paragraphs';
+import { Reveal } from '@zyplux/ui/motion';
+import { Paragraphs } from '@zyplux/ui/primitives';
 import { container, heading, prose } from '@zyplux/ui/recipes';
 
 export const SectionHeading = ({ children, className }: { children: ReactNode; className?: string }) => (

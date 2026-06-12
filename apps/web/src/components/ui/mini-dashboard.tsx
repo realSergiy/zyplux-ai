@@ -1,7 +1,7 @@
-import { useCountUp } from '@zyplux/ui/hooks/use-count-up';
-import { useTypewriter } from '@zyplux/ui/hooks/use-typewriter';
-import { BlinkingCaret } from '@zyplux/ui/motion/blinking-caret';
-import { AnimatedBars } from '@zyplux/ui/primitives/animated-bars';
+import { useCountUp } from '@zyplux/ui/hooks';
+import { useTypewriter } from '@zyplux/ui/hooks';
+import { BlinkingCaret } from '@zyplux/ui/motion';
+import { AnimatedBars } from '@zyplux/ui/primitives';
 import { pill } from '@zyplux/ui/recipes';
 import { Search, TrendingUp } from 'lucide-react';
 import { useInView } from 'motion/react';

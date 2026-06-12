@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 
-import { FloatingParticles } from '@zyplux/ui/motion/floating-particles';
-import { ScrollCue } from '@zyplux/ui/motion/scroll-cue';
+import { FloatingParticles } from '@zyplux/ui/motion';
+import { ScrollCue } from '@zyplux/ui/motion';
 import { container } from '@zyplux/ui/recipes';
 import * as m from 'motion/react-m';
 

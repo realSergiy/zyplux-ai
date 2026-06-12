@@ -1,4 +1,4 @@
-import { BrandLockup } from '@zyplux/ui/primitives/brand-lockup';
+import { BrandLockup } from '@zyplux/ui/primitives';
 import { Zap } from 'lucide-react';
 
 import { BRAND_NAME } from '@/content';

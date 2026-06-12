@@ -1,5 +1,5 @@
 import { createRootRoute, HeadContent, Outlet, Scripts } from '@tanstack/react-router';
-import { MotionProvider } from '@zyplux/ui/motion/provider';
+import { MotionProvider } from '@zyplux/ui/motion';
 
 import '@/index.css';
 

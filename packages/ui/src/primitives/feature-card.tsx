@@ -2,7 +2,7 @@ import type { LucideIcon } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 import { cx } from '@zyplux/ui/lib/style';
-import { REVEAL_STAGGER_S } from '@zyplux/ui/motion/reveal';
+import { REVEAL_STAGGER_S } from '@zyplux/ui/motion';
 
 import { Pictogram } from './pictogram';
 import { CardTitle, SpotlightCard } from './spotlight-card';

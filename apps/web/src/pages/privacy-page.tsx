@@ -1,4 +1,4 @@
-import { PageHeadline } from '@zyplux/ui/layout/page-headline';
+import { PageHeadline } from '@zyplux/ui/layout';
 import { prose } from '@zyplux/ui/recipes';
 
 import { SubpageLayout } from '@/components/layout/subpage-layout';

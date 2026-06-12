@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react';
 
-import { useScrolledPast } from '@zyplux/ui/hooks/use-scrolled-past';
+import { useScrolledPast } from '@zyplux/ui/hooks';
 import { cx } from '@zyplux/ui/lib/style';
-import { ScrollProgressBar } from '@zyplux/ui/motion/scroll-progress-bar';
+import { ScrollProgressBar } from '@zyplux/ui/motion';
 import { container } from '@zyplux/ui/recipes';
 import * as m from 'motion/react-m';
 

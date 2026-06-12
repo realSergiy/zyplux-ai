@@ -1,4 +1,4 @@
-import { HoneypotField, SubmitSuccessNote, useHostedForm } from '@zyplux/ui/forms/hosted-form';
+import { HoneypotField, SubmitSuccessNote, useHostedForm } from '@zyplux/ui/forms';
 import { button, fieldInput, fieldLabel } from '@zyplux/ui/recipes';
 
 import { FORM_ENDPOINT } from '@/config';

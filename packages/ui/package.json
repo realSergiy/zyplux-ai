@@ -10,13 +10,13 @@
     "./tokens": "./src/tokens.ts",
     "./recipes": "./src/recipes.ts",
     "./lib/*": "./src/lib/*.ts",
-    "./hooks/*": "./src/hooks/*.ts",
-    "./motion/*": "./src/motion/*.tsx",
-    "./primitives/*": "./src/primitives/*.tsx",
-    "./layout/*": "./src/layout/*.tsx",
-    "./blocks/*": "./src/blocks/*.tsx",
-    "./forms/*": "./src/forms/*.tsx",
-    "./diagram/*": "./src/diagram/*.tsx"
+    "./hooks": "./src/hooks/index.ts",
+    "./motion": "./src/motion/index.ts",
+    "./primitives": "./src/primitives/index.ts",
+    "./layout": "./src/layout/index.ts",
+    "./blocks": "./src/blocks/index.ts",
+    "./forms": "./src/forms/index.ts",
+    "./diagram": "./src/diagram/index.ts"
   },
   "dependencies": {
     "cva": "catalog:",

@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-import { GridBackground } from '@zyplux/ui/layout/grid-background';
+import { GridBackground } from '@zyplux/ui/layout';
 import { cx } from '@zyplux/ui/lib/style';
 import { container, navLink } from '@zyplux/ui/recipes';
 import { ArrowLeft } from 'lucide-react';

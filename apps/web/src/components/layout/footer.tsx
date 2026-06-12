@@ -1,6 +1,6 @@
-import type { FooterColumn } from '@zyplux/ui/blocks/site-footer';
+import type { FooterColumn } from '@zyplux/ui/blocks';
 
-import { SiteFooter } from '@zyplux/ui/blocks/site-footer';
+import { SiteFooter } from '@zyplux/ui/blocks';
 
 import { BrandMark } from '@/components/ui/brand-mark';
 import { BRAND_NAME, CONTACT_EMAIL, FOOTER, NAV } from '@/content';

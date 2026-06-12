@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 
 import { cx } from '@zyplux/ui/lib/style';
-import { Reveal, REVEAL_STAGGER_S } from '@zyplux/ui/motion/reveal';
+import { Reveal, REVEAL_STAGGER_S } from '@zyplux/ui/motion';
 import { Children } from 'react';
 
 export const CardGrid = ({ children, className }: { children: ReactNode; className?: string }) => (

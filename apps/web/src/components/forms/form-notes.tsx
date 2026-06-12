@@ -1,4 +1,4 @@
-import { SubmitErrorNote } from '@zyplux/ui/forms/hosted-form';
+import { SubmitErrorNote } from '@zyplux/ui/forms';
 import { inlineLink } from '@zyplux/ui/recipes';
 
 import { CONTACT_EMAIL, FORM_MESSAGES } from '@/content';

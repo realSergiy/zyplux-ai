@@ -1,4 +1,4 @@
-import { NavBar } from '@zyplux/ui/blocks/nav-bar';
+import { NavBar } from '@zyplux/ui/blocks';
 import { button, navLink } from '@zyplux/ui/recipes';
 import * as m from 'motion/react-m';
 

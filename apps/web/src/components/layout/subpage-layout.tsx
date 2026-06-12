@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-import { BackLink, SubpageShell } from '@zyplux/ui/blocks/subpage-shell';
+import { BackLink, SubpageShell } from '@zyplux/ui/blocks';
 
 import { Footer } from '@/components/layout/footer';
 import { BrandMark } from '@/components/ui/brand-mark';

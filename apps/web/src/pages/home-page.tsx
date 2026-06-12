@@ -1,16 +1,7 @@
-import { HeroShell } from '@zyplux/ui/blocks/hero-shell';
-import { Timeline, TimelineItem } from '@zyplux/ui/blocks/timeline';
-import { CardGrid } from '@zyplux/ui/layout/card-grid';
-import { GridBackground } from '@zyplux/ui/layout/grid-background';
-import { Section } from '@zyplux/ui/layout/section';
-import { Entrance } from '@zyplux/ui/motion/entrance';
-import { Reveal } from '@zyplux/ui/motion/reveal';
-import { ButtonLink } from '@zyplux/ui/primitives/button-link';
-import { Disclosure } from '@zyplux/ui/primitives/disclosure';
-import { FeatureCard } from '@zyplux/ui/primitives/feature-card';
-import { Paragraphs } from '@zyplux/ui/primitives/paragraphs';
-import { ShowcasePanel } from '@zyplux/ui/primitives/showcase-panel';
-import { StepCard } from '@zyplux/ui/primitives/step-card';
+import { HeroShell, Timeline, TimelineItem } from '@zyplux/ui/blocks';
+import { CardGrid, GridBackground, Section } from '@zyplux/ui/layout';
+import { Entrance, Reveal } from '@zyplux/ui/motion';
+import { ButtonLink, Disclosure, FeatureCard, Paragraphs, ShowcasePanel, StepCard } from '@zyplux/ui/primitives';
 import { avatar, heading, inlineLink, pill, prose } from '@zyplux/ui/recipes';
 import {
   ArrowRight,
@@ -68,11 +59,11 @@ const Hero = () => (
       </h1>
     </Entrance>
 
-    <Entrance delay={0.4}>
+    <Entrance delay={0.6}>
       <p className='text-lg md:text-xl text-muted mb-12 max-w-3xl mx-auto'>{HERO.subhead}</p>
     </Entrance>
 
-    <Entrance delay={0.5}>
+    <Entrance delay={0.9}>
       <div className='flex flex-col sm:flex-row gap-4 justify-center items-center'>
         <ButtonLink className='flex items-center gap-2' href='#audit'>
           {HERO.primaryCta}
