@@ -27,7 +27,15 @@ const landing = defineCollection({
       taskLabel: z.string(),
     }),
     build: z.object({
-      buckets: z.array(z.object({ detail: z.string(), outcome: z.string(), surface: z.string(), title: z.string() })),
+      buckets: z.array(
+        z.object({
+          customerFacing: z.boolean().optional(),
+          detail: z.string(),
+          outcome: z.string(),
+          surface: z.string(),
+          title: z.string(),
+        }),
+      ),
       heading: z.string(),
       intro: z.string(),
       showcase: z.object({ body: z.string(), title: z.string() }),

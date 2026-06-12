@@ -120,10 +120,10 @@ Organized by abstraction level — tokens and recipes, then behavior, then atoms
 - `tokens.ts` - `PALETTE` hex values, `TEXT_GRADIENT`, `toRgba` for SVG/satori consumers
 - `recipes.ts` - cva class recipes; `lib/style.ts` - configured `cva`/`cx`
 - `hooks/` - useScrolledPast, useTypewriter, useCountUp
-- `motion/` - MotionProvider (`LazyMotion` `domAnimation` strict + `MotionConfig`), Reveal (in-view), Entrance (mount), BlinkingCaret, FloatingParticles, ScrollCue, ScrollProgressBar
-- `primitives/` - ButtonLink, BrandLockup, StepBadge, Pictogram, SpotlightCard/CardTitle, FeatureCard, Disclosure, AnimatedBars
-- `layout/` - Section/SectionHeading/SectionIntro, CardGrid (stagger-reveals children), PageHeadline, GridBackground
-- `blocks/` - NavBar, SiteFooter, SubpageShell/BackLink, HeroShell, Timeline/TimelineItem (slot-based; apps inject content)
+- `motion/` - MotionProvider (`LazyMotion` `domAnimation` strict + `MotionConfig`), Reveal (in-view), Entrance (mount; rise via `y`, pop via `scale`), BlinkingCaret, FloatingParticles, ScrollCue, ScrollProgressBar
+- `primitives/` - ButtonLink, BrandLockup, Paragraphs, StepBadge, Pictogram, SpotlightCard/CardTitle, FeatureCard (`eyebrow`/`footer` slots), StepCard, ShowcasePanel, Disclosure, AnimatedBars
+- `layout/` - Section (`heading`/`intro` slots own the vertical rhythm)/SectionHeading/SectionIntro, CardGrid (stagger-reveals children), PageHeadline, GridBackground
+- `blocks/` - NavBar, SiteFooter, SubpageShell/BackLink, HeroShell, Timeline/TimelineItem (slot-based; apps inject content; TimelineItem stagger-reveals via `index`)
 - `forms/` - `useHostedForm` + honeypot + status notes, EmailCapture
 - `diagram/` - animated SVG diagram kit (Diagram shell, phase hook, node/ring/badge primitives)
 

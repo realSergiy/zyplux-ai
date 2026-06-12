@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 
 import { cx } from '@zyplux/ui/lib/style';
+import { Reveal, REVEAL_STAGGER_S } from '@zyplux/ui/motion/reveal';
 import { useInView, useReducedMotion, useScroll, useSpring } from 'motion/react';
 import * as m from 'motion/react-m';
 import { useRef } from 'react';
@@ -26,7 +27,7 @@ export const Timeline = ({ children, className }: { children: ReactNode; classNa
   );
 };
 
-export const TimelineItem = ({ children }: { children: ReactNode }) => {
+export const TimelineItem = ({ children, index = 0 }: { children: ReactNode; index?: number }) => {
   const ref = useRef(null);
   const lit = useInView(ref, { margin: '-45% 0px -45% 0px' });
 
@@ -39,7 +40,7 @@ export const TimelineItem = ({ children }: { children: ReactNode }) => {
           lit ? 'bg-accent' : 'bg-background',
         )}
       />
-      {children}
+      <Reveal delay={index * REVEAL_STAGGER_S}>{children}</Reveal>
     </li>
   );
 };

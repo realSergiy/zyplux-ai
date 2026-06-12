@@ -2,15 +2,15 @@ import { HeroShell } from '@zyplux/ui/blocks/hero-shell';
 import { Timeline, TimelineItem } from '@zyplux/ui/blocks/timeline';
 import { CardGrid } from '@zyplux/ui/layout/card-grid';
 import { GridBackground } from '@zyplux/ui/layout/grid-background';
-import { Section, SectionHeading, SectionIntro } from '@zyplux/ui/layout/section';
+import { Section } from '@zyplux/ui/layout/section';
 import { Entrance } from '@zyplux/ui/motion/entrance';
-import { Reveal, REVEAL_STAGGER_S } from '@zyplux/ui/motion/reveal';
+import { Reveal } from '@zyplux/ui/motion/reveal';
 import { ButtonLink } from '@zyplux/ui/primitives/button-link';
 import { Disclosure } from '@zyplux/ui/primitives/disclosure';
 import { FeatureCard } from '@zyplux/ui/primitives/feature-card';
-import { Pictogram } from '@zyplux/ui/primitives/pictogram';
-import { CardTitle, SpotlightCard } from '@zyplux/ui/primitives/spotlight-card';
-import { StepBadge } from '@zyplux/ui/primitives/step-badge';
+import { Paragraphs } from '@zyplux/ui/primitives/paragraphs';
+import { ShowcasePanel } from '@zyplux/ui/primitives/showcase-panel';
+import { StepCard } from '@zyplux/ui/primitives/step-card';
 import { avatar, heading, inlineLink, pill, prose } from '@zyplux/ui/recipes';
 import {
   ArrowRight,
@@ -32,7 +32,6 @@ import {
   UserCheck,
   Workflow,
 } from 'lucide-react';
-import * as m from 'motion/react-m';
 
 import founderPhoto from '@/assets/founder.jpg';
 import { AuditForm } from '@/components/forms/audit-form';
@@ -58,15 +57,10 @@ import {
 
 const Hero = () => (
   <HeroShell>
-    <m.div
-      animate={{ opacity: 1, scale: 1 }}
-      className={pill({ class: 'px-4 py-2 mb-8', tone: 'accent' })}
-      initial={{ opacity: 0, scale: 0.8 }}
-      transition={{ duration: 0.6 }}
-    >
-      <Sparkles className='h-4 w-4 text-accent' />
-      <span className='text-sm font-medium text-accent'>{HERO.badge}</span>
-    </m.div>
+    <Entrance className={pill({ class: 'px-4 py-2 mb-8', tone: 'accent' })} scale={0.8} y={0}>
+      <Sparkles className='h-4 w-4' />
+      <span className='font-medium'>{HERO.badge}</span>
+    </Entrance>
 
     <Entrance delay={0.3}>
       <h1 className={heading({ class: 'mb-6', scale: 'hero' })}>
@@ -97,15 +91,7 @@ const Hero = () => (
 const METHOD_ICONS = [Map, Crosshair, Cpu];
 
 const Method = () => (
-  <Section id='approach'>
-    <SectionHeading className='mb-10'>{METHOD.heading}</SectionHeading>
-
-    <SectionIntro>
-      {METHOD.paragraphs.map(paragraph => (
-        <p key={paragraph}>{paragraph}</p>
-      ))}
-    </SectionIntro>
-
+  <Section heading={METHOD.heading} id='approach' intro={METHOD.paragraphs}>
     <Reveal>
       <SystemMap content={METHOD.diagram} />
     </Reveal>
@@ -121,23 +107,19 @@ const Method = () => (
 );
 
 const VignetteTimeline = () => (
-  <Section id='week'>
-    <SectionHeading className='mb-20'>{TIMELINE.intro}</SectionHeading>
-
+  <Section heading={TIMELINE.intro} id='week'>
     <Timeline className='mx-auto max-w-2xl'>
       {TIMELINE.scenes.map((scene, index) => (
-        <TimelineItem key={scene.timestamp}>
-          <Reveal delay={index * REVEAL_STAGGER_S}>
-            <h3 className='text-xl md:text-2xl font-semibold mb-3'>
-              <span className='text-accent'>{scene.timestamp}</span>
-              <span className='text-heading'> — {scene.title}</span>
-            </h3>
-            <p className='text-muted mb-4'>{scene.body}</p>
-            <p className={pill({ tone: 'success' })}>
-              <Check aria-hidden className='h-4 w-4' />
-              {scene.status}
-            </p>
-          </Reveal>
+        <TimelineItem index={index} key={scene.timestamp}>
+          <h3 className='text-xl md:text-2xl font-semibold mb-3'>
+            <span className='text-accent'>{scene.timestamp}</span>
+            <span className='text-heading'> — {scene.title}</span>
+          </h3>
+          <p className='text-muted mb-4'>{scene.body}</p>
+          <p className={pill({ tone: 'success' })}>
+            <Check aria-hidden className='h-4 w-4' />
+            {scene.status}
+          </p>
         </TimelineItem>
       ))}
     </Timeline>
@@ -157,41 +139,35 @@ const VignetteTimeline = () => (
 const BUILD_ICONS = [RefreshCw, LayoutDashboard, Smartphone];
 
 const WhatWeBuild = () => (
-  <Section id='build'>
-    <SectionHeading className='mb-6'>{BUILD.heading}</SectionHeading>
-
-    <SectionIntro centered className='mb-16'>
-      <p>{BUILD.intro}</p>
-    </SectionIntro>
-
+  <Section heading={BUILD.heading} id='build' intro={BUILD.intro} introCentered>
     <CardGrid>
-      {BUILD.buckets.map((bucket, index) => {
-        const Icon = BUILD_ICONS[index];
-        const isEdge = bucket.surface.startsWith('At the edge');
-        return (
-          <SpotlightCard key={bucket.title}>
-            <div className='flex h-full flex-col'>
-              <span className={pill({ class: 'mb-5 w-fit text-xs font-medium', tone: isEdge ? 'violet' : 'accent' })}>
-                {bucket.surface}
-              </span>
-              {Icon !== undefined && <Pictogram delay={index * REVEAL_STAGGER_S} icon={Icon} />}
-              <CardTitle>{bucket.title}</CardTitle>
-              <p className='text-muted mb-6'>{bucket.detail}</p>
-              <p className={pill({ class: 'mt-auto rounded-lg py-2', tone: 'success' })}>{bucket.outcome}</p>
-            </div>
-          </SpotlightCard>
-        );
-      })}
+      {BUILD.buckets.map((bucket, index) => (
+        <FeatureCard
+          eyebrow={
+            <span
+              className={pill({
+                class: 'mb-5 w-fit text-xs font-medium',
+                tone: bucket.customerFacing === true ? 'violet' : 'accent',
+              })}
+            >
+              {bucket.surface}
+            </span>
+          }
+          footer={<p className={pill({ class: 'mt-auto rounded-lg py-2', tone: 'success' })}>{bucket.outcome}</p>}
+          icon={BUILD_ICONS[index]}
+          index={index}
+          key={bucket.title}
+          title={bucket.title}
+        >
+          {bucket.detail}
+        </FeatureCard>
+      ))}
     </CardGrid>
 
     <Reveal className='mx-auto mt-16 max-w-4xl'>
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-8 items-center rounded-2xl border border-border bg-surface/40 p-8'>
-        <div>
-          <CardTitle className='text-2xl mb-3'>{BUILD.showcase.title}</CardTitle>
-          <p className='text-muted'>{BUILD.showcase.body}</p>
-        </div>
-        <MiniDashboard {...MINI_DASHBOARD} />
-      </div>
+      <ShowcasePanel demo={<MiniDashboard {...MINI_DASHBOARD} />} title={BUILD.showcase.title}>
+        {BUILD.showcase.body}
+      </ShowcasePanel>
     </Reveal>
   </Section>
 );
@@ -199,15 +175,7 @@ const WhatWeBuild = () => (
 const NOT_CHATBOT_ICONS = [Workflow, Repeat, ShieldCheck];
 
 const NotChatbot = () => (
-  <Section>
-    <SectionHeading className='mb-12'>{NOT_CHATBOT.heading}</SectionHeading>
-
-    <SectionIntro className='mb-16'>
-      {NOT_CHATBOT.paragraphs.map(paragraph => (
-        <p key={paragraph}>{paragraph}</p>
-      ))}
-    </SectionIntro>
-
+  <Section heading={NOT_CHATBOT.heading} intro={NOT_CHATBOT.paragraphs}>
     <CardGrid className='max-w-4xl'>
       {NOT_CHATBOT.points.map((point, index) => (
         <FeatureCard icon={NOT_CHATBOT_ICONS[index]} index={index} key={point.title} title={point.title}>
@@ -219,16 +187,12 @@ const NotChatbot = () => (
 );
 
 const ProcessLadder = () => (
-  <Section id='how-it-works'>
-    <SectionHeading className='mb-16'>{PROCESS.heading}</SectionHeading>
-
+  <Section heading={PROCESS.heading} id='how-it-works'>
     <CardGrid>
       {PROCESS.steps.map((step, index) => (
-        <SpotlightCard key={step.title}>
-          <StepBadge className='mb-6'>{index + 1}</StepBadge>
-          <CardTitle className='mb-3'>{step.title}</CardTitle>
-          <p className='text-muted'>{step.body}</p>
-        </SpotlightCard>
+        <StepCard key={step.title} step={index + 1} title={step.title}>
+          {step.body}
+        </StepCard>
       ))}
     </CardGrid>
 
@@ -241,9 +205,7 @@ const ProcessLadder = () => (
 );
 
 const FounderNote = () => (
-  <Section className='max-w-3xl'>
-    <SectionHeading className='mb-16'>{FOUNDER.heading}</SectionHeading>
-
+  <Section className='max-w-3xl' heading={FOUNDER.heading}>
     <Reveal className='flex flex-col items-center gap-8 md:flex-row md:items-start'>
       <img
         alt={FOUNDER.photoAlt}
@@ -253,9 +215,7 @@ const FounderNote = () => (
         width={400}
       />
       <div className={prose({ size: 'base' })}>
-        {FOUNDER.paragraphs.map(paragraph => (
-          <p key={paragraph}>{paragraph}</p>
-        ))}
+        <Paragraphs>{FOUNDER.paragraphs}</Paragraphs>
       </div>
     </Reveal>
   </Section>
@@ -264,13 +224,7 @@ const FounderNote = () => (
 const SECURITY_ICONS = [Plug, MousePointerClick, ScrollText, Lock, Server, UserCheck];
 
 const Security = () => (
-  <Section id='security'>
-    <SectionHeading className='mb-6'>{SECURITY.heading}</SectionHeading>
-
-    <SectionIntro centered className='mb-16'>
-      <p>{SECURITY.intro}</p>
-    </SectionIntro>
-
+  <Section heading={SECURITY.heading} id='security' intro={SECURITY.intro} introCentered>
     <CardGrid className='md:grid-cols-2 lg:grid-cols-3'>
       {SECURITY.points.map((point, index) => (
         <FeatureCard icon={SECURITY_ICONS[index]} index={index} key={point.title} title={point.title}>
@@ -282,9 +236,7 @@ const Security = () => (
 );
 
 const Faq = () => (
-  <Section className='max-w-3xl' id='faq'>
-    <SectionHeading className='mb-16'>{FAQ.heading}</SectionHeading>
-
+  <Section className='max-w-3xl' heading={FAQ.heading} id='faq'>
     <div className='space-y-4'>
       {FAQ.items.map(item => (
         <Reveal key={item.question}>
@@ -296,13 +248,7 @@ const Faq = () => (
 );
 
 const FinalCta = () => (
-  <Section className='max-w-xl text-center' id='audit'>
-    <Reveal>
-      <h2 className={heading({ class: 'mb-6' })}>
-        <span className='text-gradient'>{FINAL_CTA.heading}</span>
-      </h2>
-      <p className='text-lg text-muted mb-12'>{FINAL_CTA.sub}</p>
-    </Reveal>
+  <Section className='max-w-xl text-center' heading={FINAL_CTA.heading} id='audit' intro={FINAL_CTA.sub}>
     <Reveal>
       <AuditForm />
     </Reveal>

@@ -63,6 +63,7 @@ build:
       outcome: Answers in seconds, not a ticket to the data team.
     - title: Build at the edge.
       surface: At the edge, with your customers
+      customerFacing: true
       detail: The software your customers actually touch — a registration page, a booking flow, a mobile app, a website
         assistant that answers like your best rep. Built fast, because an agent carries the load.
       outcome: Reach your customers better — and ship in weeks, not quarters.
