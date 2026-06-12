@@ -7,7 +7,7 @@ export const ScrollProgressBar = () => {
 
   return (
     <m.div
-      className='absolute bottom-0 left-0 right-0 h-0.5 origin-left bg-gradient-to-r from-accent to-violet'
+      className='absolute bottom-0 left-0 right-0 h-0.5 origin-left bg-linear-to-r from-accent to-violet'
       style={{ scaleX: scrollProgress }}
     />
   );

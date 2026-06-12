@@ -29,11 +29,11 @@ export const GridBackground = () => {
       style={{ maskImage: GRID_FADE_MASK, WebkitMaskImage: GRID_FADE_MASK }}
     >
       <m.div
-        className='absolute inset-x-0 -inset-y-[180px]'
+        className='absolute inset-x-0 -inset-y-45'
         style={{ ...buildGridLines(FINE_CELL_PX, 'var(--color-grid-line)'), y: fineDrift }}
       />
       <m.div
-        className='absolute inset-x-0 -inset-y-[180px]'
+        className='absolute inset-x-0 -inset-y-45'
         style={{ ...buildGridLines(COARSE_CELL_PX, 'var(--color-grid-line-coarse)'), y: coarseDrift }}
       />
     </div>

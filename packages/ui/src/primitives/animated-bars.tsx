@@ -21,7 +21,7 @@ export const AnimatedBars = ({
       {bars.map((bar, index) => (
         <m.div
           animate={{ scaleY: revealed ? bar.percent / 100 : 0 }}
-          className='flex-1 rounded-t bg-gradient-to-t from-accent/40 to-accent'
+          className='flex-1 rounded-t bg-linear-to-t from-accent/40 to-accent'
           initial={{ scaleY: still ? bar.percent / 100 : 0 }}
           key={bar.id}
           style={{ height: '100%', transformOrigin: 'bottom' }}
