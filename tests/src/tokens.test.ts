@@ -1,4 +1,4 @@
-import { PALETTE, toRgba } from '@zyplux/ui/tokens';
+import { PALETTE, TEXT_GRADIENT, toRgba } from '@zyplux/ui/tokens';
 import { describe, expect, it } from 'bun:test';
 
 describe('PALETTE', () => {
@@ -7,6 +7,17 @@ describe('PALETTE', () => {
     for (const tokenValue of Object.values(PALETTE)) {
       expect(themeCss).toContain(tokenValue);
     }
+  });
+});
+
+describe('TEXT_GRADIENT', () => {
+  it('stays in sync with the text-gradient utility in base.css', async () => {
+    const baseCss = await Bun.file(new URL(import.meta.resolve('@zyplux/ui/base.css'))).text();
+    let cssVarGradient = TEXT_GRADIENT;
+    for (const [tokenName, hex] of Object.entries(PALETTE)) {
+      cssVarGradient = cssVarGradient.replaceAll(hex, `var(--color-${tokenName})`);
+    }
+    expect(baseCss).toContain(cssVarGradient);
   });
 });
 

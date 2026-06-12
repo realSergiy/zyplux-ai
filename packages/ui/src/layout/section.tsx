@@ -1,9 +1,8 @@
 import type { ReactNode } from 'react';
 
 import { cx } from '@zyplux/ui/lib/style';
-import { container, heading } from '@zyplux/ui/recipes';
-
-import { Reveal } from './reveal';
+import { Reveal } from '@zyplux/ui/motion/reveal';
+import { container, heading, prose } from '@zyplux/ui/recipes';
 
 export const Section = ({ children, className, id }: { children: ReactNode; className?: string; id?: string }) => (
   <section className='relative py-32' id={id}>
@@ -16,5 +15,19 @@ export const SectionHeading = ({ children, className }: { children: ReactNode; c
     <h2 className={heading()}>
       <span className='text-gradient'>{children}</span>
     </h2>
+  </Reveal>
+);
+
+export const SectionIntro = ({
+  centered = false,
+  children,
+  className,
+}: {
+  centered?: boolean;
+  children: ReactNode;
+  className?: string;
+}) => (
+  <Reveal className={cx(prose({ tone: 'muted' }), 'mx-auto max-w-2xl', centered && 'text-center', className)}>
+    {children}
   </Reveal>
 );

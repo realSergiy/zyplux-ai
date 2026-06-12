@@ -28,11 +28,16 @@ import { MotionProvider } from '@zyplux/ui/motion/provider';
 
 ## Exports
 
-- `@zyplux/ui/tokens` — `PALETTE` (hex values for SVG/canvas/OG rendering), `toRgba`
-- `@zyplux/ui/recipes` — `container`, `heading`, `button`, `pill`, `navLink`, `fieldInput`
+Ordered from most abstract to most composed:
+
+- `@zyplux/ui/tokens` — `PALETTE` (hex values for SVG/canvas/OG rendering), `TEXT_GRADIENT`, `toRgba`
 - `@zyplux/ui/lib/style` — `cva`, `cx` (cva + `tailwind-merge` taught the custom theme tokens)
-- `@zyplux/ui/hooks/use-scrolled-past`
-- `@zyplux/ui/components/*` — `reveal`, `section`, `spotlight-card`, `pictogram`, `page-headline`, `grid-background`, `disclosure`, `floating-particles`, `scroll-cue`, `scroll-progress-bar`
+- `@zyplux/ui/recipes` — class-only recipes: `container`, `heading`, `button`, `pill`, `navLink`, `inlineLink`, `prose`, `avatar`, `fieldInput`, `fieldLabel`
+- `@zyplux/ui/hooks/*` — `use-scrolled-past`, `use-typewriter`, `use-count-up`
+- `@zyplux/ui/motion/*` — motion system: `provider`, `reveal` (in-view, exports `REVEAL_STAGGER_S`), `entrance` (mount), `blinking-caret`, `floating-particles`, `scroll-cue`, `scroll-progress-bar`
+- `@zyplux/ui/primitives/*` — context-free atoms: `button-link`, `brand-lockup`, `step-badge`, `pictogram`, `spotlight-card`, `feature-card` (icon + title + body in a spotlight card), `disclosure`, `animated-bars`
+- `@zyplux/ui/layout/*` — page structure: `section` (Section, SectionHeading, SectionIntro), `card-grid` (responsive grid that stagger-reveals its children), `page-headline`, `grid-background`
+- `@zyplux/ui/blocks/*` — slot-based page-scale compositions: `nav-bar`, `site-footer`, `subpage-shell`, `hero-shell`, `timeline`
 - `@zyplux/ui/forms/*` — `hosted-form` (hook + honeypot + status notes), `email-capture`
 - `@zyplux/ui/diagram/*` — `diagram`, `primitives` (animated SVG diagram kit)
 

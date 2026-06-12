@@ -30,6 +30,7 @@ const landing = defineCollection({
       buckets: z.array(z.object({ detail: z.string(), outcome: z.string(), surface: z.string(), title: z.string() })),
       heading: z.string(),
       intro: z.string(),
+      showcase: z.object({ body: z.string(), title: z.string() }),
     }),
     faq: z.object({
       heading: z.string(),
@@ -56,7 +57,7 @@ const landing = defineCollection({
       heading: z.string(),
       paragraphs: z.array(z.string()),
     }),
-    miniDashboard: z.object({ question: z.string() }),
+    miniDashboard: z.object({ caption: z.string(), growthNote: z.string(), question: z.string() }),
     notChatbot: z.object({
       heading: z.string(),
       paragraphs: z.array(z.string()),

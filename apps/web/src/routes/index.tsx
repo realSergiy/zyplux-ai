@@ -1,10 +1,10 @@
 import { createFileRoute } from '@tanstack/react-router';
 
-import App from '@/app';
 import { PAGES } from '@/content';
+import { HomePage } from '@/pages/home-page';
 import { pageHead } from '@/seo';
 
 export const Route = createFileRoute('/')({
-  component: App,
+  component: HomePage,
   head: ({ match }) => pageHead(PAGES.index, match.pathname),
 });

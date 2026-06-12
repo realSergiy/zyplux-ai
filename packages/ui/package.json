@@ -12,7 +12,9 @@
     "./lib/*": "./src/lib/*.ts",
     "./hooks/*": "./src/hooks/*.ts",
     "./motion/*": "./src/motion/*.tsx",
-    "./components/*": "./src/components/*.tsx",
+    "./primitives/*": "./src/primitives/*.tsx",
+    "./layout/*": "./src/layout/*.tsx",
+    "./blocks/*": "./src/blocks/*.tsx",
     "./forms/*": "./src/forms/*.tsx",
     "./diagram/*": "./src/diagram/*.tsx"
   },

@@ -1,4 +1,5 @@
-import { PageHeadline } from '@zyplux/ui/components/page-headline';
+import { PageHeadline } from '@zyplux/ui/layout/page-headline';
+import { prose } from '@zyplux/ui/recipes';
 
 import { EmailCapture } from '@/components/forms/email-capture';
 import { SubpageLayout } from '@/components/layout/subpage-layout';
@@ -23,7 +24,7 @@ export const InsightsPage = () => (
         ))}
       </ul>
     )}
-    <div className='space-y-4 text-lg mb-10' dangerouslySetInnerHTML={{ __html: INSIGHTS_PAGE.body }} />
+    <div className={prose({ class: 'mb-10' })} dangerouslySetInnerHTML={{ __html: INSIGHTS_PAGE.body }} />
     <EmailCapture button={INSIGHTS_PAGE.button} emailLabel={INSIGHTS_PAGE.emailLabel} formName='insights-updates' />
   </SubpageLayout>
 );

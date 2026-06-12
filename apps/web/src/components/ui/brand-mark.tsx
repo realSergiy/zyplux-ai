@@ -1,10 +1,6 @@
+import { BrandLockup } from '@zyplux/ui/primitives/brand-lockup';
 import { Zap } from 'lucide-react';
 
 import { BRAND_NAME } from '@/content';
 
-export const BrandMark = () => (
-  <>
-    <Zap className='h-6 w-6 text-accent' />
-    <span className='text-xl font-bold tracking-tight text-heading'>{BRAND_NAME}</span>
-  </>
-);
+export const BrandMark = () => <BrandLockup icon={Zap}>{BRAND_NAME}</BrandLockup>;

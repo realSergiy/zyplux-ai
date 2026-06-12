@@ -44,6 +44,26 @@ export const pill = cva({
 
 export const navLink = cva({ base: 'text-sm font-medium text-muted transition-colors hover:text-heading' });
 
+export const inlineLink = cva({ base: 'text-accent hover:underline' });
+
+export const prose = cva({
+  base: 'space-y-4 [&_strong]:text-heading',
+  defaultVariants: { size: 'lg' },
+  variants: {
+    size: {
+      base: '',
+      lg: 'text-lg',
+    },
+    tone: {
+      muted: 'text-muted',
+    },
+  },
+});
+
+export const avatar = cva({ base: 'rounded-full border border-border object-cover' });
+
 export const fieldInput = cva({
   base: 'rounded-lg border border-border bg-background px-4 py-3 text-foreground transition-colors focus:border-accent',
 });
+
+export const fieldLabel = cva({ base: 'mb-2 block text-sm font-medium text-heading' });

@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 
 import { cleanup, render } from '@testing-library/react';
-import App from '@zyplux/web';
+import { HomePage } from '@zyplux/web/pages/home-page';
 import { act } from 'react';
 
 import type { Harness } from '@/stories/harness';
@@ -29,4 +29,4 @@ export const pageHarness = (page: ReactNode): Harness => ({
   },
 });
 
-export const webHarness = pageHarness(<App />);
+export const webHarness = pageHarness(<HomePage />);

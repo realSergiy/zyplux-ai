@@ -98,29 +98,32 @@ Workspace packages use `workspace:*` protocol.
 - `theme.css` carries a `@source` directive so the app's Tailwind build scans the package's classes; the app's `index.css` is just three `@import`s (`tailwindcss`, theme, base)
 - `text-gradient` utility for headline gradients; `shadow-glow` for card hover (both in `@zyplux/ui/base.css`)
 - `cva`/`cx` from `@zyplux/ui/lib/style` (cva + `tailwind-merge` taught the custom theme tokens) for variant class builders and className merging
-- Shared class recipes in `@zyplux/ui/recipes` (`container`, `heading`, `button`, `pill`, `navLink`, `fieldInput`)
+- Shared class recipes in `@zyplux/ui/recipes` (`container`, `heading`, `button`, `pill`, `navLink`, `inlineLink`, `prose`, `avatar`, `fieldInput`, `fieldLabel`)
 
 ## File Structure
 
 ### Web App (`apps/web/src/`)
 
 - `content.ts` - Every user-visible string (single source of truth, also imported by tests via `@zyplux/web/content`) plus the `FORM_ENDPOINT` placeholder for the hosted form service
-- `components/layout/` - Navigation (scroll progress bar), SubpageLayout
-- `components/sections/` - Hero, VignetteTimeline, NotChatbot, ProcessLadder, FounderNote, Security, Faq, FinalCta, Footer
+- `components/layout/` - Navigation (binds nav content into `NavBar`), Footer (binds into `SiteFooter`), SubpageLayout (binds into `SubpageShell`)
 - `components/forms/` - AuditForm plus app bindings (`EmailCapture` wrapper, `FormErrorNote`) over `@zyplux/ui/forms/*`
-- `components/ui/` - BrandMark, MiniDashboard, SystemMap (brand/marketing-specific; generic components live in `@zyplux/ui/components/*`)
-- `pages/` - AgentPage, InsightsPage, InsightsPostPage, PrivacyPage
-- `app.tsx` - One-pager composition
+- `components/ui/` - BrandMark, MiniDashboard, SystemMap (brand/marketing-specific compositions over `@zyplux/ui` primitives and hooks)
+- `pages/` - HomePage (all landing sections in one file, composed from `@zyplux/ui` blocks), AgentPage, InsightsPage, InsightsPostPage, PrivacyPage
 - `routes/` + `router.tsx` - TanStack Router file routes (prerendered at build time)
 
 ### Design System (`packages/ui/src/`)
 
+Organized by abstraction level — tokens and recipes, then behavior, then atoms, then page-scale compositions:
+
 - `styles/theme.css` - `@theme` tokens (palette, effect tints, `shadow-glow`, shimmer keyframes) + `@source`
 - `styles/base.css` - `text-gradient` utility; base layer (default border color, focus ring, `.skip-link`, body aurora background)
-- `tokens.ts` - `PALETTE` hex values + `toRgba` for SVG/satori consumers
+- `tokens.ts` - `PALETTE` hex values, `TEXT_GRADIENT`, `toRgba` for SVG/satori consumers
 - `recipes.ts` - cva class recipes; `lib/style.ts` - configured `cva`/`cx`
-- `motion/provider.tsx` - `LazyMotion` (`domAnimation`, strict) + `MotionConfig`
-- `components/` - Reveal, Section/SectionHeading, SpotlightCard/CardTitle, Pictogram, PageHeadline, GridBackground, Disclosure, FloatingParticles, ScrollCue, ScrollProgressBar
+- `hooks/` - useScrolledPast, useTypewriter, useCountUp
+- `motion/` - MotionProvider (`LazyMotion` `domAnimation` strict + `MotionConfig`), Reveal (in-view), Entrance (mount), BlinkingCaret, FloatingParticles, ScrollCue, ScrollProgressBar
+- `primitives/` - ButtonLink, BrandLockup, StepBadge, Pictogram, SpotlightCard/CardTitle, FeatureCard, Disclosure, AnimatedBars
+- `layout/` - Section/SectionHeading/SectionIntro, CardGrid (stagger-reveals children), PageHeadline, GridBackground
+- `blocks/` - NavBar, SiteFooter, SubpageShell/BackLink, HeroShell, Timeline/TimelineItem (slot-based; apps inject content)
 - `forms/` - `useHostedForm` + honeypot + status notes, EmailCapture
 - `diagram/` - animated SVG diagram kit (Diagram shell, phase hook, node/ring/badge primitives)
 

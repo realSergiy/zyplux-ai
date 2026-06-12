@@ -4,6 +4,8 @@ import { useInView, useReducedMotion } from 'motion/react';
 import * as m from 'motion/react-m';
 import { useRef } from 'react';
 
+export const REVEAL_STAGGER_S = 0.08;
+
 export const Reveal = ({
   children,
   className,

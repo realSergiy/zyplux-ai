@@ -12,6 +12,8 @@ export const PALETTE = {
   warning: '#d29922',
 } as const;
 
+export const TEXT_GRADIENT = `linear-gradient(120deg, ${PALETTE.heading} 25%, ${PALETTE.accent} 65%, ${PALETTE.violet} 95%)`;
+
 export const toRgba = (hex: string, alpha: number) => {
   const channels = [1, 3, 5].map(offset => Number.parseInt(hex.slice(offset, offset + 2), 16));
   return `rgba(${channels.join(',')},${String(alpha)})`;

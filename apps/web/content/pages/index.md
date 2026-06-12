@@ -45,6 +45,10 @@ method:
 build:
   heading: Three places intelligence pays back.
   intro: Once we know your loops, the build is the easy part. It lands in one of three places — sometimes all three.
+  showcase:
+    title: Ask a question, get a view.
+    body: No ticket, no waiting on the data team. Type what you want to know in plain language and a dashboard is
+      assembled from your own data while you watch — a scenario of what “light up the system” looks like.
   buckets:
     - title: Close the loop.
       surface: Inside your operations
@@ -195,4 +199,6 @@ auditForm:
   taskLabel: What’s one task your team would love to hand off? (optional)
 miniDashboard:
   question: How did the north region do last quarter?
+  caption: North region — last quarter
+  growthNote: vs the quarter before
 ---

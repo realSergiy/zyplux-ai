@@ -1,4 +1,5 @@
-import { PageHeadline } from '@zyplux/ui/components/page-headline';
+import { PageHeadline } from '@zyplux/ui/layout/page-headline';
+import { prose } from '@zyplux/ui/recipes';
 
 import type { InsightsPost } from '@/posts';
 
@@ -9,7 +10,7 @@ export const InsightsPostPage = ({ post }: { post: InsightsPost }) => (
     <article>
       <PageHeadline className='mb-2'>{post.title}</PageHeadline>
       <p className='text-sm text-muted mb-8'>{post.date}</p>
-      <div className='space-y-4 text-lg' dangerouslySetInnerHTML={{ __html: post.body }} />
+      <div className={prose()} dangerouslySetInnerHTML={{ __html: post.body }} />
     </article>
   </SubpageLayout>
 );

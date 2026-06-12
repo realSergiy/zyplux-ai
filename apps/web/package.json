@@ -4,11 +4,11 @@
   "private": true,
   "type": "module",
   "exports": {
-    ".": "./src/app.tsx",
     "./config": "./src/config.ts",
     "./content": "./src/content.ts",
     "./posts": "./src/posts.ts",
     "./seo": "./src/seo.ts",
+    "./pages/home-page": "./src/pages/home-page.tsx",
     "./pages/agent-page": "./src/pages/agent-page.tsx",
     "./pages/privacy-page": "./src/pages/privacy-page.tsx"
   },

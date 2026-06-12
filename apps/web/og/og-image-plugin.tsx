@@ -2,7 +2,7 @@ import type { CSSProperties, ReactNode } from 'react';
 import type { Plugin } from 'vite';
 
 import { Resvg } from '@resvg/resvg-js';
-import { PALETTE, toRgba } from '@zyplux/ui/tokens';
+import { PALETTE, TEXT_GRADIENT, toRgba } from '@zyplux/ui/tokens';
 import { OG_IMAGE_HEIGHT, OG_IMAGE_WIDTH, SITE_URL } from '@zyplux/web/config';
 import { BRAND_NAME, HERO, TAGLINE } from '@zyplux/web/content';
 import { INSIGHTS_POSTS } from '@zyplux/web/posts';
@@ -40,7 +40,7 @@ const gridDataUri = pngDataUri(GRID_SVG);
 
 const GRADIENT_TEXT = {
   backgroundClip: 'text',
-  backgroundImage: `linear-gradient(120deg, ${PALETTE.heading} 25%, ${PALETTE.accent} 65%, ${PALETTE.violet} 95%)`,
+  backgroundImage: TEXT_GRADIENT,
   color: 'transparent',
 } satisfies CSSProperties;
 

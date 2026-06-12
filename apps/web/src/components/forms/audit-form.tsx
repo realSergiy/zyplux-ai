@@ -1,12 +1,10 @@
 import { HoneypotField, SubmitSuccessNote, useHostedForm } from '@zyplux/ui/forms/hosted-form';
-import { button, fieldInput } from '@zyplux/ui/recipes';
+import { button, fieldInput, fieldLabel } from '@zyplux/ui/recipes';
 
 import { FORM_ENDPOINT } from '@/config';
 import { AUDIT_FORM, FORM_MESSAGES } from '@/content';
 
 import { FormErrorNote } from './form-notes';
-
-const labelClasses = 'mb-2 block text-sm font-medium text-heading';
 
 const TEXT_FIELDS = [
   { label: AUDIT_FORM.nameLabel, name: 'name', type: 'text' },
@@ -27,12 +25,12 @@ export const AuditForm = () => {
       <HoneypotField />
       {TEXT_FIELDS.map(field => (
         <label className='block' key={field.name}>
-          <span className={labelClasses}>{field.label}</span>
+          <span className={fieldLabel()}>{field.label}</span>
           <input className={fieldInput({ class: 'w-full' })} name={field.name} required type={field.type} />
         </label>
       ))}
       <label className='block'>
-        <span className={labelClasses}>{AUDIT_FORM.taskLabel}</span>
+        <span className={fieldLabel()}>{AUDIT_FORM.taskLabel}</span>
         <textarea className={fieldInput({ class: 'w-full' })} name='task' rows={3} />
       </label>
       <button className={button({ class: 'w-full' })} disabled={status === 'sending'} type='submit'>

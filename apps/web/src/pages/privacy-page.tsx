@@ -1,4 +1,5 @@
-import { PageHeadline } from '@zyplux/ui/components/page-headline';
+import { PageHeadline } from '@zyplux/ui/layout/page-headline';
+import { prose } from '@zyplux/ui/recipes';
 
 import { SubpageLayout } from '@/components/layout/subpage-layout';
 import { PRIVACY_PAGE } from '@/content';
@@ -6,6 +7,6 @@ import { PRIVACY_PAGE } from '@/content';
 export const PrivacyPage = () => (
   <SubpageLayout>
     <PageHeadline>{PRIVACY_PAGE.headline}</PageHeadline>
-    <div className='space-y-4 [&_strong]:text-heading' dangerouslySetInnerHTML={{ __html: PRIVACY_PAGE.body }} />
+    <div className={prose({ size: 'base' })} dangerouslySetInnerHTML={{ __html: PRIVACY_PAGE.body }} />
   </SubpageLayout>
 );
