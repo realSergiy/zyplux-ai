@@ -1,7 +1,8 @@
+import { PageHeadline } from '@zyplux/ui/components/page-headline';
+
 import type { InsightsPost } from '@/posts';
 
 import { SubpageLayout } from '@/components/layout/subpage-layout';
-import { PageHeadline } from '@/components/ui/page-headline';
 
 export const InsightsPostPage = ({ post }: { post: InsightsPost }) => (
   <SubpageLayout>

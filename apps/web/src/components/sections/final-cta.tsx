@@ -1,8 +1,9 @@
+import { Reveal } from '@zyplux/ui/components/reveal';
+import { Section } from '@zyplux/ui/components/section';
+import { heading } from '@zyplux/ui/recipes';
+
 import { AuditForm } from '@/components/forms/audit-form';
-import { Reveal } from '@/components/ui/reveal';
-import { Section } from '@/components/ui/section';
 import { FINAL_CTA } from '@/content';
-import { heading } from '@/styles';
 
 export const FinalCta = () => (
   <Section className='max-w-xl text-center' id='audit'>

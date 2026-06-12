@@ -2,21 +2,16 @@ import type { ReactNode, SubmitEvent } from 'react';
 
 import { useState } from 'react';
 
-import { FORM_ENDPOINT } from '@/config';
-import { CONTACT_EMAIL, FORM_MESSAGES } from '@/content';
-
 const HONEYPOT_FIELD = 'website';
-
-export type FormName = 'agent-updates' | 'audit' | 'insights-updates';
 
 type SubmitStatus = 'error' | 'idle' | 'sending' | 'sent';
 
-export const useHostedForm = () => {
+export const useHostedForm = (endpoint: string) => {
   const [status, setStatus] = useState<SubmitStatus>('idle');
 
   const deliver = async (fields: FormData) => {
     try {
-      const response = await fetch(FORM_ENDPOINT, {
+      const response = await fetch(endpoint, {
         body: fields,
         headers: { Accept: 'application/json' },
         method: 'POST',
@@ -52,12 +47,8 @@ export const SubmitSuccessNote = ({ children }: { children: ReactNode }) => (
   </p>
 );
 
-export const SubmitErrorNote = () => (
+export const SubmitErrorNote = ({ children }: { children: ReactNode }) => (
   <p className='text-sm text-muted' role='alert'>
-    {FORM_MESSAGES.errorPrefix}
-    <a className='text-accent hover:underline' href={`mailto:${CONTACT_EMAIL}`}>
-      {CONTACT_EMAIL}
-    </a>
-    .
+    {children}
   </p>
 );

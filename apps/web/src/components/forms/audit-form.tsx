@@ -1,7 +1,10 @@
-import { AUDIT_FORM, FORM_MESSAGES } from '@/content';
-import { button, fieldInput } from '@/styles';
+import { HoneypotField, SubmitSuccessNote, useHostedForm } from '@zyplux/ui/forms/hosted-form';
+import { button, fieldInput } from '@zyplux/ui/recipes';
 
-import { HoneypotField, SubmitErrorNote, SubmitSuccessNote, useHostedForm } from './hosted-form';
+import { FORM_ENDPOINT } from '@/config';
+import { AUDIT_FORM, FORM_MESSAGES } from '@/content';
+
+import { FormErrorNote } from './form-notes';
 
 const labelClasses = 'mb-2 block text-sm font-medium text-heading';
 
@@ -12,7 +15,7 @@ const TEXT_FIELDS = [
 ];
 
 export const AuditForm = () => {
-  const { status, submit } = useHostedForm();
+  const { status, submit } = useHostedForm(FORM_ENDPOINT);
 
   if (status === 'sent') {
     return <SubmitSuccessNote>{FORM_MESSAGES.auditSuccess}</SubmitSuccessNote>;
@@ -35,7 +38,7 @@ export const AuditForm = () => {
       <button className={button({ class: 'w-full' })} disabled={status === 'sending'} type='submit'>
         {status === 'sending' ? FORM_MESSAGES.sending : AUDIT_FORM.button}
       </button>
-      {status === 'error' && <SubmitErrorNote />}
+      {status === 'error' && <FormErrorNote />}
     </form>
   );
 };

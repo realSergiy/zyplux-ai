@@ -1,6 +1,7 @@
 import type { LucideIcon } from 'lucide-react';
 
-import { motion, useInView, useReducedMotion } from 'motion/react';
+import { useInView, useReducedMotion } from 'motion/react';
+import * as m from 'motion/react-m';
 import { useRef } from 'react';
 
 export const Pictogram = ({ delay = 0, icon: Icon }: { delay?: number; icon: LucideIcon }) => {
@@ -13,7 +14,7 @@ export const Pictogram = ({ delay = 0, icon: Icon }: { delay?: number; icon: Luc
   const hover = prefersReducedMotion ? { opacity: 1 } : { rotate: 360, scale: 1.1 };
 
   return (
-    <motion.div
+    <m.div
       animate={isInView ? shown : hidden}
       className='mb-5 flex size-12 items-center justify-center rounded-xl border border-accent/20 bg-accent/10 text-accent'
       initial={hidden}
@@ -23,6 +24,6 @@ export const Pictogram = ({ delay = 0, icon: Icon }: { delay?: number; icon: Luc
       whileHover={hover}
     >
       <Icon aria-hidden className='size-6' />
-    </motion.div>
+    </m.div>
   );
 };

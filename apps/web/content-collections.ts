@@ -164,6 +164,7 @@ const site = defineCollection({
     formMessages: z.object({
       auditSuccess: z.string(),
       captureSuccess: z.string(),
+      emailPlaceholder: z.string(),
       errorPrefix: z.string(),
       sending: z.string(),
     }),

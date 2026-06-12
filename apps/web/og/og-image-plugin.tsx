@@ -2,6 +2,7 @@ import type { CSSProperties, ReactNode } from 'react';
 import type { Plugin } from 'vite';
 
 import { Resvg } from '@resvg/resvg-js';
+import { PALETTE, toRgba } from '@zyplux/ui/tokens';
 import { OG_IMAGE_HEIGHT, OG_IMAGE_WIDTH, SITE_URL } from '@zyplux/web/config';
 import { BRAND_NAME, HERO, TAGLINE } from '@zyplux/web/content';
 import { INSIGHTS_POSTS } from '@zyplux/web/posts';
@@ -19,13 +20,13 @@ const pngDataUri = (svg: string) =>
   `data:image/png;base64,${new Resvg(svg, { fitTo: { mode: 'original' } }).render().asPng().toString('base64')}`;
 
 const BOLT_SVG =
-  '<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 24 24" fill="#58a6ff">' +
+  `<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 24 24" fill="${PALETTE.accent}">` +
   '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>';
 const boltDataUri = pngDataUri(BOLT_SVG);
 
 const gridLine = (cellPx: number, opacity: number) =>
   `<pattern id="cell${cellPx}" width="${cellPx}" height="${cellPx}" patternUnits="userSpaceOnUse">` +
-  `<path d="M${cellPx} 0H0V${cellPx}" fill="none" stroke="#6e7681" stroke-opacity="${opacity}" stroke-width="1"/></pattern>`;
+  `<path d="M${cellPx} 0H0V${cellPx}" fill="none" stroke="${PALETTE.grid}" stroke-opacity="${opacity}" stroke-width="1"/></pattern>`;
 const GRID_SVG =
   `<svg xmlns="http://www.w3.org/2000/svg" width="${OG_IMAGE_WIDTH}" height="${OG_IMAGE_HEIGHT}"><defs>` +
   gridLine(36, 0.14) +
@@ -39,17 +40,17 @@ const gridDataUri = pngDataUri(GRID_SVG);
 
 const GRADIENT_TEXT = {
   backgroundClip: 'text',
-  backgroundImage: 'linear-gradient(120deg, #f0f6fc 25%, #58a6ff 65%, #bc8cff 95%)',
+  backgroundImage: `linear-gradient(120deg, ${PALETTE.heading} 25%, ${PALETTE.accent} 65%, ${PALETTE.violet} 95%)`,
   color: 'transparent',
 } satisfies CSSProperties;
 
 const CardShell = ({ children, style }: { children: ReactNode; style: CSSProperties }) => (
   <div
     style={{
-      backgroundColor: '#0d1117',
+      backgroundColor: PALETTE.background,
       backgroundImage:
-        'radial-gradient(ellipse 90% 60% at 50% -10%, rgba(88,166,255,0.16), transparent 70%),' +
-        'radial-gradient(ellipse 60% 40% at 85% 0%, rgba(188,140,255,0.12), transparent 70%)',
+        `radial-gradient(ellipse 90% 60% at 50% -10%, ${toRgba(PALETTE.accent, 0.16)}, transparent 70%),` +
+        `radial-gradient(ellipse 60% 40% at 85% 0%, ${toRgba(PALETTE.violet, 0.12)}, transparent 70%)`,
       display: 'flex',
       fontFamily: 'Inter',
       height: OG_IMAGE_HEIGHT,
@@ -70,7 +71,7 @@ const CardShell = ({ children, style }: { children: ReactNode; style: CSSPropert
     <div
       style={{
         bottom: 38,
-        color: '#8b949e',
+        color: PALETTE.muted,
         display: 'flex',
         fontSize: 25,
         fontWeight: 500,
@@ -90,10 +91,10 @@ const brandCard = (
       <div
         style={{
           alignItems: 'center',
-          backgroundColor: 'rgba(88,166,255,0.1)',
-          border: '1px solid rgba(88,166,255,0.3)',
+          backgroundColor: toRgba(PALETTE.accent, 0.1),
+          border: `1px solid ${toRgba(PALETTE.accent, 0.3)}`,
           borderRadius: 999,
-          color: '#58a6ff',
+          color: PALETTE.accent,
           display: 'flex',
           fontSize: 23,
           fontWeight: 500,
@@ -109,7 +110,7 @@ const brandCard = (
           {BRAND_NAME}
         </div>
       </div>
-      <div style={{ color: '#f0f6fc', fontSize: 46, fontWeight: 600, letterSpacing: '-0.01em' }}>{TAGLINE}</div>
+      <div style={{ color: PALETTE.heading, fontSize: 46, fontWeight: 600, letterSpacing: '-0.01em' }}>{TAGLINE}</div>
     </div>
   </CardShell>
 );
@@ -119,7 +120,9 @@ const postCard = (title: string, description: string) => (
     <div style={{ display: 'flex', flexDirection: 'column', padding: '0 80px', position: 'relative' }}>
       <div style={{ alignItems: 'center', display: 'flex', gap: 14, marginBottom: 48 }}>
         <img alt='' height={44} src={boltDataUri} width={44} />
-        <div style={{ color: '#f0f6fc', fontSize: 40, fontWeight: 800, letterSpacing: '-0.03em' }}>{BRAND_NAME}</div>
+        <div style={{ color: PALETTE.heading, fontSize: 40, fontWeight: 800, letterSpacing: '-0.03em' }}>
+          {BRAND_NAME}
+        </div>
       </div>
       <div
         style={{
@@ -133,7 +136,7 @@ const postCard = (title: string, description: string) => (
       >
         {title}
       </div>
-      <div style={{ color: '#8b949e', fontSize: 30, fontWeight: 500, lineHeight: 1.4 }}>{description}</div>
+      <div style={{ color: PALETTE.muted, fontSize: 30, fontWeight: 500, lineHeight: 1.4 }}>{description}</div>
     </div>
   </CardShell>
 );

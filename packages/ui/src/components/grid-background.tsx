@@ -1,4 +1,5 @@
-import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react';
+import { useReducedMotion, useScroll, useTransform } from 'motion/react';
+import * as m from 'motion/react-m';
 
 const GRID_FADE_MASK = 'radial-gradient(ellipse 75% 90% at 50% 0%, black 25%, transparent 78%)';
 const FINE_CELL_PX = 36;
@@ -27,13 +28,13 @@ export const GridBackground = () => {
       className='fixed inset-0 -z-10 overflow-hidden'
       style={{ maskImage: GRID_FADE_MASK, WebkitMaskImage: GRID_FADE_MASK }}
     >
-      <motion.div
+      <m.div
         className='absolute inset-x-0 -inset-y-[180px]'
-        style={{ ...buildGridLines(FINE_CELL_PX, 'rgb(110 118 129 / 0.14)'), y: fineDrift }}
+        style={{ ...buildGridLines(FINE_CELL_PX, 'var(--color-grid-line)'), y: fineDrift }}
       />
-      <motion.div
+      <m.div
         className='absolute inset-x-0 -inset-y-[180px]'
-        style={{ ...buildGridLines(COARSE_CELL_PX, 'rgb(110 118 129 / 0.2)'), y: coarseDrift }}
+        style={{ ...buildGridLines(COARSE_CELL_PX, 'var(--color-grid-line-coarse)'), y: coarseDrift }}
       />
     </div>
   );

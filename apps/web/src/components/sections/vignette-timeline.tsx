@@ -1,11 +1,12 @@
+import { Reveal } from '@zyplux/ui/components/reveal';
+import { Section, SectionHeading } from '@zyplux/ui/components/section';
+import { pill } from '@zyplux/ui/recipes';
 import { Check } from 'lucide-react';
-import { motion, useInView, useReducedMotion, useScroll, useSpring } from 'motion/react';
+import { useInView, useReducedMotion, useScroll, useSpring } from 'motion/react';
+import * as m from 'motion/react-m';
 import { useRef } from 'react';
 
-import { Reveal } from '@/components/ui/reveal';
-import { Section, SectionHeading } from '@/components/ui/section';
 import { TIMELINE } from '@/content';
-import { pill } from '@/styles';
 
 const TimelineScene = ({ index, scene }: { index: number; scene: (typeof TIMELINE.scenes)[0] }) => {
   const ref = useRef(null);
@@ -45,7 +46,7 @@ export const VignetteTimeline = () => {
 
       <div className='relative mx-auto max-w-2xl'>
         <span aria-hidden className='absolute left-0 top-0 h-full w-px bg-border' />
-        <motion.span
+        <m.span
           aria-hidden
           className='absolute left-0 top-0 h-full w-px origin-top bg-gradient-to-b from-accent to-violet'
           style={{ scaleY: prefersReducedMotion === true ? 1 : progress }}

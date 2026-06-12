@@ -5,6 +5,7 @@ skipLinkLabel: Skip to main content
 formMessages:
   auditSuccess: 'Thanks — your request is in. The audit lands in your inbox within days.'
   captureSuccess: 'Thanks — you’re on the list.'
+  emailPlaceholder: you@company.com
   errorPrefix: 'Something went wrong — email us instead at '
   sending: Sending…
 nav:

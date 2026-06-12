@@ -1,6 +1,7 @@
+import { PageHeadline } from '@zyplux/ui/components/page-headline';
+
 import { EmailCapture } from '@/components/forms/email-capture';
 import { SubpageLayout } from '@/components/layout/subpage-layout';
-import { PageHeadline } from '@/components/ui/page-headline';
 import { AGENT_PAGE } from '@/content';
 
 export const AgentPage = () => (

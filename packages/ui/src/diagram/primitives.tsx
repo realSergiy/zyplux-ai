@@ -1,9 +1,9 @@
-import { motion } from 'motion/react';
+import { PALETTE } from '@zyplux/ui/tokens';
+import * as m from 'motion/react-m';
 
-import { DIAGRAM_COLORS } from './tokens';
 import { useDiagramPhase } from './use-diagram-phases';
 
-const { accent, border, heading, muted, success, surface, warning } = DIAGRAM_COLORS;
+const { accent, border, heading, muted, success, surface, warning } = PALETTE;
 
 const NODE_HALF_WIDTH = 48;
 const NODE_HALF_HEIGHT = 20;
@@ -23,12 +23,12 @@ export const DiagramNode = ({
   const { resolved, still } = useDiagramPhase();
   const pulsing = snag && !resolved && !still;
   return (
-    <motion.g
+    <m.g
       animate={pulsing ? { scale: [1, 1.06, 1] } : { scale: 1 }}
       style={CENTERED}
       transition={pulsing ? { duration: 1.6, ease: 'easeInOut', repeat: Infinity } : { duration: 0.3 }}
     >
-      <motion.rect
+      <m.rect
         animate={{ stroke: resolved ? success : snag ? warning : border }}
         fill={surface}
         height={NODE_HALF_HEIGHT * 2}
@@ -42,7 +42,7 @@ export const DiagramNode = ({
       <text fill={snag ? heading : muted} fontSize={14} fontWeight={500} textAnchor='middle' x={x} y={y + 5}>
         {label}
       </text>
-    </motion.g>
+    </m.g>
   );
 };
 
@@ -50,7 +50,7 @@ export const LoopRing = ({ cx, cy, r }: { cx: number; cy: number; r: number }) =
   const { drawn, resolved, still } = useDiagramPhase();
   return (
     <>
-      <motion.circle
+      <m.circle
         animate={{ pathLength: drawn ? 1 : 0, stroke: resolved ? success : accent }}
         cx={cx}
         cy={cy}
@@ -61,7 +61,7 @@ export const LoopRing = ({ cx, cy, r }: { cx: number; cy: number; r: number }) =
         style={{ opacity: 0.55 }}
         transition={{ pathLength: { duration: 1, ease: 'easeInOut' }, stroke: { duration: 0.6 } }}
       />
-      <motion.circle
+      <m.circle
         animate={resolved && !still ? { opacity: 1, strokeDashoffset: [0, -96] } : { opacity: 0 }}
         cx={cx}
         cy={cy}
@@ -85,7 +85,7 @@ export const LoopRing = ({ cx, cy, r }: { cx: number; cy: number; r: number }) =
 export const SpokeLine = ({ x1, x2, y1, y2 }: { x1: number; x2: number; y1: number; y2: number }) => {
   const { resolved, still } = useDiagramPhase();
   return (
-    <motion.line
+    <m.line
       animate={resolved ? { opacity: 0.7, pathLength: 1 } : { opacity: 0, pathLength: 0 }}
       initial={{ opacity: 0, pathLength: still ? 1 : 0 }}
       stroke={success}
@@ -103,7 +103,7 @@ export const ResolveBadge = ({ label, r = 38, x, y }: { label: string; r?: numbe
   const { resolved, still } = useDiagramPhase();
   return (
     <>
-      <motion.circle
+      <m.circle
         animate={resolved && !still ? { opacity: [0.4, 0, 0.4], scale: [1, 1.55, 1] } : { opacity: 0 }}
         cx={x}
         cy={y}
@@ -115,7 +115,7 @@ export const ResolveBadge = ({ label, r = 38, x, y }: { label: string; r?: numbe
         style={CENTERED}
         transition={resolved && !still ? { duration: 2.2, ease: 'easeInOut', repeat: Infinity } : { duration: 0.3 }}
       />
-      <motion.g
+      <m.g
         animate={resolved ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
         initial={{ opacity: still ? 1 : 0, scale: still ? 1 : 0 }}
         style={CENTERED}
@@ -125,7 +125,7 @@ export const ResolveBadge = ({ label, r = 38, x, y }: { label: string; r?: numbe
         <text fill={heading} fontSize={13} fontWeight={600} textAnchor='middle' x={x} y={y + 5}>
           {label}
         </text>
-      </motion.g>
+      </m.g>
     </>
   );
 };
@@ -144,7 +144,7 @@ export const PhaseCaption = ({
   const { resolved, still } = useDiagramPhase();
   return (
     <>
-      <motion.text
+      <m.text
         animate={{ opacity: resolved ? 0 : 1 }}
         fill={warning}
         fontSize={12}
@@ -156,8 +156,8 @@ export const PhaseCaption = ({
         y={y}
       >
         {pending}
-      </motion.text>
-      <motion.text
+      </m.text>
+      <m.text
         animate={{ opacity: resolved ? 1 : 0 }}
         fill={success}
         fontSize={12}
@@ -169,7 +169,7 @@ export const PhaseCaption = ({
         y={y}
       >
         {resolvedLabel}
-      </motion.text>
+      </m.text>
     </>
   );
 };

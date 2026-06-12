@@ -1,14 +1,13 @@
 import type { ReactNode } from 'react';
 
+import { GridBackground } from '@zyplux/ui/components/grid-background';
 import { cx } from '@zyplux/ui/lib/style';
+import { container, navLink } from '@zyplux/ui/recipes';
 import { ArrowLeft } from 'lucide-react';
 
 import { Footer } from '@/components/sections/footer';
 import { BrandMark } from '@/components/ui/brand-mark';
 import { NAV, SKIP_LINK_LABEL } from '@/content';
-import { container, navLink } from '@/styles';
-
-import { GridBackground } from './grid-background';
 
 export const SubpageLayout = ({ children }: { children: ReactNode }) => (
   <div className='min-h-screen overflow-x-hidden'>

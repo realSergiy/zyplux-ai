@@ -1,7 +1,17 @@
 import { type CVA, type CX, defineConfig } from 'cva';
-import { twMerge } from 'tailwind-merge';
+import { extendTailwindMerge } from 'tailwind-merge';
 
-const styleConfig = defineConfig({ hooks: { onComplete: twMerge } });
+const mergeThemeClasses = extendTailwindMerge<'text-gradient'>({
+  extend: {
+    classGroups: {
+      animate: [{ animate: ['shimmer'] }],
+      shadow: [{ shadow: ['glow'] }],
+      'text-gradient': ['text-gradient'],
+    },
+  },
+});
+
+const styleConfig = defineConfig({ hooks: { onComplete: mergeThemeClasses } });
 
 export const cva: CVA = styleConfig.cva;
 export const cx: CX = styleConfig.cx;

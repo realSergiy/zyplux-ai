@@ -1,6 +1,7 @@
+import { PageHeadline } from '@zyplux/ui/components/page-headline';
+
 import { EmailCapture } from '@/components/forms/email-capture';
 import { SubpageLayout } from '@/components/layout/subpage-layout';
-import { PageHeadline } from '@/components/ui/page-headline';
 import { INSIGHTS_PAGE } from '@/content';
 import { INSIGHTS_POSTS } from '@/posts';
 

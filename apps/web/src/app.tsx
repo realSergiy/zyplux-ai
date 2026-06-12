@@ -1,6 +1,7 @@
+import { GridBackground } from '@zyplux/ui/components/grid-background';
+
 import { SKIP_LINK_LABEL } from '@/content';
 
-import { GridBackground } from './components/layout/grid-background';
 import { Navigation } from './components/layout/navigation';
 import { Faq } from './components/sections/faq';
 import { FinalCta } from './components/sections/final-cta';

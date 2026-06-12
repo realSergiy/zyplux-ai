@@ -1,6 +1,7 @@
+import { container } from '@zyplux/ui/recipes';
+
 import { BrandMark } from '@/components/ui/brand-mark';
 import { BRAND_NAME, CONTACT_EMAIL, FOOTER, NAV } from '@/content';
-import { container } from '@/styles';
 
 type FooterLink = { external?: boolean; href: string; label: string };
 

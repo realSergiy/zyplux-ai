@@ -1,6 +1,7 @@
+import { Reveal } from '@zyplux/ui/components/reveal';
+import { Section, SectionHeading } from '@zyplux/ui/components/section';
+
 import founderPhoto from '@/assets/founder.jpg';
-import { Reveal } from '@/components/ui/reveal';
-import { Section, SectionHeading } from '@/components/ui/section';
 import { FOUNDER } from '@/content';
 
 export const FounderNote = () => (

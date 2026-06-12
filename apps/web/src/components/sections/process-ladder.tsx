@@ -1,10 +1,10 @@
-import { motion } from 'motion/react';
+import { Reveal } from '@zyplux/ui/components/reveal';
+import { Section, SectionHeading } from '@zyplux/ui/components/section';
+import { CardTitle, SpotlightCard } from '@zyplux/ui/components/spotlight-card';
+import { button } from '@zyplux/ui/recipes';
+import * as m from 'motion/react-m';
 
-import { Reveal } from '@/components/ui/reveal';
-import { Section, SectionHeading } from '@/components/ui/section';
-import { CardTitle, SpotlightCard } from '@/components/ui/spotlight-card';
 import { PROCESS } from '@/content';
-import { button } from '@/styles';
 
 export const ProcessLadder = () => (
   <Section id='how-it-works'>
@@ -25,14 +25,14 @@ export const ProcessLadder = () => (
     </div>
 
     <Reveal className='mt-16 text-center'>
-      <motion.a
+      <m.a
         className={button({ class: 'inline-block' })}
         href='#audit'
         whileHover={{ y: -2 }}
         whileTap={{ scale: 0.97 }}
       >
         {PROCESS.cta}
-      </motion.a>
+      </m.a>
     </Reveal>
   </Section>
 );

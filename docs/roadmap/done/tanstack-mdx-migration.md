@@ -148,6 +148,7 @@ Ground rules for every phase:
    Verify: `just check` green with the new component.
 4. The FAQ stays native `<details>`/`<summary>` until a requirement demands arrow-key navigation or animated collapse.
 5. Escalation: if an app surface emerges (agent console, dashboards), evaluate full shadcn on the Base UI base via its bun-monorepo flow into `packages/ui`, accepting the one-time token rename (`accent` → `primary`, `muted` → `muted-foreground`). Record that decision in a new roadmap document first.
+
 ## Done
 
 - [x] LinkedIn in footer: <https://www.linkedin.com/in/sergiy-yeskov-4a8534152/> (2026-06-07)

@@ -3,14 +3,37 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "sideEffects": false,
   "exports": {
-    "./lib/style": "./src/lib/style.ts"
+    "./theme.css": "./src/styles/theme.css",
+    "./base.css": "./src/styles/base.css",
+    "./tokens": "./src/tokens.ts",
+    "./recipes": "./src/recipes.ts",
+    "./lib/*": "./src/lib/*.ts",
+    "./hooks/*": "./src/hooks/*.ts",
+    "./motion/*": "./src/motion/*.tsx",
+    "./components/*": "./src/components/*.tsx",
+    "./forms/*": "./src/forms/*.tsx",
+    "./diagram/*": "./src/diagram/*.tsx"
   },
   "dependencies": {
     "cva": "catalog:",
     "tailwind-merge": "catalog:"
   },
+  "peerDependencies": {
+    "lucide-react": "catalog:",
+    "motion": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "tailwindcss": "catalog:"
+  },
   "devDependencies": {
-    "@zyplux/tsconfig": "workspace:*"
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "@zyplux/tsconfig": "workspace:*",
+    "lucide-react": "catalog:",
+    "motion": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:"
   }
 }

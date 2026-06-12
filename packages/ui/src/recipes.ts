@@ -1,4 +1,4 @@
-import { cva } from '@zyplux/ui/lib/style';
+import { cva } from './lib/style';
 
 export const container = cva({ base: 'container mx-auto px-4' });
 

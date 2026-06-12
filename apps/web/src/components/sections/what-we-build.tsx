@@ -1,12 +1,12 @@
+import { Pictogram } from '@zyplux/ui/components/pictogram';
+import { Reveal } from '@zyplux/ui/components/reveal';
+import { Section, SectionHeading } from '@zyplux/ui/components/section';
+import { CardTitle, SpotlightCard } from '@zyplux/ui/components/spotlight-card';
+import { pill } from '@zyplux/ui/recipes';
 import { LayoutDashboard, RefreshCw, Smartphone } from 'lucide-react';
 
 import { MiniDashboard } from '@/components/ui/mini-dashboard';
-import { Pictogram } from '@/components/ui/pictogram';
-import { Reveal } from '@/components/ui/reveal';
-import { Section, SectionHeading } from '@/components/ui/section';
-import { CardTitle, SpotlightCard } from '@/components/ui/spotlight-card';
 import { BUILD, MINI_DASHBOARD } from '@/content';
-import { pill } from '@/styles';
 
 const BUCKET_ICONS = [RefreshCw, LayoutDashboard, Smartphone];
 

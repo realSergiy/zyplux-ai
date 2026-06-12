@@ -1,8 +1,7 @@
 import type { ReactNode } from 'react';
 
 import { cx } from '@zyplux/ui/lib/style';
-
-import { container, heading } from '@/styles';
+import { container, heading } from '@zyplux/ui/recipes';
 
 import { Reveal } from './reveal';
 

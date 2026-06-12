@@ -1,5 +1,6 @@
 import { Search, TrendingUp } from 'lucide-react';
-import { animate, motion, useInView, useReducedMotion } from 'motion/react';
+import { animate, useInView, useReducedMotion } from 'motion/react';
+import * as m from 'motion/react-m';
 import { useEffect, useRef, useState } from 'react';
 
 const TYPE_INTERVAL_MS = 38;
@@ -62,7 +63,7 @@ export const MiniDashboard = ({ question }: { question: string }) => {
         <Search aria-hidden className='h-4 w-4 shrink-0 text-muted' />
         <span className='text-heading'>{question.slice(0, typedCount)}</span>
         {!revealed && (
-          <motion.span
+          <m.span
             animate={{ opacity: [1, 0, 1] }}
             aria-hidden
             className='inline-block h-4 w-px bg-accent'
@@ -75,7 +76,7 @@ export const MiniDashboard = ({ question }: { question: string }) => {
       <p className='mt-5 mb-2 text-xs font-medium text-muted'>North region — last quarter</p>
       <div aria-hidden className='flex h-28 items-end gap-2'>
         {BARS.map((bar, index) => (
-          <motion.div
+          <m.div
             animate={{ scaleY: revealed ? bar.value / 100 : 0 }}
             className='flex-1 rounded-t bg-gradient-to-t from-accent/40 to-accent'
             initial={{ scaleY: still ? bar.value / 100 : 0 }}

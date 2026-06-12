@@ -18,7 +18,7 @@ flowchart TD
 ```
 
 - `apps/web` — Vite + React app deployed to Cloudflare
-- `packages/ui` — shared styling utilities (`cva`, `cx`)
+- `packages/ui` — shared design system: design tokens (`theme.css`, `tokens`), global styles (`base.css`), class recipes, and React components (scroll reveals, cards, forms, SVG diagram kit)
 - `packages/tsconfig` — shared TypeScript presets (`base.json`, `bun.json`, `web.json`)
 - `tests` — smoke tests against public package interfaces only (`fixtures/` + `stories/` + happy-dom web harness)
 

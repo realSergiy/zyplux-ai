@@ -1,21 +1,16 @@
-import { motion, useMotionValueEvent, useScroll, useSpring } from 'motion/react';
-import { useState } from 'react';
+import { ScrollProgressBar } from '@zyplux/ui/components/scroll-progress-bar';
+import { useScrolledPast } from '@zyplux/ui/hooks/use-scrolled-past';
+import { button, container, navLink } from '@zyplux/ui/recipes';
+import * as m from 'motion/react-m';
 
 import { BrandMark } from '@/components/ui/brand-mark';
 import { NAV } from '@/content';
-import { button, container, navLink } from '@/styles';
 
 export const Navigation = () => {
-  const [scrolled, setScrolled] = useState(false);
-  const { scrollY, scrollYProgress } = useScroll();
-  const scrollProgress = useSpring(scrollYProgress, { damping: 40, stiffness: 200 });
-
-  useMotionValueEvent(scrollY, 'change', latest => {
-    setScrolled(latest > 50);
-  });
+  const scrolled = useScrolledPast(50);
 
   return (
-    <motion.nav
+    <m.nav
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 border-b transition-colors duration-300 ${
         scrolled ? 'bg-background/80 backdrop-blur-lg border-border' : 'bg-transparent border-transparent'
@@ -25,7 +20,7 @@ export const Navigation = () => {
       transition={{ damping: 30, stiffness: 100, type: 'spring' }}
     >
       <div className={container({ class: 'py-4 flex items-center justify-between' })}>
-        <motion.a
+        <m.a
           aria-label='Scroll to top'
           className='flex items-center gap-2 cursor-pointer'
           href='/'
@@ -38,7 +33,7 @@ export const Navigation = () => {
           whileHover={{ scale: 1.05 }}
         >
           <BrandMark />
-        </motion.a>
+        </m.a>
 
         <div className='flex items-center gap-6'>
           <div className='hidden md:flex items-center gap-6'>
@@ -54,10 +49,7 @@ export const Navigation = () => {
         </div>
       </div>
 
-      <motion.div
-        className='absolute bottom-0 left-0 right-0 h-0.5 origin-left bg-gradient-to-r from-accent to-violet'
-        style={{ scaleX: scrollProgress }}
-      />
-    </motion.nav>
+      <ScrollProgressBar />
+    </m.nav>
   );
 };

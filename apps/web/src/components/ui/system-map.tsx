@@ -1,5 +1,5 @@
-import { Diagram } from '@/components/diagram/diagram';
-import { DiagramNode, LoopRing, PhaseCaption, ResolveBadge, SpokeLine } from '@/components/diagram/primitives';
+import { Diagram } from '@zyplux/ui/diagram/diagram';
+import { DiagramNode, LoopRing, PhaseCaption, ResolveBadge, SpokeLine } from '@zyplux/ui/diagram/primitives';
 
 const RESOLVE_DELAY_MS = 1800;
 

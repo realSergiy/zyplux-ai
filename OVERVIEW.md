@@ -13,7 +13,7 @@ Modern React frontpage with a dark GitHub-inspired aesthetic (parallax grid back
 ### Workspace Structure
 
 - `apps/web/` - Marketing site: one-pager (`/`) plus `/agent`, `/insights`, `/privacy` pages (TanStack Start file routes, prerendered)
-- `packages/ui/` - Shared styling utilities (`cva`, `cx`)
+- `packages/ui/` - Shared design system: design tokens (`theme.css`, `tokens`), global styles (`base.css`), class recipes, motion provider, and React components (raw TS source, no build step)
 - `packages/tsconfig/` - Shared TypeScript presets (`base.json`, `bun.json`, `web.json`)
 - `tests/` - Smoke tests hitting public package interfaces only: `fixtures/` (expected copy), `stories/` (scenario registrars), `web/` (happy-dom preload + harness)
 
@@ -87,29 +87,42 @@ Workspace packages use `workspace:*` protocol.
 ### React
 
 - Functional components with arrow functions
-- Motion v12 for animations (`useScroll`/`useTransform` parallax, `useInView` scroll reveals)
-- `prefers-reduced-motion` support (motion's `useReducedMotion`)
+- Motion v12 for animations via `m.*` from `motion/react-m` + `LazyMotion` (`MotionProvider` from `@zyplux/ui/motion/provider` wraps the root route; plain `motion.*` imports throw under `strict`)
+- `useScroll`/`useTransform` parallax, `useInView` scroll reveals
+- `prefers-reduced-motion` support (`MotionConfig reducedMotion='user'` baseline plus component-level `useReducedMotion` replacements)
 
 ### Styling
 
-- Tailwind CSS 4 with `@tailwindcss/postcss`
-- Dark-only GitHub-dark palette as `@theme` tokens in `index.css` (`background #0d1117`, `surface`, `accent #58a6ff`, `violet #bc8cff`)
-- `text-gradient` utility for headline gradients; `shadow-glow` for card hover
-- `cva`/`cx` from `@zyplux/ui/lib/style` (cva + `tailwind-merge`) for variant class builders and className merging
-- App-wide class builders in `src/styles.ts` (`container`, `heading`, `button`, `pill`, `navLink`, `fieldInput`)
+- Tailwind CSS 4 with `@tailwindcss/vite`
+- Dark-only GitHub-dark palette as `@theme` tokens in `@zyplux/ui/theme.css` (`background #0d1117`, `surface`, `accent #58a6ff`, `violet #bc8cff`); the same palette is exported as `PALETTE` from `@zyplux/ui/tokens` for SVG/OG rendering (a test keeps the two in sync)
+- `theme.css` carries a `@source` directive so the app's Tailwind build scans the package's classes; the app's `index.css` is just three `@import`s (`tailwindcss`, theme, base)
+- `text-gradient` utility for headline gradients; `shadow-glow` for card hover (both in `@zyplux/ui/base.css`)
+- `cva`/`cx` from `@zyplux/ui/lib/style` (cva + `tailwind-merge` taught the custom theme tokens) for variant class builders and className merging
+- Shared class recipes in `@zyplux/ui/recipes` (`container`, `heading`, `button`, `pill`, `navLink`, `fieldInput`)
 
 ## File Structure
 
 ### Web App (`apps/web/src/`)
 
 - `content.ts` - Every user-visible string (single source of truth, also imported by tests via `@zyplux/web/content`) plus the `FORM_ENDPOINT` placeholder for the hosted form service
-- `components/layout/` - GridBackground (parallax grid), Navigation (scroll progress bar), SubpageLayout
+- `components/layout/` - Navigation (scroll progress bar), SubpageLayout
 - `components/sections/` - Hero, VignetteTimeline, NotChatbot, ProcessLadder, FounderNote, Security, Faq, FinalCta, Footer
-- `components/forms/` - hosted-form hook + honeypot, AuditForm, EmailCapture
-- `components/ui/` - Reveal (scroll reveal, reduced-motion aware), Section/SectionHeading, SpotlightCard/CardTitle, PageHeadline, BrandMark
+- `components/forms/` - AuditForm plus app bindings (`EmailCapture` wrapper, `FormErrorNote`) over `@zyplux/ui/forms/*`
+- `components/ui/` - BrandMark, MiniDashboard, SystemMap (brand/marketing-specific; generic components live in `@zyplux/ui/components/*`)
 - `pages/` - AgentPage, InsightsPage, InsightsPostPage, PrivacyPage
 - `app.tsx` - One-pager composition
 - `routes/` + `router.tsx` - TanStack Router file routes (prerendered at build time)
+
+### Design System (`packages/ui/src/`)
+
+- `styles/theme.css` - `@theme` tokens (palette, effect tints, `shadow-glow`, shimmer keyframes) + `@source`
+- `styles/base.css` - `text-gradient` utility; base layer (default border color, focus ring, `.skip-link`, body aurora background)
+- `tokens.ts` - `PALETTE` hex values + `toRgba` for SVG/satori consumers
+- `recipes.ts` - cva class recipes; `lib/style.ts` - configured `cva`/`cx`
+- `motion/provider.tsx` - `LazyMotion` (`domAnimation`, strict) + `MotionConfig`
+- `components/` - Reveal, Section/SectionHeading, SpotlightCard/CardTitle, Pictogram, PageHeadline, GridBackground, Disclosure, FloatingParticles, ScrollCue, ScrollProgressBar
+- `forms/` - `useHostedForm` + honeypot + status notes, EmailCapture
+- `diagram/` - animated SVG diagram kit (Diagram shell, phase hook, node/ring/badge primitives)
 
 ## Build Targets
 

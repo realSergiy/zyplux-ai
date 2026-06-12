@@ -1,8 +1,7 @@
 import type { ReactNode } from 'react';
 
 import { cx } from '@zyplux/ui/lib/style';
-
-import { heading } from '@/styles';
+import { heading } from '@zyplux/ui/recipes';
 
 export const PageHeadline = ({ children, className }: { children: ReactNode; className?: string }) => (
   <h1 className={heading({ class: cx('mb-8', className) })}>

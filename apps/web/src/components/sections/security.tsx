@@ -1,9 +1,9 @@
+import { Pictogram } from '@zyplux/ui/components/pictogram';
+import { Reveal } from '@zyplux/ui/components/reveal';
+import { Section, SectionHeading } from '@zyplux/ui/components/section';
+import { CardTitle, SpotlightCard } from '@zyplux/ui/components/spotlight-card';
 import { Lock, MousePointerClick, Plug, ScrollText, Server, UserCheck } from 'lucide-react';
 
-import { Pictogram } from '@/components/ui/pictogram';
-import { Reveal } from '@/components/ui/reveal';
-import { Section, SectionHeading } from '@/components/ui/section';
-import { CardTitle, SpotlightCard } from '@/components/ui/spotlight-card';
 import { SECURITY } from '@/content';
 
 const POINT_ICONS = [Plug, MousePointerClick, ScrollText, Lock, Server, UserCheck];

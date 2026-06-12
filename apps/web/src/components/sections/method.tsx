@@ -1,9 +1,9 @@
+import { Pictogram } from '@zyplux/ui/components/pictogram';
+import { Reveal } from '@zyplux/ui/components/reveal';
+import { Section, SectionHeading } from '@zyplux/ui/components/section';
+import { CardTitle, SpotlightCard } from '@zyplux/ui/components/spotlight-card';
 import { Cpu, Crosshair, Map } from 'lucide-react';
 
-import { Pictogram } from '@/components/ui/pictogram';
-import { Reveal } from '@/components/ui/reveal';
-import { Section, SectionHeading } from '@/components/ui/section';
-import { CardTitle, SpotlightCard } from '@/components/ui/spotlight-card';
 import { SystemMap } from '@/components/ui/system-map';
 import { METHOD } from '@/content';
 

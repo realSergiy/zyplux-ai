@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 
-import { motion, useInView, useReducedMotion } from 'motion/react';
+import { useInView, useReducedMotion } from 'motion/react';
+import * as m from 'motion/react-m';
 import { useRef } from 'react';
 
 export const Reveal = ({
@@ -19,7 +20,7 @@ export const Reveal = ({
   const shown = prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 };
 
   return (
-    <motion.div
+    <m.div
       animate={isInView ? shown : hidden}
       className={className}
       initial={hidden}
@@ -28,6 +29,6 @@ export const Reveal = ({
       transition={{ delay, duration: 0.5 }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 };

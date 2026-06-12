@@ -1,4 +1,5 @@
 import { createRootRoute, HeadContent, Outlet, Scripts } from '@tanstack/react-router';
+import { MotionProvider } from '@zyplux/ui/motion/provider';
 
 import '@/index.css';
 
@@ -9,7 +10,9 @@ const RootDocument = () => (
       <HeadContent />
     </head>
     <body>
-      <Outlet />
+      <MotionProvider>
+        <Outlet />
+      </MotionProvider>
       <Scripts />
     </body>
   </html>
