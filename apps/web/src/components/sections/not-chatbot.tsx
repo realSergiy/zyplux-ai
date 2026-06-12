@@ -2,40 +2,35 @@ import { Repeat, ShieldCheck, Workflow } from 'lucide-react';
 
 import { Pictogram } from '@/components/ui/pictogram';
 import { Reveal } from '@/components/ui/reveal';
-import { SpotlightCard } from '@/components/ui/spotlight-card';
+import { Section, SectionHeading } from '@/components/ui/section';
+import { CardTitle, SpotlightCard } from '@/components/ui/spotlight-card';
 import { NOT_CHATBOT } from '@/content';
 
 const POINT_ICONS = [Workflow, Repeat, ShieldCheck];
 
 export const NotChatbot = () => (
-  <section className='relative py-32'>
-    <div className='container mx-auto px-4'>
-      <Reveal className='text-center mb-12'>
-        <h2 className='text-4xl md:text-5xl font-bold tracking-tight'>
-          <span className='text-gradient'>{NOT_CHATBOT.heading}</span>
-        </h2>
-      </Reveal>
+  <Section>
+    <SectionHeading className='mb-12'>{NOT_CHATBOT.heading}</SectionHeading>
 
-      <Reveal className='mx-auto mb-16 max-w-2xl space-y-4 text-lg text-muted'>
-        {NOT_CHATBOT.paragraphs.map(paragraph => (
-          <p key={paragraph}>{paragraph}</p>
-        ))}
-      </Reveal>
+    <Reveal className='mx-auto mb-16 max-w-2xl space-y-4 text-lg text-muted'>
+      {NOT_CHATBOT.paragraphs.map(paragraph => (
+        <p key={paragraph}>{paragraph}</p>
+      ))}
+    </Reveal>
 
-      <div className='grid grid-cols-1 md:grid-cols-3 gap-6 mx-auto max-w-4xl'>
-        {NOT_CHATBOT.points.map((point, index) => {
-          const Icon = POINT_ICONS[index];
-          return (
-            <Reveal delay={index * 0.08} key={point.title}>
-              <SpotlightCard>
-                {Icon !== undefined && <Pictogram delay={index * 0.08} icon={Icon} />}
-                <h3 className='text-xl font-semibold text-heading mb-2'>{point.title}</h3>
-                <p className='text-muted'>— {point.detail}</p>
-              </SpotlightCard>
-            </Reveal>
-          );
-        })}
-      </div>
+    <div className='grid grid-cols-1 md:grid-cols-3 gap-6 mx-auto max-w-4xl'>
+      {NOT_CHATBOT.points.map((point, index) => {
+        const Icon = POINT_ICONS[index];
+        return (
+          <Reveal delay={index * 0.08} key={point.title}>
+            <SpotlightCard>
+              {Icon !== undefined && <Pictogram delay={index * 0.08} icon={Icon} />}
+              <CardTitle>{point.title}</CardTitle>
+              <p className='text-muted'>— {point.detail}</p>
+            </SpotlightCard>
+          </Reveal>
+        );
+      })}
     </div>
-  </section>
+  </Section>
 );

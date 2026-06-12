@@ -1,8 +1,6 @@
-# CLAUDE.md
+# Overview
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
-## Project Overview
+> This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 Modern React frontpage with a dark GitHub-inspired aesthetic (parallax grid background, glow-on-hover, scroll reveals), built as a strict TypeScript monorepo using Bun workspaces. Local packages are scoped `@zyplux/*`; shared lint rules come from the published `@totvibe/eslint-config`.
 
@@ -14,8 +12,8 @@ Modern React frontpage with a dark GitHub-inspired aesthetic (parallax grid back
 
 ### Workspace Structure
 
-- `apps/web/` - Marketing site: one-pager (`/`) plus static `/agent`, `/insights`, `/privacy` pages (multi-input Vite build, no router)
-- `packages/ui/` - Shared utilities (`cn`)
+- `apps/web/` - Marketing site: one-pager (`/`) plus `/agent`, `/insights`, `/privacy` pages (TanStack Start file routes, prerendered)
+- `packages/ui/` - Shared styling utilities (`cva`, `cx`)
 - `packages/tsconfig/` - Shared TypeScript presets (`base.json`, `bun.json`, `web.json`)
 - `tests/` - Smoke tests hitting public package interfaces only: `fixtures/` (expected copy), `stories/` (scenario registrars), `web/` (happy-dom preload + harness)
 
@@ -97,7 +95,8 @@ Workspace packages use `workspace:*` protocol.
 - Tailwind CSS 4 with `@tailwindcss/postcss`
 - Dark-only GitHub-dark palette as `@theme` tokens in `index.css` (`background #0d1117`, `surface`, `accent #58a6ff`, `violet #bc8cff`)
 - `text-gradient` utility for headline gradients; `shadow-glow` for card hover
-- `cn()` utility for className merging (`clsx` + `tailwind-merge`)
+- `cva`/`cx` from `@zyplux/ui/lib/style` (cva + `tailwind-merge`) for variant class builders and className merging
+- App-wide class builders in `src/styles.ts` (`container`, `heading`, `button`, `pill`, `navLink`, `fieldInput`)
 
 ## File Structure
 
@@ -107,10 +106,10 @@ Workspace packages use `workspace:*` protocol.
 - `components/layout/` - GridBackground (parallax grid), Navigation (scroll progress bar), SubpageLayout
 - `components/sections/` - Hero, VignetteTimeline, NotChatbot, ProcessLadder, FounderNote, Security, Faq, FinalCta, Footer
 - `components/forms/` - hosted-form hook + honeypot, AuditForm, EmailCapture
-- `components/ui/` - Reveal (scroll reveal, reduced-motion aware), SpotlightCard
-- `pages/` - AgentPage, InsightsPage, PrivacyPage
-- `App.tsx` - One-pager composition
-- `main.tsx` / `agent.tsx` / `insights.tsx` / `privacy.tsx` - Entry points (one per `*.html` Vite input), shared `mount.tsx`
+- `components/ui/` - Reveal (scroll reveal, reduced-motion aware), Section/SectionHeading, SpotlightCard/CardTitle, PageHeadline, BrandMark
+- `pages/` - AgentPage, InsightsPage, InsightsPostPage, PrivacyPage
+- `app.tsx` - One-pager composition
+- `routes/` + `router.tsx` - TanStack Router file routes (prerendered at build time)
 
 ## Build Targets
 

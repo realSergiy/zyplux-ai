@@ -1,13 +1,12 @@
 import { EmailCapture } from '@/components/forms/email-capture';
 import { SubpageLayout } from '@/components/layout/subpage-layout';
+import { PageHeadline } from '@/components/ui/page-headline';
 import { INSIGHTS_PAGE } from '@/content';
 import { INSIGHTS_POSTS } from '@/posts';
 
 export const InsightsPage = () => (
   <SubpageLayout>
-    <h1 className='text-4xl md:text-5xl font-bold tracking-tight mb-8'>
-      <span className='text-gradient'>{INSIGHTS_PAGE.headline}</span>
-    </h1>
+    <PageHeadline>{INSIGHTS_PAGE.headline}</PageHeadline>
     {INSIGHTS_POSTS.length > 0 && (
       <ul className='space-y-6 mb-12'>
         {INSIGHTS_POSTS.map(post => (

@@ -7,5 +7,6 @@
       "content-collections": ["./.content-collections/generated"]
     }
   },
-  "include": ["src", ".content-collections/generated"]
+  "include": ["src", ".content-collections/generated"],
+  "references": [{ "path": "../../packages/ui" }]
 }

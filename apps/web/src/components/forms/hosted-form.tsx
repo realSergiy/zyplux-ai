@@ -1,4 +1,4 @@
-import type { SubmitEvent } from 'react';
+import type { ReactNode, SubmitEvent } from 'react';
 
 import { useState } from 'react';
 
@@ -44,6 +44,12 @@ export const useHostedForm = () => {
 
 export const HoneypotField = () => (
   <input aria-hidden autoComplete='off' className='hidden' name={HONEYPOT_FIELD} tabIndex={-1} type='text' />
+);
+
+export const SubmitSuccessNote = ({ children }: { children: ReactNode }) => (
+  <p className='rounded-xl border border-success/30 bg-success/10 p-6 text-success' role='status'>
+    {children}
+  </p>
 );
 
 export const SubmitErrorNote = () => (

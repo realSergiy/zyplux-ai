@@ -1,9 +1,12 @@
 import type { ReactNode } from 'react';
 
-import { ArrowLeft, Zap } from 'lucide-react';
+import { cx } from '@zyplux/ui/lib/style';
+import { ArrowLeft } from 'lucide-react';
 
 import { Footer } from '@/components/sections/footer';
-import { BRAND_NAME, NAV, SKIP_LINK_LABEL } from '@/content';
+import { BrandMark } from '@/components/ui/brand-mark';
+import { NAV, SKIP_LINK_LABEL } from '@/content';
+import { container, navLink } from '@/styles';
 
 import { GridBackground } from './grid-background';
 
@@ -14,21 +17,17 @@ export const SubpageLayout = ({ children }: { children: ReactNode }) => (
     </a>
     <GridBackground />
     <header className='border-b border-border'>
-      <div className='container mx-auto px-4 py-4 flex items-center justify-between'>
+      <div className={container({ class: 'py-4 flex items-center justify-between' })}>
         <a className='flex items-center gap-2' href='/'>
-          <Zap className='h-6 w-6 text-accent' />
-          <span className='text-xl font-bold tracking-tight text-heading'>{BRAND_NAME}</span>
+          <BrandMark />
         </a>
-        <a
-          className='flex items-center gap-2 text-sm font-medium text-muted hover:text-heading transition-colors'
-          href='/'
-        >
+        <a className={cx(navLink(), 'flex items-center gap-2')} href='/'>
           <ArrowLeft aria-hidden className='h-4 w-4' />
           {NAV.backHome}
         </a>
       </div>
     </header>
-    <main className='container mx-auto px-4 py-24 max-w-2xl' id='main-content'>
+    <main className={container({ class: 'py-24 max-w-2xl' })} id='main-content'>
       {children}
     </main>
     <Footer />

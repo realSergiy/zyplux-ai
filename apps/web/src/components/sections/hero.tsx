@@ -2,6 +2,7 @@ import { ArrowRight, Sparkles } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
 
 import { BRAND_NAME, HERO } from '@/content';
+import { button, container, heading, pill } from '@/styles';
 
 const PARTICLES = [
   { delay: 0, duration: 7, left: '12%', size: 6, top: '28%' },
@@ -29,7 +30,7 @@ export const Hero = () => {
           ))}
         </div>
       )}
-      <div className='container mx-auto px-4 py-32 relative z-10'>
+      <div className={container({ class: 'py-32 relative z-10' })}>
         <motion.div
           animate={{ opacity: 1, y: 0 }}
           className='text-center max-w-4xl mx-auto'
@@ -38,7 +39,7 @@ export const Hero = () => {
         >
           <motion.div
             animate={{ opacity: 1, scale: 1 }}
-            className='inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/30 mb-8'
+            className={pill({ class: 'px-4 py-2 mb-8', tone: 'accent' })}
             initial={{ opacity: 0, scale: 0.8 }}
             transition={{ duration: 0.6 }}
           >
@@ -48,7 +49,7 @@ export const Hero = () => {
 
           <motion.h1
             animate={{ opacity: 1, y: 0 }}
-            className='text-6xl md:text-8xl font-bold mb-6 leading-tight tracking-tight'
+            className={heading({ class: 'mb-6', scale: 'hero' })}
             initial={{ opacity: 0, y: 20 }}
             transition={{ delay: 0.3, duration: 0.8 }}
           >
@@ -71,7 +72,7 @@ export const Hero = () => {
           >
             <div className='flex flex-col sm:flex-row gap-4 justify-center items-center'>
               <motion.a
-                className='px-7 py-3.5 rounded-lg bg-accent text-background font-semibold flex items-center gap-2 shadow-lg shadow-accent/30 hover:shadow-xl hover:shadow-accent/45 transition-shadow'
+                className={button({ class: 'flex items-center gap-2' })}
                 href='#audit'
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.97 }}
@@ -81,7 +82,7 @@ export const Hero = () => {
               </motion.a>
 
               <motion.a
-                className='px-7 py-3.5 rounded-lg border border-border bg-surface/60 text-heading font-semibold hover:border-accent/55 hover:bg-surface transition-colors'
+                className={button({ intent: 'secondary' })}
                 href='#week'
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.97 }}

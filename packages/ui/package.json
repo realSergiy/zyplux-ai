@@ -4,10 +4,10 @@
   "private": true,
   "type": "module",
   "exports": {
-    "./lib/utils": "./src/lib/utils.ts"
+    "./lib/style": "./src/lib/style.ts"
   },
   "dependencies": {
-    "clsx": "catalog:",
+    "cva": "catalog:",
     "tailwind-merge": "catalog:"
   },
   "devDependencies": {

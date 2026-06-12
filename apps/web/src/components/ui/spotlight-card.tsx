@@ -1,5 +1,7 @@
 import type { MouseEvent, ReactNode } from 'react';
 
+import { cx } from '@zyplux/ui/lib/style';
+
 const trackSpotlight = (event: MouseEvent<HTMLDivElement>) => {
   const bounds = event.currentTarget.getBoundingClientRect();
   event.currentTarget.style.setProperty('--spot-x', `${String(event.clientX - bounds.left)}px`);
@@ -21,4 +23,8 @@ export const SpotlightCard = ({ children }: { children: ReactNode }) => (
     />
     <div className='relative z-10'>{children}</div>
   </div>
+);
+
+export const CardTitle = ({ children, className }: { children: ReactNode; className?: string }) => (
+  <h3 className={cx('text-xl font-semibold text-heading mb-2', className)}>{children}</h3>
 );

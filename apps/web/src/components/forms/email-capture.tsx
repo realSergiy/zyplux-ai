@@ -1,11 +1,12 @@
 import { FORM_MESSAGES } from '@/content';
+import { button, fieldInput } from '@/styles';
 
 import type { FormName } from './hosted-form';
 
-import { HoneypotField, SubmitErrorNote, useHostedForm } from './hosted-form';
+import { HoneypotField, SubmitErrorNote, SubmitSuccessNote, useHostedForm } from './hosted-form';
 
 export const EmailCapture = ({
-  button,
+  button: buttonLabel,
   emailLabel,
   formName,
 }: {
@@ -16,11 +17,7 @@ export const EmailCapture = ({
   const { status, submit } = useHostedForm();
 
   if (status === 'sent') {
-    return (
-      <p className='rounded-xl border border-success/30 bg-success/10 p-6 text-success' role='status'>
-        {FORM_MESSAGES.captureSuccess}
-      </p>
-    );
+    return <SubmitSuccessNote>{FORM_MESSAGES.captureSuccess}</SubmitSuccessNote>;
   }
 
   return (
@@ -32,19 +29,15 @@ export const EmailCapture = ({
           {emailLabel}
         </label>
         <input
-          className='flex-1 rounded-lg border border-border bg-background px-4 py-3 text-foreground transition-colors focus:border-accent'
+          className={fieldInput({ class: 'flex-1' })}
           id={`${formName}-email`}
           name='email'
           placeholder='you@company.com'
           required
           type='email'
         />
-        <button
-          className='rounded-lg bg-accent px-7 py-3 font-semibold text-background shadow-lg shadow-accent/30 transition-shadow hover:shadow-xl hover:shadow-accent/45 disabled:opacity-60'
-          disabled={status === 'sending'}
-          type='submit'
-        >
-          {status === 'sending' ? FORM_MESSAGES.sending : button}
+        <button className={button({ size: 'md' })} disabled={status === 'sending'} type='submit'>
+          {status === 'sending' ? FORM_MESSAGES.sending : buttonLabel}
         </button>
       </div>
       {status === 'error' && <SubmitErrorNote />}
