@@ -3,7 +3,7 @@ import type { FooterColumn } from '@zyplux/ui/blocks';
 import { SiteFooter } from '@zyplux/ui/blocks';
 
 import { BrandMark } from '@/components/ui/brand-mark';
-import { BRAND_NAME, CONTACT_EMAIL, FOOTER, NAV } from '@/content';
+import { BRAND_NAME, CONTACT_EMAIL, FOOTER, NAV } from '@/site';
 
 const FOOTER_COLUMNS: FooterColumn[] = [
   {

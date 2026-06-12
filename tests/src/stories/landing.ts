@@ -2,9 +2,9 @@ import { test } from 'bun:test';
 
 import {
   BRAND_NAME,
+  BRAND_POSITIONING,
   BUILD_BUCKET_TITLES,
   BUILD_HEADING,
-  HERO_BADGE,
   METHOD_HEADING,
   SKIP_LINK_LABEL,
 } from '@/fixtures/content';
@@ -15,7 +15,7 @@ const registerLandingScenarios = (harness: Harness) => {
   test('shows the brand and hero copy', async () => {
     const scene = await harness.open();
     scene.assert.shows(BRAND_NAME);
-    scene.assert.shows(HERO_BADGE);
+    scene.assert.shows(BRAND_POSITIONING);
     scene.dispose();
   });
 

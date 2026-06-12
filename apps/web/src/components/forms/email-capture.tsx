@@ -2,7 +2,7 @@ import { EmailCapture as EmailCaptureForm } from '@zyplux/ui/forms';
 import { SubmitSuccessNote } from '@zyplux/ui/forms';
 
 import { FORM_ENDPOINT } from '@/config';
-import { FORM_MESSAGES } from '@/content';
+import { FORM_MESSAGES } from '@/site';
 
 import { FormErrorNote } from './form-notes';
 

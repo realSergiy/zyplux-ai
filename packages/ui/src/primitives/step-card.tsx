@@ -7,6 +7,6 @@ export const StepCard = ({ children, step, title }: { children: ReactNode; step:
   <SpotlightCard>
     <StepBadge className='mb-6'>{step}</StepBadge>
     <CardTitle className='mb-3'>{title}</CardTitle>
-    <p className='text-muted'>{children}</p>
+    <div className='text-muted'>{children}</div>
   </SpotlightCard>
 );

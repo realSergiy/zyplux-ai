@@ -1,7 +1,7 @@
 import { SubmitErrorNote } from '@zyplux/ui/forms';
 import { inlineLink } from '@zyplux/ui/recipes';
 
-import { CONTACT_EMAIL, FORM_MESSAGES } from '@/content';
+import { CONTACT_EMAIL, FORM_MESSAGES } from '@/site';
 
 export const FormErrorNote = () => (
   <SubmitErrorNote>

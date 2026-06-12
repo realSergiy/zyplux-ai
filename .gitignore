@@ -54,6 +54,3 @@ logs
 
 # local reference repositories (just clone)
 reference_clones/
-
-# content-collections generated output
-.content-collections

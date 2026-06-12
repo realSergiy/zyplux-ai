@@ -50,6 +50,55 @@ A full-implementation review after Phase 4 removed leftover migration scaffoldin
 
 Verified: `just check` green; prerendered HTML equal to the pre-review build modulo hashed asset names, the intended `utf-8` charset, and `&quot;` vs literal quotes in one insights paragraph (React vs remark text escaping — identical rendering); `og.png` and `sitemap.xml` byte-identical; the draft-post round trip (publish → article HTML, per-post OG card, listing; revert → excluded everywhere) passes; `just og` and dev-server SSR of all four routes plus `/og.png` spot-checked.
 
+### Approach A migration — Content Collections replaced by `@mdx-js/rollup` (2026-06-12)
+
+The "reintroduce MDX with client-only rendering when an embed lands" plan is retired. Per `docs/roadmap/tanstack-start-mdx-guide.md` Approach A, every `.mdx` file now compiles to an ordinary ES module inside Vite's module graph at build time — no code string, no `new Function` — so the workerd constraint that forced the static-HTML workaround in Phase 4 is gone structurally: MDX bodies SSR on workerd, prerender, **and** hydrate, and embedded components (`<AuditForm>`, `<SystemMap>`, `<Showcase>` with the live mini-dashboard) are interactive inside content files today.
+
+What changed:
+
+- **Pipeline.** `@content-collections/{core,markdown,vite,cli}` and `zod` removed; `{ enforce: 'pre', ...mdx(MDX_OPTIONS) }` runs before `tanstackStart()`, `react()` includes `.mdx` for fast refresh. `src/mdx-options.ts` holds the shared remark set (`remark-gfm`, `remark-frontmatter`, `remark-mdx-frontmatter`) and is reused verbatim by the bun test loader. The parallel content build is gone: no generated module, no tsconfig alias, no `.content-collections` ignores, no `content-collections build &&` chains in `dev`/`build`/`og`/`test`.
+- **Home page as MDX chunks.** `home-page.tsx` composes ten chunks from `content/home/*.mdx` (hero, method, timeline, build, not-chatbot, process, founder, security, faq, final-cta). Copy lives as markdown bodies and component attributes — the 200-line landing frontmatter blob is gone; only `hero.mdx` carries frontmatter (page `title`/`description`). The authoring vocabulary (`src/components/mdx/home-components.tsx`, passed via the components map so chunks need no imports) wraps `@zyplux/ui`: `Section`, `Intro`, `Cards`/`Card`/`BuildCard`, `Steps`/`Step`, `Week`/`Scene`, `Bridge`, `Showcase`, `SystemMap`, `Founder`, `Faq`/`FaqItem`, `Cta`, `Hero`, `AuditForm`. Wrappers inject stagger indexes / step numbers via `Children.map`, icons are referenced by name (`icon='map'`), markdown links style through the shared `a` override (the timeline bridge link is now a plain markdown link).
+- **Subpages and posts.** `content/pages/{agent,insights,privacy}.mdx` keep a small frontmatter (title/description/headline/form labels) and render their bodies as components — `dangerouslySetInnerHTML` is gone. Posts: `src/posts.ts` derives `INSIGHTS_POSTS` from an eager `import.meta.glob(..., { import: 'frontmatter' })` plus a lazy body glob (`lazy()` per post at module scope → one chunk per post), slug from filename, drafts filtered.
+- **Site chrome.** `content/site.yaml` became `src/site.ts` (`@zyplux/web/site`): brand, tagline, `BRAND_POSITIONING` (hero badge + OG card line), nav, footer, form messages. Components import chrome from `@/site`; `src/content.ts` remains the content facade (page frontmatter, bodies, `PAGES`). `postOgImagePath` moved to `src/config.ts` so the OG plugin never touches a module that imports `.mdx`.
+- **Frontmatter typing.** Per-file `*.mdx.d.ts` declarations (the `@types/mdx`-documented pattern) type `frontmatter` for the four direct-imported files; `src/mdx.d.ts` augments the wildcard with `frontmatter: unknown`; the post glob is typed by its generic. No type assertions anywhere (`consistent-type-assertions` stays clean).
+- **OG plugin.** Vite-config-time code cannot import `.mdx`, so `og/posts.ts` reads `content/insights/*.mdx` from disk, parses the YAML block (`yaml` package) and narrows it with inline `typeof`/`in` checks — the one untyped boundary kept runtime-validated. The brand card pulls `BRAND_POSITIONING` from `src/site.ts`.
+- **Bun tests.** `tests/src/web/mdx-loader.ts` registers a `Bun.plugin` that compiles `.mdx` with `@mdx-js/mdx` using the same `MDX_OPTIONS`; preloaded from both bunfig files. Fixtures now pin literal expected copy for MDX-body content (headings, bucket titles) — the stories assert what the user actually sees.
+- **`@zyplux/ui` adjustments.** `Section` dropped its `intro` prop in favor of composition (`SectionIntro` keeps the styling; heading margin is constant); `FeatureCard`/`StepCard`/`ShowcasePanel` children slots changed `p` → `div` so MDX block children nest validly; `Paragraphs` deleted with its last consumers.
+
+Issues encountered:
+
+- **The miniflare patch was version-pinned** — a catalog bump to wrangler 4.100 brought miniflare 4.20260611.0 and orphaned the `ERR_SERVER_NOT_RUNNING` dispose patch (the build's prerender succeeded, then teardown crashed exactly as pre-patch). Patch re-targeted to the new version; same one-line fix.
+- **`@types/mdx` was silently absent** — the shared tsconfigs pin explicit `types` arrays, which exclude `@types/*` auto-inclusion; `.mdx` imports typed as my local wildcard only (no default export). Fixed by adding `"mdx"` to the `types` arrays in `apps/web` and `tests` (and `@types/mdx` to the tests package for bun's isolated linker).
+- **Repo lint rules shaped the typing approach** — no parent-relative imports (hence the `@content/*` path alias), no type assertions and no type predicates (hence `*.mdx.d.ts` files and inline narrowing instead of `as` casts).
+
+Verified: typecheck, eslint, knip, and all 85 bun tests green; `vite build` prerenders all 8 pages with every section's copy present in the emitted HTML (including the styled markdown bridge link); `og.png` emitted, draft post excluded from listing/build/OG; dev-server SSR of `/` and `/agent` plus the `/og.png` middleware spot-checked; `bun --filter @zyplux/web og` renders the preview under bun.
+
+### Home page merged into a single sectioned document (2026-06-12)
+
+The ten `content/home/*.mdx` chunks are merged into one `content/home.mdx`, and sections are now authored as
+markdown headings instead of explicit `<Section>` JSX:
+
+- **`## Heading [#id .narrow|.slim .centered]` is the section syntax.** `src/remark-sections.ts` (in the shared
+  `MDX_OPTIONS` remark set) splits the document at depth-2 headings at compile time and rewrites each group into the
+  existing `<Section>`/`<Intro>` vocabulary — the compiled output is identical to the previous hand-written JSX, so
+  there is zero runtime cost and authoring errors fail the build with file positions (`file.fail`). The bracket
+  suffix is parsed off the heading text and becomes `id`/`width`/`centered` props; it exists because the standard
+  markdown attribute syntax `{#id .class}` cannot be used in `.mdx` (braces start a JS expression).
+- **Intros are inferred, not marked up.** The run of paragraphs directly under a section heading becomes the
+  section intro; a single-paragraph intro is centered, a multi-paragraph intro is set left (matches every section's
+  previous explicit styling).
+- **The transform is opt-in via `sections: true` in the document's frontmatter**, so posts and subpages — where
+  `##` must stay a real prose heading — are untouched, and the bun test loader and Vite share one unmodified
+  pipeline. Frontmatter is file-scoped in MDX (there is no per-element frontmatter), which is why the flag lives
+  there and per-section metadata lives in the heading brackets.
+- `home-page.tsx` renders one `<HomeBody components={HOME_COMPONENTS} />`; `content.ts` reads the page frontmatter
+  from `@content/home.mdx`; `hero.mdx.d.ts` became `home.mdx.d.ts`. New type-only devDeps: `@types/mdast`,
+  `mdast-util-mdx-jsx`, `unified`.
+
+Verified: typecheck, eslint, knip, all 88 bun tests; build prerenders all 8 pages — all seven anchor ids
+(`#approach #week #build #how-it-works #security #faq #audit`) present, no bracket syntax leaks into HTML, the five
+intros render with the exact pre-merge classes (2 left, 3 centered).
+
 Decisions (research review, 2026-06-11):
 
 - **Framework:** TanStack Start (RC, ≥ 1.168) on Cloudflare Workers via `@cloudflare/vite-plugin` — file routes, static prerender of all marketing pages, per-route `head()`.

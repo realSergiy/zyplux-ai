@@ -1,5 +1,6 @@
-import { OG_IMAGE_HEIGHT, OG_IMAGE_WIDTH, SITE_URL, THEME_COLOR } from '@/config';
-import { BRAND_NAME, PAGES, TAGLINE } from '@/content';
+import { OG_IMAGE_HEIGHT, OG_IMAGE_WIDTH, postOgImagePath, SITE_URL, THEME_COLOR } from '@/config';
+import { PAGES } from '@/content';
+import { BRAND_NAME, TAGLINE } from '@/site';
 
 export type MetaTag = { content: string; name?: string; property?: string } | { title: string };
 export type Page = (typeof PAGES)[PageKey];
@@ -9,9 +10,7 @@ export type PageKey = keyof typeof PAGES;
 const ogImageAlt = `${BRAND_NAME} — ${TAGLINE}`;
 const ogImageUrl = `${SITE_URL}/og.png`;
 
-export const postOgImagePath = (slug: string) => `/og/insights/${slug}.png`;
-
-const head = (page: Page, path: string, image: { alt: string; url: string }) =>
+const head = (page: { description: string; title: string }, path: string, image: { alt: string; url: string }) =>
   ({
     meta: [
       { title: page.title },

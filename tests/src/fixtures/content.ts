@@ -1,8 +1,6 @@
-import { BUILD, HERO, METHOD } from '@zyplux/web/content';
+export { PAGES } from '@zyplux/web/content';
+export { BRAND_NAME, BRAND_POSITIONING, SKIP_LINK_LABEL } from '@zyplux/web/site';
 
-export { BRAND_NAME, PAGES, SKIP_LINK_LABEL } from '@zyplux/web/content';
-
-export const HERO_BADGE = HERO.badge;
-export const METHOD_HEADING = METHOD.heading;
-export const BUILD_HEADING = BUILD.heading;
-export const BUILD_BUCKET_TITLES = BUILD.buckets.map(bucket => bucket.title);
+export const METHOD_HEADING = 'We start with your system, not our software.';
+export const BUILD_HEADING = 'Three places intelligence pays back.';
+export const BUILD_BUCKET_TITLES = ['Close the loop.', 'Light up the system.', 'Build at the edge.'];

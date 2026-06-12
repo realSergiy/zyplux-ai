@@ -4,7 +4,7 @@ import { BackLink, SubpageShell } from '@zyplux/ui/blocks';
 
 import { Footer } from '@/components/layout/footer';
 import { BrandMark } from '@/components/ui/brand-mark';
-import { NAV, SKIP_LINK_LABEL } from '@/content';
+import { NAV, SKIP_LINK_LABEL } from '@/site';
 
 export const SubpageLayout = ({ children }: { children: ReactNode }) => (
   <SubpageShell

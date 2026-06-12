@@ -2,7 +2,6 @@ import type { ReactNode } from 'react';
 
 import { cx } from '@zyplux/ui/lib/style';
 import { Reveal } from '@zyplux/ui/motion';
-import { Paragraphs } from '@zyplux/ui/primitives';
 import { container, heading, prose } from '@zyplux/ui/recipes';
 
 export const SectionHeading = ({ children, className }: { children: ReactNode; className?: string }) => (
@@ -32,26 +31,15 @@ export const Section = ({
   className,
   heading: headingContent,
   id,
-  intro,
-  introCentered = false,
 }: {
   children: ReactNode;
-  className?: string;
+  className?: string | undefined;
   heading?: ReactNode;
-  id?: string;
-  intro?: string | string[];
-  introCentered?: boolean;
+  id?: string | undefined;
 }) => (
   <section className='relative py-32' id={id}>
     <div className={container({ className })}>
-      {headingContent !== undefined && (
-        <SectionHeading className={intro === undefined ? 'mb-16' : 'mb-6'}>{headingContent}</SectionHeading>
-      )}
-      {intro !== undefined && (
-        <SectionIntro centered={introCentered} className='mb-16'>
-          <Paragraphs>{typeof intro === 'string' ? [intro] : intro}</Paragraphs>
-        </SectionIntro>
-      )}
+      {headingContent !== undefined && <SectionHeading className='mb-16'>{headingContent}</SectionHeading>}
       {children}
     </div>
   </section>

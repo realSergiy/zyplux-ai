@@ -27,7 +27,7 @@ export const FeatureCard = ({
       {eyebrow}
       {icon !== undefined && <Pictogram delay={index * REVEAL_STAGGER_S} icon={icon} />}
       <CardTitle>{title}</CardTitle>
-      {children !== undefined && <p className={cx('text-muted', footer !== undefined && 'mb-6')}>{children}</p>}
+      {children !== undefined && <div className={cx('text-muted', footer !== undefined && 'mb-6')}>{children}</div>}
       {footer}
     </div>
   </SpotlightCard>

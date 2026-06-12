@@ -1,5 +1,5 @@
 import { cloudflare } from '@cloudflare/vite-plugin';
-import contentCollections from '@content-collections/vite';
+import mdx from '@mdx-js/rollup';
 import tailwindcss from '@tailwindcss/vite';
 import { tanstackStart } from '@tanstack/react-start/plugin/vite';
 import react from '@vitejs/plugin-react';
@@ -7,6 +7,7 @@ import { defineConfig } from 'vite';
 
 import { ogImagePlugin } from './og/og-image-plugin';
 import { SITE_URL } from './src/config';
+import { MDX_OPTIONS } from './src/mdx-options';
 
 // The cloudflare plugin's dev-mode worker proxy hangs under bun (its `ws` client
 // relies on Node events bun does not implement), so it runs only at build time.
@@ -19,14 +20,14 @@ export default defineConfig({
     target: ['chrome107', 'edge107', 'firefox104', 'safari16'],
   },
   plugins: [
-    contentCollections(),
+    { enforce: 'pre', ...mdx(MDX_OPTIONS) },
     tailwindcss(),
     ...(isBuild ? [cloudflare({ viteEnvironment: { name: 'ssr' } })] : []),
     tanstackStart({
       prerender: { crawlLinks: true, enabled: true, failOnError: true },
       sitemap: { host: SITE_URL },
     }),
-    react(),
+    react({ include: /\.(jsx?|tsx?|mdx)$/ }),
     ogImagePlugin(),
   ],
   resolve: { tsconfigPaths: true },

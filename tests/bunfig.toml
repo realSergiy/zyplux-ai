@@ -1,2 +1,2 @@
 [test]
-preload = ["./src/web/happydom.ts"]
+preload = ["./src/web/mdx-loader.ts", "./src/web/happydom.ts"]

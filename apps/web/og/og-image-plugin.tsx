@@ -3,15 +3,14 @@ import type { Plugin } from 'vite';
 
 import { Resvg } from '@resvg/resvg-js';
 import { PALETTE, TEXT_GRADIENT, toRgba } from '@zyplux/ui/tokens';
-import { OG_IMAGE_HEIGHT, OG_IMAGE_WIDTH, SITE_URL } from '@zyplux/web/config';
-import { BRAND_NAME, HERO, TAGLINE } from '@zyplux/web/content';
-import { INSIGHTS_POSTS } from '@zyplux/web/posts';
-import { postOgImagePath } from '@zyplux/web/seo';
+import { OG_IMAGE_HEIGHT, OG_IMAGE_WIDTH, postOgImagePath, SITE_URL } from '@zyplux/web/config';
+import { BRAND_NAME, BRAND_POSITIONING, TAGLINE } from '@zyplux/web/site';
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import satori from 'satori';
 
 import { fonts } from './fonts';
+import { readPostCards } from './posts';
 
 const OG_FILE_NAME = 'og.png';
 const SITE_DOMAIN = new URL(SITE_URL).hostname;
@@ -102,7 +101,7 @@ const brandCard = (
           padding: '12px 26px',
         }}
       >
-        {HERO.badge}
+        {BRAND_POSITIONING}
       </div>
       <div style={{ alignItems: 'center', display: 'flex', gap: 24, marginBottom: 32 }}>
         <img alt='' height={96} src={boltDataUri} style={{ marginTop: 10 }} width={96} />
@@ -169,7 +168,7 @@ export const ogImagePlugin = () => {
     async writeBundle(options) {
       if (!options.dir || this.environment.name !== 'client') return;
       await writeFile(path.join(options.dir, OG_FILE_NAME), await render());
-      for (const post of INSIGHTS_POSTS) {
+      for (const post of await readPostCards()) {
         const imagePath = path.join(options.dir, postOgImagePath(post.slug));
         await mkdir(path.dirname(imagePath), { recursive: true });
         await writeFile(imagePath, await renderCardPng(postCard(post.title, post.description)));

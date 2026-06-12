@@ -14,7 +14,7 @@ export const ShowcasePanel = ({
   <div className='grid grid-cols-1 md:grid-cols-2 gap-8 items-center rounded-2xl border border-border bg-surface/40 p-8'>
     <div>
       <CardTitle className='text-2xl mb-3'>{title}</CardTitle>
-      <p className='text-muted'>{children}</p>
+      <div className='text-muted'>{children}</div>
     </div>
     {demo}
   </div>

@@ -4,9 +4,10 @@
     "paths": {
       "@/*": ["./src/*"],
       "@/og/*": ["./og/*"],
-      "content-collections": ["./.content-collections/generated"]
-    }
+      "@content/*": ["./content/*"]
+    },
+    "types": ["bun", "react", "react-dom", "mdx"]
   },
-  "include": ["src", ".content-collections/generated"],
+  "include": ["src", "content"],
   "references": [{ "path": "../../packages/ui" }]
 }

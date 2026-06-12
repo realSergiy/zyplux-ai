@@ -3,7 +3,7 @@ import { button, navLink } from '@zyplux/ui/recipes';
 import * as m from 'motion/react-m';
 
 import { BrandMark } from '@/components/ui/brand-mark';
-import { NAV } from '@/content';
+import { NAV } from '@/site';
 
 export const Navigation = () => (
   <NavBar

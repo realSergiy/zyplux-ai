@@ -3,7 +3,8 @@ import { prose } from '@zyplux/ui/recipes';
 
 import { EmailCapture } from '@/components/forms/email-capture';
 import { SubpageLayout } from '@/components/layout/subpage-layout';
-import { INSIGHTS_PAGE } from '@/content';
+import { PROSE_COMPONENTS } from '@/components/mdx/prose-components';
+import { INSIGHTS_PAGE, InsightsBody } from '@/content';
 import { INSIGHTS_POSTS } from '@/posts';
 
 export const InsightsPage = () => (
@@ -24,7 +25,9 @@ export const InsightsPage = () => (
         ))}
       </ul>
     )}
-    <div className={prose({ class: 'mb-10' })} dangerouslySetInnerHTML={{ __html: INSIGHTS_PAGE.body }} />
+    <div className={prose({ class: 'mb-10' })}>
+      <InsightsBody components={PROSE_COMPONENTS} />
+    </div>
     <EmailCapture button={INSIGHTS_PAGE.button} emailLabel={INSIGHTS_PAGE.emailLabel} formName='insights-updates' />
   </SubpageLayout>
 );

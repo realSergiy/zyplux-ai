@@ -5,7 +5,6 @@ build
 coverage
 .tsbuild
 .wrangler
-.content-collections
 reference_clones
 .rumdl_cache
 **/routeTree.gen.ts

@@ -53,7 +53,7 @@ deploy:
     bun --filter @zyplux/web deploy
 
 # Render the social share card to apps/web/og-preview.png for a quick visual check.
-# The deployed image (dist/og.png) is generated automatically by the Vite build from the content collections.
+# The deployed image (dist/og.png) is generated automatically by the Vite build.
 og:
     bun --filter @zyplux/web og
 

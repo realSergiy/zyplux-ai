@@ -3,7 +3,6 @@ export * from './brand-lockup';
 export * from './button-link';
 export * from './disclosure';
 export * from './feature-card';
-export * from './paragraphs';
 export * from './pictogram';
 export * from './showcase-panel';
 export * from './spotlight-card';

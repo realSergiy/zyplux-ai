@@ -9,5 +9,5 @@
     "tsBuildInfoFile": "./.tsbuild/node/tsconfig.node.tsbuildinfo"
   },
   "references": [{ "path": "./tsconfig.json" }, { "path": "../../packages/ui" }],
-  "include": ["vite.config.ts", "content-collections.ts", "og", "scripts"]
+  "include": ["vite.config.ts", "og", "scripts"]
 }

@@ -11,7 +11,9 @@
   },
   "devDependencies": {
     "@happy-dom/global-registrator": "catalog:",
+    "@mdx-js/mdx": "catalog:",
     "@testing-library/react": "catalog:",
+    "@types/mdx": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "@zyplux/tsconfig": "workspace:*"
