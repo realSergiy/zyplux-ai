@@ -3,7 +3,7 @@ import type { MDXComponents } from 'mdx/types';
 import type { ReactNode } from 'react';
 
 import { HeroShell, Timeline, TimelineItem } from '@zyplux/ui/blocks';
-import { CardGrid, SectionIntro, Section as SectionShell } from '@zyplux/ui/layout';
+import { CardGrid, Section, SectionIntro } from '@zyplux/ui/layout';
 import { cx } from '@zyplux/ui/lib/style';
 import { Entrance, Reveal } from '@zyplux/ui/motion';
 import { ButtonLink, Disclosure, FeatureCard, ShowcasePanel, StepCard } from '@zyplux/ui/primitives';
@@ -106,39 +106,6 @@ const Hero = ({
       <p className='mt-4 text-sm italic text-muted'>{microcopy}</p>
     </Entrance>
   </HeroShell>
-);
-
-const SECTION_WIDTHS = {
-  narrow: 'max-w-3xl',
-  slim: 'max-w-xl',
-};
-
-const Section = ({
-  centered = false,
-  children,
-  heading: headingContent,
-  id,
-  width,
-}: {
-  centered?: boolean;
-  children: ReactNode;
-  heading: string;
-  id?: string;
-  width?: keyof typeof SECTION_WIDTHS;
-}) => (
-  <SectionShell
-    className={cx(width !== undefined && SECTION_WIDTHS[width], centered && 'text-center')}
-    heading={headingContent}
-    id={id}
-  >
-    {children}
-  </SectionShell>
-);
-
-const Intro = ({ centered = false, children }: { centered?: boolean; children: ReactNode }) => (
-  <SectionIntro centered={centered} className='-mt-10 mb-16'>
-    {children}
-  </SectionIntro>
 );
 
 const Cards = ({ children, narrow = false }: { children: ReactNode; narrow?: boolean }) => (
@@ -318,7 +285,7 @@ export const HOME_COMPONENTS = {
   FaqItem,
   Founder,
   Hero,
-  Intro,
+  Intro: SectionIntro,
   Scene,
   Section,
   Showcase,

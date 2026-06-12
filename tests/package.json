@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "dependencies": {
+    "@zyplux/mdx": "workspace:*",
     "@zyplux/ui": "workspace:*",
     "@zyplux/web": "workspace:*",
     "react": "catalog:",

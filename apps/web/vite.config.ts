@@ -3,11 +3,11 @@ import mdx from '@mdx-js/rollup';
 import tailwindcss from '@tailwindcss/vite';
 import { tanstackStart } from '@tanstack/react-start/plugin/vite';
 import react from '@vitejs/plugin-react';
+import { MDX_OPTIONS } from '@zyplux/mdx';
 import { defineConfig } from 'vite';
 
 import { ogImagePlugin } from './og/og-image-plugin';
 import { SITE_URL } from './src/config';
-import { MDX_OPTIONS } from './src/mdx-options';
 
 // The cloudflare plugin's dev-mode worker proxy hangs under bun (its `ws` client
 // relies on Node events bun does not implement), so it runs only at build time.

@@ -1,6 +1,12 @@
 import { createFileRoute, notFound } from '@tanstack/react-router';
+import { PageHeadline } from '@zyplux/ui/layout';
+import { prose } from '@zyplux/ui/recipes';
+import { Suspense } from 'react';
 
-import { InsightsPostPage } from '@/pages/insights-post-page';
+import type { InsightsPost } from '@/posts';
+
+import { SubpageLayout } from '@/components/layout/subpage-layout';
+import { PROSE_COMPONENTS } from '@/components/mdx/prose-components';
 import { INSIGHTS_POSTS } from '@/posts';
 import { postHead } from '@/seo';
 
@@ -11,6 +17,20 @@ const findPost = (slug: string) => {
   }
   return post;
 };
+
+const InsightsPostPage = ({ post }: { post: InsightsPost }) => (
+  <SubpageLayout>
+    <article>
+      <PageHeadline className='mb-2'>{post.title}</PageHeadline>
+      <p className='text-sm text-muted mb-8'>{post.date}</p>
+      <div className={prose()}>
+        <Suspense>
+          <post.body components={PROSE_COMPONENTS} />
+        </Suspense>
+      </div>
+    </article>
+  </SubpageLayout>
+);
 
 const PostComponent = () => {
   const { slug } = Route.useParams();

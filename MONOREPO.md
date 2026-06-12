@@ -9,16 +9,23 @@ _How do the workspace packages depend on each other?_
 ```mermaid
 flowchart TD
     tsconfig["@zyplux/tsconfig"] --> ui["@zyplux/ui"]
+    tsconfig --> mdx["@zyplux/mdx"]
+    tsconfig --> og["@zyplux/og"]
     tsconfig --> web["@zyplux/web"]
     tsconfig --> tests["@zyplux/tests"]
     ui --> web
+    mdx --> web
+    og --> web
     ui --> tests
+    mdx --> tests
     web --> tests
     eslint["@totvibe/eslint-config (npm)"] -.-> root["root eslint.config.ts"]
 ```
 
 - `apps/web` — Vite + React app deployed to Cloudflare
 - `packages/ui` — shared design system: design tokens (`theme.css`, `tokens`), global styles (`base.css`), class recipes, and React components (scroll reveals, cards, forms, SVG diagram kit)
+- `packages/mdx` — MDX compile pipeline: `MDX_OPTIONS` (gfm + frontmatter + sections) and the `remarkSections` plugin that groups `##` headings into `<Section>`/`<Intro>` JSX
+- `packages/og` — node-side social-card rendering kit: Inter font loading, satori/resvg `renderCardPng`, svg→png data URIs, grid background generator
 - `packages/tsconfig` — shared TypeScript presets (`base.json`, `bun.json`, `web.json`)
 - `tests` — smoke tests against public package interfaces only (`fixtures/` + `stories/` + happy-dom web harness)
 

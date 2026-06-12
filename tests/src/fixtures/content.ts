@@ -1,4 +1,4 @@
-export { PAGES } from '@zyplux/web/content';
+export { PAGE_META } from '@zyplux/web/page-meta';
 export { BRAND_NAME, BRAND_POSITIONING, SKIP_LINK_LABEL } from '@zyplux/web/site';
 
 export const METHOD_HEADING = 'We start with your system, not our software.';

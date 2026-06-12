@@ -22,6 +22,8 @@
       "dependencies": {
         "@tanstack/react-router": "catalog:",
         "@tanstack/react-start": "catalog:",
+        "@zyplux/mdx": "workspace:*",
+        "@zyplux/og": "workspace:*",
         "@zyplux/ui": "workspace:*",
         "lucide-react": "catalog:",
         "motion": "catalog:",
@@ -30,28 +32,50 @@
       },
       "devDependencies": {
         "@cloudflare/vite-plugin": "catalog:",
-        "@fontsource/inter": "catalog:",
-        "@mdx-js/mdx": "catalog:",
         "@mdx-js/rollup": "catalog:",
-        "@resvg/resvg-js": "catalog:",
         "@tailwindcss/vite": "catalog:",
         "@types/bun": "catalog:",
-        "@types/mdast": "catalog:",
         "@types/mdx": "catalog:",
         "@types/react": "catalog:",
         "@types/react-dom": "catalog:",
         "@vitejs/plugin-react": "catalog:",
         "@zyplux/tsconfig": "workspace:*",
-        "mdast-util-mdx-jsx": "catalog:",
-        "remark-frontmatter": "catalog:",
-        "remark-gfm": "catalog:",
-        "remark-mdx-frontmatter": "catalog:",
-        "satori": "catalog:",
         "tailwindcss": "catalog:",
-        "unified": "catalog:",
         "vite": "catalog:",
         "wrangler": "catalog:",
         "yaml": "catalog:",
+      },
+    },
+    "packages/mdx": {
+      "name": "@zyplux/mdx",
+      "version": "0.0.0",
+      "dependencies": {
+        "remark-frontmatter": "catalog:",
+        "remark-gfm": "catalog:",
+        "remark-mdx-frontmatter": "catalog:",
+        "yaml": "catalog:",
+      },
+      "devDependencies": {
+        "@mdx-js/mdx": "catalog:",
+        "@types/mdast": "catalog:",
+        "@zyplux/tsconfig": "workspace:*",
+        "mdast-util-mdx-jsx": "catalog:",
+        "unified": "catalog:",
+      },
+    },
+    "packages/og": {
+      "name": "@zyplux/og",
+      "version": "0.0.0",
+      "dependencies": {
+        "@fontsource/inter": "catalog:",
+        "@resvg/resvg-js": "catalog:",
+        "satori": "catalog:",
+      },
+      "devDependencies": {
+        "@types/bun": "catalog:",
+        "@types/react": "catalog:",
+        "@zyplux/tsconfig": "workspace:*",
+        "react": "catalog:",
       },
     },
     "packages/tsconfig": {
@@ -89,6 +113,7 @@
       "name": "@zyplux/tests",
       "version": "0.0.0",
       "dependencies": {
+        "@zyplux/mdx": "workspace:*",
         "@zyplux/ui": "workspace:*",
         "@zyplux/web": "workspace:*",
         "react": "catalog:",
@@ -703,6 +728,10 @@
     "@ungap/structured-clone": ["@ungap/structured-clone@1.3.1", "", {}, "sha512-mUFwbeTqrVgDQxFveS+df2yfap6iuP20NAKAsBt5jDEoOTDew+zwLAOilHCeQJOVSvmgCX4ogqIrA0mnyr08yQ=="],
 
     "@vitejs/plugin-react": ["@vitejs/plugin-react@6.0.2", "", { "dependencies": { "@rolldown/pluginutils": "^1.0.0" }, "peerDependencies": { "@rolldown/plugin-babel": "^0.1.7 || ^0.2.0", "babel-plugin-react-compiler": "^1.0.0", "vite": "^8.0.0" }, "optionalPeers": ["@rolldown/plugin-babel", "babel-plugin-react-compiler"] }, "sha512-DlSMqo4WhThw4vB8Mpn0Woe9J+Jfq1geJ61AKW0QEgLzGMNwtIMdxbDUzLxcun8W7NbJO0e2Jg/Nxm3cCSVzzg=="],
+
+    "@zyplux/mdx": ["@zyplux/mdx@workspace:packages/mdx"],
+
+    "@zyplux/og": ["@zyplux/og@workspace:packages/og"],
 
     "@zyplux/tests": ["@zyplux/tests@workspace:tests"],
 

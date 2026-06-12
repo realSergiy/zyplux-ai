@@ -1,0 +1,23 @@
+{
+  "name": "@zyplux/mdx",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "remark-frontmatter": "catalog:",
+    "remark-gfm": "catalog:",
+    "remark-mdx-frontmatter": "catalog:",
+    "yaml": "catalog:"
+  },
+  "devDependencies": {
+    "@mdx-js/mdx": "catalog:",
+    "@types/mdast": "catalog:",
+    "@zyplux/tsconfig": "workspace:*",
+    "mdast-util-mdx-jsx": "catalog:",
+    "unified": "catalog:"
+  }
+}

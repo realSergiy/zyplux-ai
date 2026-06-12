@@ -1,5 +1,5 @@
 import { compile } from '@mdx-js/mdx';
-import { MDX_OPTIONS } from '@zyplux/web/mdx-options';
+import { MDX_OPTIONS } from '@zyplux/mdx';
 import { plugin } from 'bun';
 
 plugin({

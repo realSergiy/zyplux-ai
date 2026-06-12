@@ -1,0 +1,21 @@
+{
+  "name": "@zyplux/og",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@fontsource/inter": "catalog:",
+    "@resvg/resvg-js": "catalog:",
+    "satori": "catalog:"
+  },
+  "devDependencies": {
+    "@types/bun": "catalog:",
+    "@types/react": "catalog:",
+    "@zyplux/tsconfig": "workspace:*",
+    "react": "catalog:"
+  }
+}

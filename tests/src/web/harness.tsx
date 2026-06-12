@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 
 import { cleanup, render } from '@testing-library/react';
-import { HomePage } from '@zyplux/web/pages/home-page';
+import { HomePage } from '@zyplux/web/routes/index';
 import { act } from 'react';
 
 import type { Harness } from '@/stories/harness';

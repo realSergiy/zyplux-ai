@@ -7,5 +7,5 @@
     "types": ["bun", "react", "react-dom", "mdx"]
   },
   "include": ["src"],
-  "references": [{ "path": "../packages/ui" }, { "path": "../apps/web" }]
+  "references": [{ "path": "../packages/mdx" }, { "path": "../packages/ui" }, { "path": "../apps/web" }]
 }

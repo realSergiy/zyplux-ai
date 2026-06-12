@@ -21,24 +21,39 @@ export const SectionIntro = ({
   children: ReactNode;
   className?: string;
 }) => (
-  <Reveal className={cx(prose({ tone: 'muted' }), 'mx-auto max-w-2xl', centered && 'text-center', className)}>
+  <Reveal
+    className={cx(prose({ tone: 'muted' }), 'mx-auto -mt-10 mb-16 max-w-2xl', centered && 'text-center', className)}
+  >
     {children}
   </Reveal>
 );
 
+const SECTION_WIDTHS = {
+  narrow: 'max-w-3xl',
+  slim: 'max-w-xl',
+};
+
 export const Section = ({
+  centered = false,
   children,
   className,
   heading: headingContent,
   id,
+  width,
 }: {
+  centered?: boolean;
   children: ReactNode;
   className?: string | undefined;
   heading?: ReactNode;
   id?: string | undefined;
+  width?: keyof typeof SECTION_WIDTHS;
 }) => (
   <section className='relative py-32' id={id}>
-    <div className={container({ className })}>
+    <div
+      className={container({
+        className: cx(width !== undefined && SECTION_WIDTHS[width], centered && 'text-center', className),
+      })}
+    >
       {headingContent !== undefined && <SectionHeading className='mb-16'>{headingContent}</SectionHeading>}
       {children}
     </div>

@@ -1,8 +1,8 @@
-import { AgentPage } from '@zyplux/web/pages/agent-page';
-import { PrivacyPage } from '@zyplux/web/pages/privacy-page';
+import { AgentPage } from '@zyplux/web/routes/agent';
+import { PrivacyPage } from '@zyplux/web/routes/privacy';
 import { createElement } from 'react';
 
-import { PAGES } from '@/fixtures/content';
+import { PAGE_META } from '@/fixtures/content';
 import registerLandingScenarios from '@/stories/landing';
 import registerSeoScenarios from '@/stories/seo';
 import registerSubpageScenarios from '@/stories/subpages';
@@ -23,7 +23,7 @@ registerSubpageScenarios('agent', pageHarness(createElement(AgentPage)), [
   'We’re polishing the showcase.',
 ]);
 
-registerSeoScenarios(seoHarness('index', '/'), 'home', PAGES.index.title);
-registerSeoScenarios(seoHarness('agent', '/agent'), 'agent', PAGES.agent.title);
-registerSeoScenarios(seoHarness('insights', '/insights'), 'insights', PAGES.insights.title);
-registerSeoScenarios(seoHarness('privacy', '/privacy'), 'privacy', PAGES.privacy.title);
+registerSeoScenarios(seoHarness('home', PAGE_META.home, '/'), 'home', PAGE_META.home.title);
+registerSeoScenarios(seoHarness('agent', PAGE_META.agent, '/agent'), 'agent', PAGE_META.agent.title);
+registerSeoScenarios(seoHarness('insights', PAGE_META.insights, '/insights'), 'insights', PAGE_META.insights.title);
+registerSeoScenarios(seoHarness('privacy', PAGE_META.privacy, '/privacy'), 'privacy', PAGE_META.privacy.title);

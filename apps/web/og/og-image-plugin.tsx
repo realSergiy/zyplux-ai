@@ -1,41 +1,25 @@
 import type { CSSProperties, ReactNode } from 'react';
 import type { Plugin } from 'vite';
 
-import { Resvg } from '@resvg/resvg-js';
+import { gridDataUri, pngDataUri, renderCardPng } from '@zyplux/og';
 import { PALETTE, TEXT_GRADIENT, toRgba } from '@zyplux/ui/tokens';
 import { OG_IMAGE_HEIGHT, OG_IMAGE_WIDTH, postOgImagePath, SITE_URL } from '@zyplux/web/config';
 import { BRAND_NAME, BRAND_POSITIONING, TAGLINE } from '@zyplux/web/site';
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
-import satori from 'satori';
 
-import { fonts } from './fonts';
 import { readPostCards } from './posts';
 
 const OG_FILE_NAME = 'og.png';
+const OG_SIZE = { height: OG_IMAGE_HEIGHT, width: OG_IMAGE_WIDTH };
 const SITE_DOMAIN = new URL(SITE_URL).hostname;
-
-const pngDataUri = (svg: string) =>
-  `data:image/png;base64,${new Resvg(svg, { fitTo: { mode: 'original' } }).render().asPng().toString('base64')}`;
 
 const BOLT_SVG =
   `<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 24 24" fill="${PALETTE.accent}">` +
   '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>';
 const boltDataUri = pngDataUri(BOLT_SVG);
 
-const gridLine = (cellPx: number, opacity: number) =>
-  `<pattern id="cell${cellPx}" width="${cellPx}" height="${cellPx}" patternUnits="userSpaceOnUse">` +
-  `<path d="M${cellPx} 0H0V${cellPx}" fill="none" stroke="${PALETTE.grid}" stroke-opacity="${opacity}" stroke-width="1"/></pattern>`;
-const GRID_SVG =
-  `<svg xmlns="http://www.w3.org/2000/svg" width="${OG_IMAGE_WIDTH}" height="${OG_IMAGE_HEIGHT}"><defs>` +
-  gridLine(36, 0.14) +
-  gridLine(180, 0.2) +
-  `<radialGradient id="fade" cx="50%" cy="0%" fx="50%" fy="0%" r="95%">` +
-  `<stop offset="25%" stop-color="#fff"/><stop offset="78%" stop-color="#fff" stop-opacity="0"/></radialGradient>` +
-  `<mask id="fadeMask"><rect width="${OG_IMAGE_WIDTH}" height="${OG_IMAGE_HEIGHT}" fill="url(#fade)"/></mask></defs>` +
-  `<g mask="url(#fadeMask)"><rect width="${OG_IMAGE_WIDTH}" height="${OG_IMAGE_HEIGHT}" fill="url(#cell36)"/>` +
-  `<rect width="${OG_IMAGE_WIDTH}" height="${OG_IMAGE_HEIGHT}" fill="url(#cell180)"/></g></svg>`;
-const gridDataUri = pngDataUri(GRID_SVG);
+const backgroundGridUri = gridDataUri({ ...OG_SIZE, stroke: PALETTE.grid });
 
 const GRADIENT_TEXT = {
   backgroundClip: 'text',
@@ -62,7 +46,7 @@ const CardShell = ({ children, style }: { children: ReactNode; style: CSSPropert
     <img
       alt=''
       height={OG_IMAGE_HEIGHT}
-      src={gridDataUri}
+      src={backgroundGridUri}
       style={{ inset: 0, position: 'absolute' }}
       width={OG_IMAGE_WIDTH}
     />
@@ -140,11 +124,6 @@ const postCard = (title: string, description: string) => (
   </CardShell>
 );
 
-const renderCardPng = async (node: ReactNode) => {
-  const svg = await satori(node, { fonts, height: OG_IMAGE_HEIGHT, width: OG_IMAGE_WIDTH });
-  return new Resvg(svg, { fitTo: { mode: 'width', value: OG_IMAGE_WIDTH } }).render().asPng();
-};
-
 export const ogImagePlugin = () => {
   let cached: Buffer | undefined;
   const render = async () => (cached ??= await renderOgPng());
@@ -171,10 +150,10 @@ export const ogImagePlugin = () => {
       for (const post of await readPostCards()) {
         const imagePath = path.join(options.dir, postOgImagePath(post.slug));
         await mkdir(path.dirname(imagePath), { recursive: true });
-        await writeFile(imagePath, await renderCardPng(postCard(post.title, post.description)));
+        await writeFile(imagePath, await renderCardPng(postCard(post.title, post.description), OG_SIZE));
       }
     },
   } satisfies Plugin;
 };
 
-export const renderOgPng = () => renderCardPng(brandCard);
+export const renderOgPng = () => renderCardPng(brandCard, OG_SIZE);

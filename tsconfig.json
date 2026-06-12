@@ -2,6 +2,8 @@
   "files": [],
   "references": [
     { "path": "./tsconfig.tooling.json" },
+    { "path": "./packages/mdx" },
+    { "path": "./packages/og" },
     { "path": "./packages/ui" },
     { "path": "./apps/web" },
     { "path": "./apps/web/tsconfig.node.json" },

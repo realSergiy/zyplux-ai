@@ -14,6 +14,8 @@ Modern React frontpage with a dark GitHub-inspired aesthetic (parallax grid back
 
 - `apps/web/` - Marketing site: one-pager (`/`) plus `/agent`, `/insights`, `/privacy` pages (TanStack Start file routes, prerendered)
 - `packages/ui/` - Shared design system: design tokens (`theme.css`, `tokens`), global styles (`base.css`), class recipes, motion provider, and React components (raw TS source, no build step)
+- `packages/mdx/` - MDX compile pipeline: `MDX_OPTIONS` and the `remarkSections` plugin (used by the web Vite build and the test mdx loader)
+- `packages/og/` - Node-side social-card rendering kit: Inter fonts, satori/resvg helpers (`renderCardPng`, `pngDataUri`, `gridDataUri`)
 - `packages/tsconfig/` - Shared TypeScript presets (`base.json`, `bun.json`, `web.json`)
 - `tests/` - Smoke tests hitting public package interfaces only: `fixtures/` (expected copy), `stories/` (scenario registrars), `web/` (happy-dom preload + harness)
 
@@ -104,12 +106,14 @@ Workspace packages use `workspace:*` protocol.
 
 ### Web App (`apps/web/src/`)
 
-- `content.ts` - Every user-visible string (single source of truth, also imported by tests via `@zyplux/web/content`) plus the `FORM_ENDPOINT` placeholder for the hosted form service
+- `../content/` - All page copy as MDX (`pages/*.mdx` with typed frontmatter via sibling `.mdx.d.ts`, `insights/*.mdx` posts)
+- `site.ts` - Brand strings and chrome copy (nav, footer, form messages); `config.ts` - site URL, theme color, OG image constants
+- `page-meta.ts` - Frontmatter registry re-exported for tests (`@zyplux/web/page-meta`; bun tests can't reach routes that use `import.meta.glob`)
 - `components/layout/` - Navigation (binds nav content into `NavBar`), Footer (binds into `SiteFooter`), SubpageLayout (binds into `SubpageShell`)
 - `components/forms/` - AuditForm plus app bindings (`EmailCapture` wrapper, `FormErrorNote`) over `@zyplux/ui/forms/*`
+- `components/mdx/` - The MDX component maps: `HOME_COMPONENTS` (landing blocks bound to brand copy/icons), `PROSE_COMPONENTS`
 - `components/ui/` - BrandMark, MiniDashboard, SystemMap (brand/marketing-specific compositions over `@zyplux/ui` primitives and hooks)
-- `pages/` - HomePage (all landing sections in one file, composed from `@zyplux/ui` blocks), AgentPage, InsightsPage, InsightsPostPage, PrivacyPage
-- `routes/` + `router.tsx` - TanStack Router file routes (prerendered at build time)
+- `routes/` + `router.tsx` - TanStack Router file routes (prerendered at build time); each route file owns its page component (`HomePage`, `AgentPage`, …) and builds its head from its MDX frontmatter
 
 ### Design System (`packages/ui/src/`)
 
