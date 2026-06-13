@@ -5,12 +5,14 @@
   "type": "module",
   "sideEffects": false,
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./remark-preset": "./src/remark-preset.ts"
   },
   "dependencies": {
     "remark-frontmatter": "catalog:",
     "remark-gfm": "catalog:",
     "remark-mdx-frontmatter": "catalog:",
+    "remark-preset-lint-recommended": "catalog:",
     "yaml": "catalog:"
   },
   "devDependencies": {

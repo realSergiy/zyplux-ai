@@ -6,7 +6,8 @@
       "@/og/*": ["./og/*"],
       "@content/*": ["./content/*"]
     },
-    "types": ["bun", "react", "react-dom", "mdx"]
+    "types": ["bun", "react", "react-dom", "mdx"],
+    "plugins": [{ "name": "@mdx-js/typescript-plugin" }]
   },
   "include": ["src", "content"],
   "references": [{ "path": "../../packages/ui/tsconfig.json" }]

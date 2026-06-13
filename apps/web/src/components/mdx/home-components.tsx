@@ -294,3 +294,7 @@ export const HOME_COMPONENTS = {
   SystemMap,
   Week,
 } satisfies MDXComponents;
+
+declare global {
+  type MDXProvidedComponents = typeof HOME_COMPONENTS;
+}

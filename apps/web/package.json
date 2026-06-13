@@ -34,6 +34,7 @@
   "devDependencies": {
     "@cloudflare/vite-plugin": "catalog:",
     "@mdx-js/rollup": "catalog:",
+    "@mdx-js/typescript-plugin": "catalog:",
     "@tailwindcss/vite": "catalog:",
     "@types/bun": "catalog:",
     "@types/mdx": "catalog:",
