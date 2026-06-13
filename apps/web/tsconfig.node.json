@@ -10,9 +10,9 @@
   },
   "references": [
     { "path": "./tsconfig.json" },
-    { "path": "../../packages/mdx" },
-    { "path": "../../packages/og" },
-    { "path": "../../packages/ui" }
+    { "path": "../../packages/mdx/tsconfig.json" },
+    { "path": "../../packages/og/tsconfig.json" },
+    { "path": "../../packages/ui/tsconfig.json" }
   ],
   "include": ["vite.config.ts", "og", "scripts"]
 }

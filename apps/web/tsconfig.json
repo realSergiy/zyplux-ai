@@ -9,5 +9,5 @@
     "types": ["bun", "react", "react-dom", "mdx"]
   },
   "include": ["src", "content"],
-  "references": [{ "path": "../../packages/ui" }]
+  "references": [{ "path": "../../packages/ui/tsconfig.json" }]
 }

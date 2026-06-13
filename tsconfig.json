@@ -2,11 +2,11 @@
   "files": [],
   "references": [
     { "path": "./tsconfig.tooling.json" },
-    { "path": "./packages/mdx" },
-    { "path": "./packages/og" },
-    { "path": "./packages/ui" },
-    { "path": "./apps/web" },
+    { "path": "./packages/mdx/tsconfig.json" },
+    { "path": "./packages/og/tsconfig.json" },
+    { "path": "./packages/ui/tsconfig.json" },
+    { "path": "./apps/web/tsconfig.json" },
     { "path": "./apps/web/tsconfig.node.json" },
-    { "path": "./tests" }
+    { "path": "./tests/tsconfig.json" }
   ]
 }
