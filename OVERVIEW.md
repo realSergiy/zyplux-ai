@@ -14,6 +14,8 @@ Modern React frontpage with a dark GitHub-inspired aesthetic (parallax grid back
 
 - `apps/web/` - Marketing site: one-pager (`/`) plus `/agent`, `/insights`, `/privacy` pages (TanStack Start file routes, prerendered)
 - `packages/ui/` - Shared design system: design tokens (`theme.css`, `tokens`), global styles (`base.css`), class recipes, motion provider, and React components (raw TS source, no build step)
+- `packages/mdx/` - MDX compile pipeline: `MDX_OPTIONS` and the `remarkSections` plugin (used by the web Vite build and the test mdx loader)
+- `packages/og/` - Node-side social-card rendering kit: Inter fonts, satori/resvg helpers (`renderCardPng`, `pngDataUri`, `gridDataUri`)
 - `packages/tsconfig/` - Shared TypeScript presets (`base.json`, `bun.json`, `web.json`)
 - `tests/` - Smoke tests hitting public package interfaces only: `fixtures/` (expected copy), `stories/` (scenario registrars), `web/` (happy-dom preload + harness)
 
@@ -104,12 +106,14 @@ Workspace packages use `workspace:*` protocol.
 
 ### Web App (`apps/web/src/`)
 
-- `content.ts` - Every user-visible string (single source of truth, also imported by tests via `@zyplux/web/content`) plus the `FORM_ENDPOINT` placeholder for the hosted form service
+- `../content/` - All page copy as MDX (`pages/*.mdx` with typed frontmatter via sibling `.mdx.d.ts`, `insights/*.mdx` posts)
+- `site.ts` - Brand strings and chrome copy (nav, footer, form messages); `config.ts` - site URL, theme color, OG image constants
+- `page-meta.ts` - Frontmatter registry re-exported for tests (`@zyplux/web/page-meta`; bun tests can't reach routes that use `import.meta.glob`)
 - `components/layout/` - Navigation (binds nav content into `NavBar`), Footer (binds into `SiteFooter`), SubpageLayout (binds into `SubpageShell`)
 - `components/forms/` - AuditForm plus app bindings (`EmailCapture` wrapper, `FormErrorNote`) over `@zyplux/ui/forms/*`
+- `components/mdx/` - The MDX component maps: `HOME_COMPONENTS` (landing blocks bound to brand copy/icons), `PROSE_COMPONENTS`
 - `components/ui/` - BrandMark, MiniDashboard, SystemMap (brand/marketing-specific compositions over `@zyplux/ui` primitives and hooks)
-- `pages/` - HomePage (all landing sections in one file, composed from `@zyplux/ui` blocks), AgentPage, InsightsPage, InsightsPostPage, PrivacyPage
-- `routes/` + `router.tsx` - TanStack Router file routes (prerendered at build time)
+- `routes/` + `router.tsx` - TanStack Router file routes (prerendered at build time); each route file owns its page component (`HomePage`, `AgentPage`, …) and builds its head from its MDX frontmatter
 
 ### Design System (`packages/ui/src/`)
 
@@ -135,6 +139,21 @@ Vite builds for baseline-widely-available browsers (2025-05-01):
 - Edge 107+
 - Firefox 104+
 - Safari 16+
+
+## Runtime (Bun, not Node.js)
+
+A _runtime_ is the program that actually executes JavaScript. The two general-purpose ones are **Node.js** (the long-time default) and **Bun** (a faster, mostly-Node-compatible alternative). This repo standardises on **Bun**; Node.js is neither installed nor used — on a dev machine the `node` command is itself a symlink to `bun`. The runtime differs across three stages:
+
+**Local dev and CI → Bun.** The whole toolchain runs on Bun: `just dev`, `just build`, `just test`, lint, typecheck, knip, prettier — both on your machine and in CI (GitHub Actions runs it all inside the official `oven/bun` container; see `.github/workflows`). Code that imports `node:` modules (`node:fs`, the fonts in `packages/og`, …) is using the standard-library API that Bun implements — it is not Node.js.
+
+**Production → neither Bun nor Node.js.** The site deploys to **Cloudflare Workers**, which run on Cloudflare's own runtime, **`workerd`** (the `nodejs_compat` flag gives Worker code Node-style APIs). No Bun or Node.js process exists in production. Bun's only production role is to _build_ the site (below) and run `wrangler` to upload it.
+
+**The build → Bun, with two Bun-vs-Node rough edges.** `vite build` (run by Bun) compiles the site and _prerenders_ every page to static HTML. To render pages the way Cloudflare will, it uses **`@cloudflare/vite-plugin`**, which starts **miniflare** — a local simulator of the Workers environment. Two details matter:
+
+- _The plugin needs a WebSocket only in dev, not in build._ During the long-running **dev server** the plugin keeps a live **WebSocket** open to the simulated Worker (for hot-reload and debugging). A one-shot **`vite build`** opens **no WebSocket** — it only compiles and renders. This matters because Bun hasn't implemented two WebSocket events the dev connection needs (`'upgrade'` and `'unexpected-response'`, [oven-sh/bun#5951](https://github.com/oven-sh/bun/issues/5951)), so under Bun the dev WebSocket hangs forever. We therefore leave the Cloudflare plugin **out of the dev server** and add it **only for build / prerender / deploy**, where no WebSocket is opened (the `isBuild` gate in `apps/web/vite.config.ts`). Trade-off: the dev server renders in plain Vite instead of the Worker simulator — fine for a prerendered marketing site.
+- _Shutting miniflare down trips a Node-vs-Bun difference._ When the build ends, the plugin stops miniflare, which closes a small internal debug server. Bun reports "this server was already stopped" (`ERR_SERVER_NOT_RUNNING`) in a way miniflare treats as fatal, aborting the build at the finish line. `patches/miniflare@4.20260611.0.patch` makes miniflare accept that one harmless signal. It is **required** — `bun run build` fails without it (verified) — and is pinned to one miniflare version, so re-check it on every miniflare upgrade.
+
+Both rough edges share one root cause: Bun isn't yet 100% Node-compatible, and the Cloudflare tooling was written for Node. They are the present cost of "Bun everywhere". The WebSocket gap is tracked upstream at [oven-sh/bun#5951](https://github.com/oven-sh/bun/issues/5951); once it lands, the dev/build gate in `apps/web/vite.config.ts` can be removed.
 
 ## Environment
 

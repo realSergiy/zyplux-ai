@@ -45,8 +45,18 @@ lint:
 test:
     bun run test
 
-# Full gate: install, knip, typecheck, lint, test — autofix throughout.
+# Full gate: install, knip, typecheck, lint, build, test — autofix throughout.
 check: install knip typecheck lint test
+
+# Reproduce the GitHub Actions CI run locally inside the same Bun container.
+# An anonymous volume masks node_modules so the host install is left untouched.
+ci:
+    podman run --rm \
+        -v {{ justfile_directory() }}:/work \
+        -v /work/node_modules \
+        -w /work \
+        oven/bun:1.3.14-debian \
+        sh -euc 'apt-get update && apt-get install -y --no-install-recommends git ca-certificates && bun install --frozen-lockfile && bun run build && bun run knip && bun run typecheck && bun run lint && bunx prettier --check . && bun run test'
 
 # Deploy the web app to Cloudflare (vite build + wrangler deploy).
 deploy:

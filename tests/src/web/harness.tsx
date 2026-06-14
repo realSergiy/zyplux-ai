@@ -1,24 +1,26 @@
-import type { ReactNode } from 'react';
-
-import { cleanup, render } from '@testing-library/react';
-import { HomePage } from '@zyplux/web/pages/home-page';
-import { act } from 'react';
+import { createMemoryHistory, createRouter, RouterProvider } from '@tanstack/react-router';
+import { act, cleanup, render } from '@testing-library/react';
+import { routeTree } from '@zyplux/web/route-tree';
 
 import type { Harness } from '@/stories/harness';
 
 const visibleText = () => document.body.textContent;
 
-export const pageHarness = (page: ReactNode): Harness => ({
+export const routerHarness = (path: string): Harness => ({
   open: async () => {
+    const router = createRouter({
+      history: createMemoryHistory({ initialEntries: [path] }),
+      routeTree,
+    });
     await act(async () => {
-      render(page);
-      await Promise.resolve();
+      await router.load();
+      render(<RouterProvider router={router} />);
     });
     return {
       assert: {
         shows: text => {
           if (!visibleText().includes(text)) {
-            throw new Error(`expected the page to show ${JSON.stringify(text)}`);
+            throw new Error(`expected the page at ${path} to show ${JSON.stringify(text)}`);
           }
         },
       },
@@ -28,5 +30,3 @@ export const pageHarness = (page: ReactNode): Harness => ({
     };
   },
 });
-
-export const webHarness = pageHarness(<HomePage />);

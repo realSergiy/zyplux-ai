@@ -1,5 +1,5 @@
 import { cva, cx } from '@zyplux/ui/lib/style';
-import { describe, expect, it } from 'bun:test';
+import { describe, expect, it } from 'vitest';
 
 describe('cx', () => {
   it('joins class names', () => {

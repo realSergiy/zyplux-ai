@@ -1,0 +1,7 @@
+{
+  "extends": "@zyplux/tsconfig/bun.json",
+  "compilerOptions": {
+    "types": ["bun", "react"]
+  },
+  "include": ["src"]
+}

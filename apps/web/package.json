@@ -5,14 +5,11 @@
   "type": "module",
   "exports": {
     "./config": "./src/config.ts",
-    "./content": "./src/content.ts",
-    "./mdx-options": "./src/mdx-options.ts",
-    "./posts": "./src/posts.ts",
+    "./page-meta": "./src/page-meta.ts",
     "./seo": "./src/seo.ts",
     "./site": "./src/site.ts",
-    "./pages/home-page": "./src/pages/home-page.tsx",
-    "./pages/agent-page": "./src/pages/agent-page.tsx",
-    "./pages/privacy-page": "./src/pages/privacy-page.tsx"
+    "./route-tree": "./src/routeTree.gen.ts",
+    "./insights-frontmatter-plugin": "./og/insights-frontmatter-plugin.ts"
   },
   "scripts": {
     "dev": "vite",
@@ -25,6 +22,8 @@
   "dependencies": {
     "@tanstack/react-router": "catalog:",
     "@tanstack/react-start": "catalog:",
+    "@zyplux/mdx": "workspace:*",
+    "@zyplux/og": "workspace:*",
     "@zyplux/ui": "workspace:*",
     "lucide-react": "catalog:",
     "motion": "catalog:",
@@ -33,25 +32,16 @@
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "catalog:",
-    "@fontsource/inter": "catalog:",
-    "@mdx-js/mdx": "catalog:",
     "@mdx-js/rollup": "catalog:",
-    "@resvg/resvg-js": "catalog:",
+    "@mdx-js/typescript-plugin": "catalog:",
     "@tailwindcss/vite": "catalog:",
     "@types/bun": "catalog:",
-    "@types/mdast": "catalog:",
     "@types/mdx": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "@vitejs/plugin-react": "catalog:",
     "@zyplux/tsconfig": "workspace:*",
-    "mdast-util-mdx-jsx": "catalog:",
-    "remark-frontmatter": "catalog:",
-    "remark-gfm": "catalog:",
-    "remark-mdx-frontmatter": "catalog:",
-    "satori": "catalog:",
     "tailwindcss": "catalog:",
-    "unified": "catalog:",
     "vite": "catalog:",
     "wrangler": "catalog:",
     "yaml": "catalog:"

@@ -8,3 +8,6 @@ coverage
 reference_clones
 .rumdl_cache
 **/routeTree.gen.ts
+
+# Prettier has no official MDX 2/3 support and can corrupt JSX/expressions
+**/*.mdx

@@ -7,7 +7,7 @@ const require = createRequire(import.meta.url);
 const interFilesDir = path.join(path.dirname(require.resolve('@fontsource/inter/package.json')), 'files');
 const readInterWeight = (weight: number) => readFileSync(path.join(interFilesDir, `inter-latin-${weight}-normal.woff`));
 
-export const fonts: SatoriOptions['fonts'] = [
+export const INTER_FONTS: SatoriOptions['fonts'] = [
   { data: readInterWeight(500), name: 'Inter', style: 'normal', weight: 500 },
   { data: readInterWeight(600), name: 'Inter', style: 'normal', weight: 600 },
   { data: readInterWeight(800), name: 'Inter', style: 'normal', weight: 800 },

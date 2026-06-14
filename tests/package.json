@@ -3,7 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "scripts": {
+    "test": "vitest run"
+  },
   "dependencies": {
+    "@tanstack/react-router": "catalog:",
+    "@zyplux/mdx": "workspace:*",
     "@zyplux/ui": "workspace:*",
     "@zyplux/web": "workspace:*",
     "react": "catalog:",
@@ -11,11 +16,14 @@
   },
   "devDependencies": {
     "@happy-dom/global-registrator": "catalog:",
-    "@mdx-js/mdx": "catalog:",
+    "@mdx-js/rollup": "catalog:",
     "@testing-library/react": "catalog:",
     "@types/mdx": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
-    "@zyplux/tsconfig": "workspace:*"
+    "@vitejs/plugin-react": "catalog:",
+    "@zyplux/tsconfig": "workspace:*",
+    "vite": "catalog:",
+    "vitest": "catalog:"
   }
 }
