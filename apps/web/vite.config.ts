@@ -30,5 +30,9 @@ export default defineConfig({
     react({ include: /\.(jsx?|tsx?|mdx)$/ }),
     ogImagePlugin(),
   ],
+  // Prerender boots `vite preview` and crawls its own `resolvedUrls.local` over
+  // HTTP. On `localhost` (both 127.0.0.1 and ::1 in CI's /etc/hosts) the bind and
+  // the fetch can pick different families -> ConnectionRefused. Pin one address.
+  preview: { host: '127.0.0.1' },
   resolve: { tsconfigPaths: true },
 });
